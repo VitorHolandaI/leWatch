@@ -1,0 +1,11 @@
+<map id="ui_show_wifi_process_bar" name="ui_show_wifi_process_bar">
+<area shape="rect" id="Node000001" title="Show the WiFi connection process bar on the UI." alt="" coords="410,31,584,57"/>
+<area shape="rect" id="Node000002" href="$ui__nfc_8cpp.html#a0bd1993c3694460cc4594aac4fcb2843" title=" " alt="" coords="176,5,362,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,33,363,32,363,26,398,33"/>
+<area shape="rect" id="Node000004" href="$ui__wireless_8cpp.html#a93ccd054556feab55b5f61319cf33657" title=" " alt="" coords="202,56,336,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,55,336,65,336,59,392,56"/>
+<area shape="rect" id="Node000003" href="$ui__nfc_8cpp.html#a68a174f5053fe18de131c7af8dc74b0b" title=" " alt="" coords="14,5,119,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="157,20,120,21,119,16,162,18"/>
+<area shape="rect" id="Node000005" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="5,56,128,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="184,70,128,72,128,67,189,69"/>
+</map>

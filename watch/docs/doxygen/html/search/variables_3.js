@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['canvas_0',['canvas',['../ui__main_8cpp.html#ac392dcf6f7c600e3bb3ea6e737f06559',1,'ui_main.cpp']]],
+  ['cd_5fdeadline_1',['cd_deadline',['../ui__clock_8cpp.html#abcfce52fa698d46eb9df55879445b561',1,'ui_clock.cpp']]],
+  ['cd_5flabel_2',['cd_label',['../ui__clock_8cpp.html#a4c12a6ef6aad277d6c1cfedbc0b6ca43',1,'ui_clock.cpp']]],
+  ['cd_5froll_5fmin_3',['cd_roll_min',['../ui__clock_8cpp.html#a653371c232d1d70ab67233f4a2294adc',1,'ui_clock.cpp']]],
+  ['cd_5froll_5fsec_4',['cd_roll_sec',['../ui__clock_8cpp.html#a1896b138abd44b1612d267ac516068ba',1,'ui_clock.cpp']]],
+  ['cd_5frunning_5',['cd_running',['../ui__clock_8cpp.html#adf5ced6323ce6cef64bdd7e99ac43322',1,'ui_clock.cpp']]],
+  ['channel_6',['channel',['../structwifi__scan__params__t.html#a5eb5fc79a47a266eb59efe7fdac52966',1,'wifi_scan_params_t']]],
+  ['charge_5flevel_5fnums_7',['charge_level_nums',['../structdevice__const__var.html#a1bad459b391d4172de307be9fdcec6d0',1,'device_const_var']]],
+  ['charge_5fstate_8',['charge_state',['../structmonitor__params__t.html#acc5f36a8df105a87b877d76b41ca99b3',1,'monitor_params_t::charge_state'],['../structmonitor__label__t.html#a019917c2871f5dbf4dd6f57bbe4e6a6c',1,'monitor_label_t::charge_state']]],
+  ['charge_5fsteps_9',['charge_steps',['../structdevice__const__var.html#a92fe9cb5adf05c59d3d788c4a98f03db',1,'device_const_var']]],
+  ['charger_5fcurrent_10',['charger_current',['../structuser__setting__params__t.html#afb4ba0878af8ff5b4f58d0016fbe7fdd',1,'user_setting_params_t']]],
+  ['charger_5fenable_11',['charger_enable',['../structuser__setting__params__t.html#ae778bbe2bc5751acb1e60d144b9b08ca',1,'user_setting_params_t']]],
+  ['clock_5flabel_12',['clock_label',['../ui__main_8cpp.html#a25185d877f969fd207b934cdc8ddaa37',1,'ui_main.cpp']]],
+  ['clock_5fpage_13',['clock_page',['../ui__main_8cpp.html#a5b6957c8fbacfecb6690402e71eb3573',1,'ui_main.cpp']]],
+  ['clock_5ftimer_14',['clock_timer',['../ui__main_8cpp.html#a832d8f246f38cf0995c02a8e8b5d00de',1,'ui_main.cpp']]],
+  ['count_15',['count',['../classUniversalTVRemote.html#aa6fd91e0c782c6e52743dea0eb35bca5',1,'UniversalTVRemote::count'],['../classUniversalACRemote.html#a9945a3b2709198540e3bf25fd473d1d2',1,'UniversalACRemote::count']]],
+  ['cr_16',['cr',['../structradio__params__t.html#a7d07c6fa03f7de809b46eb61040dd0cb',1,'radio_params_t']]]
+];

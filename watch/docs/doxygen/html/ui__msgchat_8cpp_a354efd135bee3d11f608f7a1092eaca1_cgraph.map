@@ -1,0 +1,21 @@
+<map id="msg_chat_receiver_task" name="msg_chat_receiver_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,169,133"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#acc08740cb37c4d31423a066b81cf8720" title="Provide hardware feedback." alt="" coords="246,5,344,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,104,155,73,216,42,234,36,229,39,218,46,158,78,110,108"/>
+<area shape="rect" id="Node000003" href="$stubs_8cpp.html#ababd00fe6d1d0c04d638056923bdce7c" title="Get the received radio data." alt="" coords="237,56,354,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,104,225,85,221,89,146,108"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#ad14a0b5423105b085f8bc32a00fb0d7b" title=" " alt="" coords="217,107,374,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,117,204,119,199,121,170,123"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#ad16fbdf11b0c5e8de6c5e2b2af5e0105" title="Set the volume level." alt="" coords="239,157,352,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="145,131,226,152,221,155,145,137"/>
+<area shape="rect" id="Node000008" href="$ui__msgchat_8cpp.html#a37944bc2a81ab60a8fae601a10dcf179" title=" " alt="" coords="256,208,334,235"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="109,131,158,162,218,194,244,206,239,206,216,198,155,167,108,136"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="432,107,561,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="374,117,419,119,414,121,375,123"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="422,157,571,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="352,168,409,170,403,171,352,173"/>
+<area shape="rect" id="Node000009" href="$ui__msgchat_8cpp.html#a3a2fd3413389713a5b2cdb906e25cfdc" title=" " alt="" coords="435,208,558,235"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="335,219,422,221,417,222,335,224"/>
+<area shape="rect" id="Node000010" href="$ui__msgchat_8cpp.html#a2dd0d6001fc319ab5791492fd6356de6" title=" " alt="" coords="430,259,563,285"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="335,228,429,254,423,254,335,234"/>
+</map>

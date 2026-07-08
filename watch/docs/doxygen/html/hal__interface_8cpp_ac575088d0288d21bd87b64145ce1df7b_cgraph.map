@@ -1,0 +1,5 @@
+<map id="hw_set_play_stop" name="hw_set_play_stop">
+<area shape="rect" id="Node000001" title="Stop the music playback." alt="" coords="5,5,132,32"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="180,5,309,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,16,167,18,161,19,132,21"/>
+</map>

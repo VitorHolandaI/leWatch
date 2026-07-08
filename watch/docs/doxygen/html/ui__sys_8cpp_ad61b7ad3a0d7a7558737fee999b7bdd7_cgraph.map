@@ -1,0 +1,31 @@
+<map id="create_subpage_info" name="create_subpage_info">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,224,147,251"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#aafeb9edb51faf3416ddac1e1e11d171e" title="Get the Arduino version." alt="" coords="195,5,356,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,223,95,188,119,142,152,92,193,49,214,37,210,41,196,53,156,96,123,145,100,190,85,224"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a93918f5459759afb0bc1708e9cf1b7f8" title="Get the current battery voltage." alt="" coords="404,325,563,352"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="81,223,96,193,121,157,153,120,193,92,238,74,277,67,315,72,357,92,385,113,409,139,428,168,444,199,467,260,480,311,475,309,462,261,440,201,424,171,404,143,382,117,355,97,313,77,277,72,239,79,196,97,157,124,125,160,101,196,86,225"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#addd16b50829e1e8b9cf4af09c875a931" title="Get the chip ID string." alt="" coords="200,107,350,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="89,222,134,183,193,143,209,137,205,141,196,148,137,187,93,225"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#aeaf68e7f209f84c4be5b9eac53dca7ac" title="Get the firmware hash string." alt="" coords="198,157,353,200"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="122,221,188,203,184,207,125,226"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#a6092a2b1f031d2c98af9a611c5e6e3fe" title="Get the current IP address." alt="" coords="209,224,342,251"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="146,235,195,236,191,239,148,240"/>
+<area shape="rect" id="Node000008" href="$hal__interface_8cpp.html#aae448331ec05066ae7865f946df36557" title="Get the MAC address of the device." alt="" coords="228,275,323,301"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="131,249,215,271,210,274,132,254"/>
+<area shape="rect" id="Node000009" href="$hal__interface_8cpp.html#a607555c10e36b331a23ae8f6f31ed0f0" title="Get the size of the SD card." alt="" coords="218,325,333,352"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="95,249,141,280,196,311,212,319,207,320,193,316,138,284,96,254"/>
+<area shape="rect" id="Node000010" href="$hal__interface_8cpp.html#a0797a2133d18837a407eeff51ea97c09" title="Get the current WiFi SSID." alt="" coords="215,376,336,403"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="87,248,131,304,161,335,196,362,207,369,201,370,193,366,158,339,127,307,86,254"/>
+<area shape="rect" id="Node000011" href="$ui__sys_8cpp.html#acc017910ab519dce781269ae5722734a" title=" " alt="" coords="206,427,344,453"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="83,249,100,283,124,327,156,373,196,413,204,419,198,419,193,417,152,376,119,330,95,286,83,254"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="611,351,761,377"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="564,346,599,353,593,353,564,351"/>
+<area shape="poly" id="edge11_Node000011_Node000003" title=" " alt="" coords="332,424,355,412,369,400,378,388,387,375,402,362,411,360,416,358,406,366,391,378,382,391,373,404,357,417,333,429"/>
+<area shape="rect" id="Node000012" href="$hal__interface_8cpp.html#aade54ac2e175dcf91cd574701376e9be" title="Get the current date and time as a string." alt="" coords="420,376,547,403"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="333,423,409,407,414,406,334,429"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#acda83b790f34afcb947731d72cebd9e3" title="Check if the device is connected to a WiFi network." alt="" coords="405,427,562,453"/>
+<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="345,437,392,440,387,440,345,443"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#ac9c89d89486d879e389e3e749e6d087b" title="Get the current WiFi RSSI." alt="" coords="424,477,543,504"/>
+<area shape="poly" id="edge15_Node000011_Node000014" title=" " alt="" coords="334,451,414,473,409,473,333,457"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="547,379,599,375,593,376,548,384"/>
+</map>

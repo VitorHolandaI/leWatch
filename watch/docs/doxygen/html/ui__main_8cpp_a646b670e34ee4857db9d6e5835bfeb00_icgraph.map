@@ -1,0 +1,7 @@
+<map id="setupClock" name="setupClock">
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,5,311,32"/>
+<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#af9a3ed82d372618825e9fd65e793792c" title=" " alt="" coords="103,5,176,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,19,176,21,176,16,211,19"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,55,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,20,55,21,55,16,90,18"/>
+</map>

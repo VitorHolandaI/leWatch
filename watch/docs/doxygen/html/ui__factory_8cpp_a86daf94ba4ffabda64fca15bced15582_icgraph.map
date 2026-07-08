@@ -1,0 +1,7 @@
+<map id="display_gray_image" name="display_gray_image">
+<area shape="rect" id="Node000001" title=" " alt="" coords="368,5,504,32"/>
+<area shape="rect" id="Node000002" href="$ui__factory_8cpp.html#affec5b62f099aba5bea38169206600c3" title=" " alt="" coords="168,5,320,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="350,19,320,21,320,16,355,19"/>
+<area shape="rect" id="Node000003" href="$ui__factory_8cpp.html#a0280b771844e040bf05bc59abccce8d1" title=" " alt="" coords="5,5,120,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="149,19,120,21,120,16,155,18"/>
+</map>

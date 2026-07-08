@@ -1,0 +1,14 @@
+<map id="hw_get_variant_name" name="hw_get_variant_name">
+<area shape="rect" id="Node000001" title="Get the variant name of the device." alt="" coords="551,31,700,57"/>
+<area shape="rect" id="Node000002" href="$ui__ble_8cpp.html#aa6cfcef9b16580a6bd63f4f0402e4c88" title=" " alt="" coords="378,5,503,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="533,32,504,30,504,25,539,32"/>
+<area shape="rect" id="Node000006" href="$ui__ble_8cpp.html#a95ff121a17fd09ce323ddc4bcd5c9283" title=" " alt="" coords="156,56,330,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="538,50,331,66,330,61,533,50"/>
+<area shape="rect" id="Node000003" href="$ui__ble_8cpp.html#a8f2d520fbb9b7f676232f3a58456751a" title=" " alt="" coords="163,5,322,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="360,19,323,21,323,16,365,18"/>
+<area shape="rect" id="Node000004" href="$ui__ble_8cpp.html#a8f478d0c06a5df0b0cd91c99c63a088d" title=" " alt="" coords="11,56,102,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,36,103,60,102,54,174,37"/>
+<area shape="rect" id="Node000005" href="$ui__radio_8cpp.html#a30702f97d00096d2d0a32c0acc4cb0af" title=" " alt="" coords="5,5,108,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="145,20,109,21,108,16,150,18"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="137,70,102,72,102,67,143,69"/>
+</map>

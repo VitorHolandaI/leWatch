@@ -1,0 +1,24 @@
+<map id="lv_get_encoder_indev" name="lv_get_encoder_indev">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1010,56,1157,83"/>
+<area shape="rect" id="Node000002" href="$ui__tools_8cpp.html#a99f642ce04079116b2f453bd79a4619b" title=" " alt="" coords="617,5,766,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="992,58,767,31,767,26,997,58"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#a3e4c5d4f5fed81c9891ee7694076216b" title=" " alt="" coords="816,81,962,108"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="997,81,963,88,962,83,992,81"/>
+<area shape="rect" id="Node000003" href="$ui__factory_8cpp.html#a0280b771844e040bf05bc59abccce8d1" title=" " alt="" coords="423,107,537,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="633,37,616,46,506,109,504,104,614,42,628,39"/>
+<area shape="rect" id="Node000004" href="$ui__msg_8cpp.html#aeb15920fcb8748fe8cc02865a923435b" title="Show the WiFi connection process bar on the UI." alt="" coords="393,31,567,57"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="599,30,568,36,567,31,604,29"/>
+<area shape="rect" id="Node000005" href="$ui__nfc_8cpp.html#a0bd1993c3694460cc4594aac4fcb2843" title=" " alt="" coords="159,31,345,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="375,45,346,47,345,41,380,43"/>
+<area shape="rect" id="Node000006" href="$ui__nfc_8cpp.html#a68a174f5053fe18de131c7af8dc74b0b" title=" " alt="" coords="5,31,111,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="141,45,112,47,110,41,145,43"/>
+<area shape="rect" id="Node000008" href="$ui__factory_8cpp.html#adb73a9ca8d093e6525add65e396c85b6" title=" " alt="" coords="651,107,732,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="803,106,733,117,732,112,797,106"/>
+<area shape="rect" id="Node000009" href="$ui__msg_8cpp.html#ae07c5a26ec3ca76e01a2df163e8b6a31" title=" " alt="" coords="623,56,760,83"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="797,83,760,81,760,75,803,83"/>
+<area shape="rect" id="Node000010" href="$ui__factory_8cpp.html#affec5b62f099aba5bea38169206600c3" title=" " alt="" coords="615,157,768,184"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="845,114,769,148,736,159,735,154,767,143,840,115"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="633,120,538,123,538,117,638,120"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="605,59,568,57,568,52,610,59"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="615,153,538,136,538,131,621,153"/>
+</map>

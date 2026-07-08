@@ -1,0 +1,25 @@
+<map id="factory_timer_callback" name="factory_timer_callback">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,158,184"/>
+<area shape="rect" id="Node000002" href="$ui__factory_8cpp.html#a86daf94ba4ffabda64fca15bced15582" title=" " alt="" coords="225,44,362,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,155,254,76,253,81,110,159"/>
+<area shape="rect" id="Node000004" href="$ui__tools_8cpp.html#a3e4c5d4f5fed81c9891ee7694076216b" title=" " alt="" coords="220,132,366,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="157,159,207,155,203,157,159,164"/>
+<area shape="rect" id="Node000010" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="248,183,339,209"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="158,177,235,188,230,190,158,182"/>
+<area shape="rect" id="Node000012" href="$ui__main_8cpp.html#ab7a481ef8ea452b4cbd235e40e798630" title=" " alt="" coords="206,233,381,260"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="114,182,207,219,229,228,224,228,205,224,113,187"/>
+<area shape="rect" id="Node000003" href="$ui__factory_8cpp.html#a6382400f4ed9be8d49249f75ad91c9c0" title=" " alt="" coords="436,5,592,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="361,43,423,34,418,36,363,48"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a0f0cb8f8e3a2a03283fb657860f9f0e1" title="Enable all input devices." alt="" coords="429,56,599,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="329,129,428,92,453,87,448,89,430,97,331,134"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="451,107,577,133"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="366,134,438,128,433,130,367,140"/>
+<area shape="rect" id="Node000008" href="$ui__tools_8cpp.html#a79b6e55b8ae7da2ea587b00b35c9ed1a" title=" " alt="" coords="440,157,588,184"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="367,151,428,160,422,161,367,156"/>
+<area shape="rect" id="Node000009" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="437,208,591,235"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="348,157,382,168,430,194,450,203,444,203,428,198,380,173,348,162"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="647,107,797,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="577,117,634,120,629,120,578,123"/>
+<area shape="rect" id="Node000011" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="452,259,576,285"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="340,205,382,219,430,244,450,254,444,253,428,249,380,224,339,210"/>
+</map>

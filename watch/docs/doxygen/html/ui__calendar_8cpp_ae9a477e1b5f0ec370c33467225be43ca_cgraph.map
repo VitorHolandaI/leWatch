@@ -1,0 +1,31 @@
+<map id="ui_calendar_enter" name="ui_calendar_enter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,129,159"/>
+<area shape="rect" id="Node000002" href="$ui__audio_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="177,56,314,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,129,200,87,197,91,102,134"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#a7cacb0af0f83c41b7d8bfe984d778b5e" title=" " alt="" coords="197,132,294,159"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="129,143,184,144,179,146,130,148"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#aade54ac2e175dcf91cd574701376e9be" title="Get the current date and time as a string." alt="" coords="182,195,309,221"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="108,157,193,188,188,190,107,162"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#ac575088d0288d21bd87b64145ce1df7b" title="Stop the music playback." alt="" coords="374,5,500,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="298,53,371,35,366,38,300,58"/>
+<area shape="rect" id="Node000005" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="761,56,852,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="314,67,746,67,744,72,315,72"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="559,5,689,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="500,16,547,18,542,19,500,21"/>
+<area shape="rect" id="Node000006" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="924,56,1048,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="852,67,911,69,906,70,853,72"/>
+<area shape="rect" id="Node000008" href="$ui__tools_8cpp.html#a1339595d52d820ddf74ce6a031bcbfa7" title=" " alt="" coords="366,107,508,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="293,136,353,131,348,132,294,142"/>
+<area shape="rect" id="Node000009" href="$ui__power_8cpp.html#ad129baf98d68c607824ee54981ef02a0" title=" " alt="" coords="587,132,661,159"/>
+<area shape="poly" id="edge13_Node000007_Node000009" title=" " alt="" coords="294,143,573,144,569,147,294,148"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="508,127,574,138,569,138,508,132"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="654,129,736,92,749,89,754,88,738,97,655,134"/>
+<area shape="rect" id="Node000010" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="756,107,857,133"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="661,138,743,129,737,130,662,143"/>
+<area shape="rect" id="Node000011" href="$hal__interface_8cpp.html#ac344d549b7ceb0868bba143a57470620" title="Put the hardware into sleep mode." alt="" coords="768,157,844,184"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="662,148,756,163,750,163,662,153"/>
+<area shape="rect" id="Node000012" href="$ui__main_8cpp.html#a0c56b2d3230d828cbfe6624bb30c0f24" title=" " alt="" coords="737,208,876,235"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="655,157,738,194,754,202,749,202,736,198,654,162"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="362,208,511,235"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="310,210,349,215,344,215,309,215"/>
+</map>

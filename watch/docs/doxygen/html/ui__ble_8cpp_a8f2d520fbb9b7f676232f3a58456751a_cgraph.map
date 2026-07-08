@@ -1,0 +1,11 @@
+<map id="create_mode_dropdown" name="create_mode_dropdown">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,165,83"/>
+<area shape="rect" id="Node000002" href="$ui__ble_8cpp.html#aa6cfcef9b16580a6bd63f4f0402e4c88" title=" " alt="" coords="213,56,338,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,67,200,69,194,70,165,72"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#ad574a66c8f0bde439395016b2847c437" title="Disable the BLE module." alt="" coords="405,5,515,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="326,53,392,37,397,36,328,58"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a44e0fe6d06ed60fd1868ad856b7b2245" title="Enable the BLE module." alt="" coords="406,56,514,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="338,67,394,69,389,70,339,72"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a3887aa6c09f2b766eec093a24a8d00a8" title="Get the variant name of the device." alt="" coords="386,107,534,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="327,81,397,102,392,102,327,86"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="hw_get_ble_message" name="hw_get_ble_message">
+<area shape="rect" id="Node000001" title="Get the BLE message." alt="" coords="145,5,292,32"/>
+<area shape="rect" id="Node000002" href="$ui__ble_8cpp.html#a8f478d0c06a5df0b0cd91c99c63a088d" title=" " alt="" coords="5,5,97,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,19,97,21,97,16,132,18"/>
+</map>

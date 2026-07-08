@@ -1,0 +1,7 @@
+<map id="hw_get_radio_params" name="hw_get_radio_params">
+<area shape="rect" id="Node000001" title="Get the current radio parameters." alt="" coords="178,31,326,57"/>
+<area shape="rect" id="Node000002" href="$ui__msgchat_8cpp.html#adba7e4ca9be94a18773fc377a731ec9f" title=" " alt="" coords="5,5,130,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,32,130,30,130,25,165,31"/>
+<area shape="rect" id="Node000003" href="$ui__radio_8cpp.html#a30702f97d00096d2d0a32c0acc4cb0af" title=" " alt="" coords="16,56,119,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,57,119,65,119,60,165,56"/>
+</map>

@@ -1,0 +1,40 @@
+# Doxygen config for the T-Watch S3 firmware.
+# Generates HTML docs with UML-style class diagrams, call graphs and include
+# graphs (needs Graphviz `dot`, already installed; install doxygen first:
+#   pacman -S doxygen
+# then run:  doxygen Doxyfile   ->   open docs/doxygen/html/index.html
+
+PROJECT_NAME           = "T-Watch S3 Firmware"
+OUTPUT_DIRECTORY       = docs/doxygen
+RECURSIVE              = YES
+
+# Only our own firmware sources; skip vendored libs, generated assets and conf.
+INPUT                  = .
+FILE_PATTERNS          = *.cpp *.h *.ino
+EXCLUDE                = libraries src sim/lv_conf.h audio docs
+EXCLUDE_PATTERNS       = */img_* */font_* *_v9.c
+
+# Document everything, even items without doc comments.
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+EXTRACT_PRIVATE        = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+# ---- diagrams (the part you want) ----
+HAVE_DOT               = YES
+UML_LOOK               = YES            # class diagrams in UML notation
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES            # who-includes-what
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = YES            # who-calls-what (per function)
+CALLER_GRAPH           = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+DOT_GRAPH_MAX_NODES    = 80
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO

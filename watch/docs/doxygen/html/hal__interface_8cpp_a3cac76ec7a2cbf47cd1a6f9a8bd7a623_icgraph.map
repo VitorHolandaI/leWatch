@@ -1,0 +1,7 @@
+<map id="hw_wifi_off" name="hw_wifi_off">
+<area shape="rect" id="Node000001" title=" " alt="" coords="325,5,411,32"/>
+<area shape="rect" id="Node000002" href="$ui__wireless_8cpp.html#aab35cf2d927630055322333370e35cf2" title=" " alt="" coords="176,5,277,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,19,278,21,277,16,312,19"/>
+<area shape="rect" id="Node000003" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="5,5,128,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="157,19,128,21,128,16,163,18"/>
+</map>

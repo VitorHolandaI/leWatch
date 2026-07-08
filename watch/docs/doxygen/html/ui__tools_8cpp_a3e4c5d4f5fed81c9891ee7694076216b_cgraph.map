@@ -1,0 +1,13 @@
+<map id="enable_input_devices" name="enable_input_devices">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,152,108"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0f0cb8f8e3a2a03283fb657860f9f0e1" title="Enable all input devices." alt="" coords="200,5,370,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,78,199,42,223,36,218,38,201,46,111,83"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="222,56,348,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,83,209,78,204,80,153,88"/>
+<area shape="rect" id="Node000005" href="$ui__tools_8cpp.html#a79b6e55b8ae7da2ea587b00b35c9ed1a" title=" " alt="" coords="211,107,358,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,101,198,108,193,110,152,106"/>
+<area shape="rect" id="Node000006" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="208,157,362,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="111,106,201,143,223,152,218,152,199,148,110,111"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="418,56,567,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="348,67,405,69,400,70,349,72"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="ring_vibrate_cb" name="ring_vibrate_cb">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,115,108"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a4c3da49ce628c497da298e8dd8555285" title=" " alt="" coords="169,5,314,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,79,162,48,194,37,190,40,164,53,94,83"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="368,81,497,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,92,353,92,352,97,115,97"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#ad14a0b5423105b085f8bc32a00fb0d7b" title=" " alt="" coords="163,107,320,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="115,100,150,106,145,108,115,105"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a30727c47b69af6274a126516517583de" title=" " alt="" coords="183,157,300,184"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="87,106,164,143,182,152,177,152,162,148,86,111"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="320,107,355,105,350,106,321,112"/>
+</map>

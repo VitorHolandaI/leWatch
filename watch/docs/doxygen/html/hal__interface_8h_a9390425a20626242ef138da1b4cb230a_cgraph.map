@@ -1,0 +1,7 @@
+<map id="hw_get_filesystem_music" name="hw_get_filesystem_music">
+<area shape="rect" id="Node000001" title="Get the list of music files from the SD card." alt="" coords="5,31,178,57"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a2d503f640905eb0d7ea0d692d316c278" title=" " alt="" coords="226,5,310,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,29,213,26,208,27,179,34"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#ac0c418dca2cc4fbefb9a5aede357c4a4" title=" " alt="" coords="226,56,310,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,54,213,61,208,61,178,59"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="hw_get_battery_voltage" name="hw_get_battery_voltage">
+<area shape="rect" id="Node000001" title="Get the current battery voltage." alt="" coords="524,5,684,32"/>
+<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#ad61b7ad3a0d7a7558737fee999b7bdd7" title=" " alt="" coords="149,5,290,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="506,19,290,21,290,16,512,18"/>
+<area shape="rect" id="Node000004" href="$ui__sys_8cpp.html#acc017910ab519dce781269ae5722734a" title=" " alt="" coords="338,31,476,57"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="511,31,477,38,477,32,506,31"/>
+<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,5,101,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,19,102,21,101,16,135,18"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="320,33,291,31,291,26,325,33"/>
+</map>

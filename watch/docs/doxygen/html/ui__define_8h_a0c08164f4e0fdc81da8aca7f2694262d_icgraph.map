@@ -1,0 +1,32 @@
+<map id="enable_keyboard" name="enable_keyboard">
+<area shape="rect" id="Node000001" title=" " alt="" coords="795,183,914,209"/>
+<area shape="rect" id="Node000002" href="$ui__msgchat_8cpp.html#a180f147998aa9a0ea7b611b57c22be2a" title=" " alt="" coords="622,31,715,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="834,168,797,120,773,94,745,72,715,57,715,52,748,67,776,90,802,117,839,170"/>
+<area shape="rect" id="Node000007" href="$ui__radio_8cpp.html#a180f147998aa9a0ea7b611b57c22be2a" title=" " alt="" coords="622,81,715,108"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="823,172,788,148,745,122,715,110,715,104,748,118,791,143,828,173"/>
+<area shape="rect" id="Node000008" href="$ui__keyboard_8cpp.html#a3b4a5e696fa1ba368cdeb4cc20c13f9d" title=" " alt="" coords="590,132,747,159"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="786,178,720,162,720,157,791,178"/>
+<area shape="rect" id="Node000009" href="$ui__keyboard_8cpp.html#a34ec6b10fc702cfe70fb6937dd057308" title=" " alt="" coords="392,169,519,196"/>
+<area shape="poly" id="edge16_Node000001_Node000009" title=" " alt="" coords="777,194,519,187,519,182,782,193"/>
+<area shape="rect" id="Node000010" href="$ui__wireless_8cpp.html#a704b169092637bafb6474404e2d3c58a" title=" " alt="" coords="590,233,747,260"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="791,213,721,235,720,230,786,215"/>
+<area shape="rect" id="Node000011" href="$ui__wireless_8cpp.html#a9f249ba78f11e88eb98a9ea03f2744bd" title=" " alt="" coords="378,245,533,272"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="831,219,794,251,748,275,686,287,623,289,563,284,513,275,513,270,564,279,623,284,685,282,746,269,791,247,827,221"/>
+<area shape="rect" id="Node000014" href="$ui__ble__kb_8cpp.html#ab48e635ec761213692ea9e2c93fee757" title=" " alt="" coords="612,335,725,361"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="838,221,800,271,775,296,748,318,713,337,712,332,745,314,771,292,796,267,833,223"/>
+<area shape="rect" id="Node000003" href="$ui__msgchat_8cpp.html#a263f210e7643a15a979aabed9b37cdaf" title=" " alt="" coords="196,5,302,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="605,42,303,24,302,19,609,38"/>
+<area shape="rect" id="Node000005" href="$ui__radio_8cpp.html#a1d43abe22b9e9b9e53a19e841bc5af64" title=" " alt="" coords="368,56,542,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="605,52,544,62,542,56,610,50"/>
+<area shape="rect" id="Node000004" href="$ui__msgchat_8cpp.html#adba7e4ca9be94a18773fc377a731ec9f" title=" " alt="" coords="5,5,130,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="178,20,131,21,129,16,182,17"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="380,53,303,34,302,29,385,51"/>
+<area shape="rect" id="Node000006" href="$ui__radio_8cpp.html#a30702f97d00096d2d0a32c0acc4cb0af" title=" " alt="" coords="198,56,300,83"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="350,70,301,72,299,67,355,68"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="572,162,520,174,519,169,578,161"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="572,252,534,257,533,252,578,252"/>
+<area shape="rect" id="Node000012" href="$ui__wireless_8cpp.html#a837a02e36955ab8cb3fdb161ad1d3a58" title=" " alt="" coords="178,245,320,272"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="359,259,321,261,320,256,365,258"/>
+<area shape="rect" id="Node000013" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="6,245,129,272"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="160,260,130,261,128,256,165,258"/>
+</map>

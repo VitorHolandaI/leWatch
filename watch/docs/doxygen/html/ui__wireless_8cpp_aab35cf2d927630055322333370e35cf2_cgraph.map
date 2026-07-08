@@ -1,0 +1,19 @@
+<map id="wifi_off_event" name="wifi_off_event">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,107,57"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a3cac76ec7a2cbf47cd1a6f9a8bd7a623" title=" " alt="" coords="168,5,254,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,33,154,27,150,30,108,38"/>
+<area shape="rect" id="Node000003" href="$ui__msg_8cpp.html#ace5fbfd131d77736e36d007c8aa21813" title="Pop up a message box on the UI." alt="" coords="155,56,267,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,50,142,57,137,59,107,55"/>
+<area shape="rect" id="Node000004" href="$ui__tools_8cpp.html#a510fc54709ec7b2b3301f097c0590753" title=" " alt="" coords="315,5,425,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="255,53,309,38,314,36,256,58"/>
+<area shape="rect" id="Node000006" href="$ui__msg_8cpp.html#ab19ed21fb9ddb38cd2687bf75f44dd9e" title=" " alt="" coords="317,56,423,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="267,67,304,69,299,70,268,72"/>
+<area shape="rect" id="Node000008" href="$ui__main_8cpp.html#ab7a481ef8ea452b4cbd235e40e798630" title=" " alt="" coords="473,107,649,133"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="263,81,315,92,461,112,455,113,315,97,262,86"/>
+<area shape="rect" id="Node000005" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="697,31,821,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="426,20,684,38,679,40,426,25"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#ae2c0cea030e820564ae4e647e0f7497a" title=" " alt="" coords="502,56,620,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="424,67,490,69,484,70,424,72"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="424,81,496,102,491,102,423,86"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="620,59,679,54,684,54,620,65"/>
+</map>

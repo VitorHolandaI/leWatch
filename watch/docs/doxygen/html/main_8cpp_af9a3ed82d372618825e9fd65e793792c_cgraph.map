@@ -1,0 +1,73 @@
+<map id="setupGui" name="setupGui">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,335,79,361"/>
+<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#ab6183c7a3d542673be67923dc8b02c3c" title=" " alt="" coords="152,56,277,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,334,45,288,57,224,67,188,82,154,101,121,125,93,139,84,137,88,129,97,105,124,87,156,72,190,62,225,50,289,46,334"/>
+<area shape="rect" id="Node000009" href="$ui__main_8cpp.html#a6ebe1abf3007715eb8475875e26b710c" title=" " alt="" coords="158,360,270,387"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="78,351,145,361,141,365,81,356"/>
+<area shape="rect" id="Node000011" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="374,461,498,488"/>
+<area shape="poly" id="edge21_Node000001_Node000011" title=" " alt="" coords="61,359,93,379,128,396,230,426,361,457,357,460,229,431,126,401,90,383,63,364"/>
+<area shape="rect" id="Node000012" href="$ui__tools_8cpp.html#acd6a1ac1452a1652d2e059722e241738" title=" " alt="" coords="153,309,276,336"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="78,341,140,332,136,336,81,345"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="373,259,499,285"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="58,333,89,312,126,295,185,280,246,271,359,267,355,270,247,276,186,285,128,300,92,317,63,336"/>
+<area shape="rect" id="Node000016" href="$ui__main_8cpp.html#abffa5c0a839ed83201107e4bd5e62ba1" title=" " alt="" coords="159,208,270,235"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="50,333,80,293,101,271,125,251,150,239,147,243,128,256,105,275,84,296,55,335"/>
+<area shape="rect" id="Node000018" href="$ui__main_8cpp.html#ab7a481ef8ea452b4cbd235e40e798630" title=" " alt="" coords="127,461,302,488"/>
+<area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="52,359,84,400,105,421,128,440,151,454,146,456,125,445,101,425,80,403,53,364"/>
+<area shape="rect" id="Node000019" href="$ui__main_8cpp.html#a646b670e34ee4857db9d6e5835bfeb00" title=" " alt="" coords="171,107,258,133"/>
+<area shape="poly" id="edge23_Node000001_Node000019" title=" " alt="" coords="46,333,76,270,98,232,125,194,152,165,183,141,181,145,155,169,129,198,103,234,81,273,52,335"/>
+<area shape="rect" id="Node000020" href="$ui__theme_8cpp.html#adcd77af62c50367dc14a7967048fa5d2" title=" " alt="" coords="174,512,255,539"/>
+<area shape="poly" id="edge27_Node000001_Node000020" title=" " alt="" coords="47,359,59,390,75,427,98,465,128,498,161,515,157,518,125,502,94,468,70,429,54,392,47,364"/>
+<area shape="rect" id="Node000022" href="$ui__main_8cpp.html#a3fff809f04e8fff6a136369699e07cad" title=" " alt="" coords="140,765,289,792"/>
+<area shape="poly" id="edge29_Node000001_Node000022" title=" " alt="" coords="51,360,205,751,200,752,47,364"/>
+<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#aa859a803a6a633ff9452bc13a2c428a4" title=" " alt="" coords="377,5,495,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,53,364,34,360,37,278,57"/>
+<area shape="rect" id="Node000004" href="$ui__main_8cpp.html#a410b487c1f14b4b0b47401c26b5c906e" title=" " alt="" coords="358,56,514,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="276,67,345,68,341,71,279,72"/>
+<area shape="rect" id="Node000008" href="$ui__main_8cpp.html#a6e272fcaeaeefce055a30d0497333485" title=" " alt="" coords="382,107,490,133"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="275,81,369,103,365,106,277,86"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#aade54ac2e175dcf91cd574701376e9be" title="Get the current date and time as a string." alt="" coords="588,81,716,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="513,76,575,84,571,87,516,81"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#aa5e11b749ec3d7c509b518f331203102" title="Get the monitor parameters." alt="" coords="570,157,734,184"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="491,81,523,92,618,148,613,149,521,97,493,86"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="782,157,931,184"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="690,106,806,151,801,152,691,111"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="733,168,768,170,764,172,735,173"/>
+<area shape="rect" id="Node000010" href="$ui__main_8cpp.html#ae8e3657613b04057801b8b6cad1d2cf0" title=" " alt="" coords="387,411,485,437"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="270,384,374,408,370,411,272,389"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="263,385,303,403,318,415,328,426,337,437,351,447,364,454,359,456,349,452,334,441,324,429,315,418,301,408,264,390"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#acf0813922ff659a6bdf248ee315fec75" title="Disable the keyboard." alt="" coords="363,360,509,387"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="275,334,362,355,357,357,277,339"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="275,307,362,287,358,291,278,311"/>
+<area shape="rect" id="Node000015" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="359,309,513,336"/>
+<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="275,320,346,321,342,324,277,325"/>
+<area shape="poly" id="edge15_Node000014_Node000006" title=" " alt="" coords="494,256,785,186,781,190,496,260"/>
+<area shape="poly" id="edge18_Node000016_Node000007" title=" " alt="" coords="269,216,386,208,522,193,575,186,570,189,523,199,387,213,272,221"/>
+<area shape="rect" id="Node000017" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="386,157,487,184"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="268,207,372,184,369,187,271,211"/>
+<area shape="poly" id="edge24_Node000019_Node000003" title=" " alt="" coords="256,110,301,92,315,80,324,68,333,55,349,42,364,35,361,39,351,46,337,58,328,71,319,84,303,97,260,114"/>
+<area shape="poly" id="edge25_Node000019_Node000004" title=" " alt="" coords="257,108,362,85,358,89,260,112"/>
+<area shape="poly" id="edge26_Node000019_Node000008" title=" " alt="" coords="257,118,369,118,364,122,260,122"/>
+<area shape="rect" id="Node000021" href="$ui__theme_8cpp.html#a65f446f063411086abff361b82809f6a" title=" " alt="" coords="362,512,510,539"/>
+<area shape="poly" id="edge28_Node000020_Node000021" title=" " alt="" coords="254,523,349,524,345,527,256,528"/>
+<area shape="rect" id="Node000023" href="$ui__main_8cpp.html#a5a9fea79ab1e98fa3ecf8c11660baed2" title=" " alt="" coords="350,715,522,741"/>
+<area shape="poly" id="edge30_Node000022_Node000023" title=" " alt="" coords="275,762,362,744,358,747,277,767"/>
+<area shape="rect" id="Node000024" href="$hal__interface_8cpp.html#a5c6c92c3327c7aab5db3c4ee2bad8ba1" title="Decrease the display brightness level." alt="" coords="370,765,503,792"/>
+<area shape="poly" id="edge31_Node000022_Node000024" title=" " alt="" coords="289,776,356,778,352,780,290,781"/>
+<area shape="rect" id="Node000025" href="$hal__interface_8cpp.html#a9461c204c9598429e6806da52026e1fb" title="Get the current display backlight level." alt="" coords="360,816,513,843"/>
+<area shape="poly" id="edge32_Node000022_Node000025" title=" " alt="" coords="276,790,362,811,357,813,276,795"/>
+<area shape="rect" id="Node000026" href="$hal__interface_8cpp.html#a030fb423a7f35cd07a02e7491d5004ab" title="Check if the display is on." alt="" coords="370,867,502,893"/>
+<area shape="poly" id="edge33_Node000022_Node000026" title=" " alt="" coords="237,790,289,821,351,852,370,861,365,862,349,857,286,825,237,795"/>
+<area shape="rect" id="Node000027" href="$hal__interface_8cpp.html#a5df10481877f5e9ac475f491d1e8848c" title="Get the display timeout in milliseconds." alt="" coords="352,917,521,944"/>
+<area shape="poly" id="edge34_Node000022_Node000027" title=" " alt="" coords="227,790,278,845,313,876,351,903,364,911,359,911,349,908,309,880,274,849,226,795"/>
+<area shape="rect" id="Node000028" href="$hal__interface_8cpp.html#aff1159c267e26c1cc0cf4aa6bb193057" title="Get the current keyboard backlight level." alt="" coords="364,968,508,995"/>
+<area shape="poly" id="edge35_Node000022_Node000028" title=" " alt="" coords="223,790,242,825,270,869,307,914,352,954,361,961,355,961,348,958,303,918,266,872,238,827,222,795"/>
+<area shape="rect" id="Node000029" href="$hal__interface_8cpp.html#a6d0d87c78af445be8c76cbd3e05d8853" title="Increase the display brightness level." alt="" coords="372,1019,501,1045"/>
+<area shape="poly" id="edge36_Node000022_Node000029" title=" " alt="" coords="221,790,237,833,263,891,302,952,325,980,352,1005,360,1012,355,1011,348,1009,321,984,297,955,259,893,232,835,219,795"/>
+<area shape="rect" id="Node000030" href="$hal__interface_8cpp.html#a771ac9c6ce7439676c9b2750357015bd" title="Enter the low &#45; power loop mode." alt="" coords="367,563,505,589"/>
+<area shape="poly" id="edge37_Node000022_Node000030" title=" " alt="" coords="220,763,238,730,266,686,303,639,348,599,360,595,356,598,352,603,307,643,270,689,242,733,225,766"/>
+<area shape="rect" id="Node000031" href="$hal__interface_8cpp.html#a475cc344eac0362523862b8efe4b7e51" title="Set the CPU frequency." alt="" coords="376,613,496,640"/>
+<area shape="poly" id="edge38_Node000022_Node000031" title=" " alt="" coords="224,763,274,709,309,677,349,650,364,644,359,648,351,654,313,681,278,712,228,767"/>
+<area shape="rect" id="Node000032" href="$hal__interface_8cpp.html#a58b93c5d943f76e1794da987a92485d1" title="Set the keyboard backlight level." alt="" coords="364,664,508,691"/>
+<area shape="poly" id="edge39_Node000022_Node000032" title=" " alt="" coords="235,763,286,732,349,700,370,694,365,697,351,705,289,737,238,767"/>
+</map>

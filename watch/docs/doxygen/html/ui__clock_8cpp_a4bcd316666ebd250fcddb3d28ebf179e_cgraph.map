@@ -1,0 +1,24 @@
+<map id="ui_alarm_ring" name="ui_alarm_ring">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,104,159"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a4c3da49ce628c497da298e8dd8555285" title=" " alt="" coords="322,5,466,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,130,101,96,125,78,150,63,189,48,229,36,308,23,304,26,230,41,190,53,153,68,128,82,105,100,70,133"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#ad14a0b5423105b085f8bc32a00fb0d7b" title=" " alt="" coords="315,56,472,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="75,129,110,109,151,92,226,76,302,70,297,72,227,81,152,97,112,114,78,133"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a30727c47b69af6274a126516517583de" title=" " alt="" coords="336,157,452,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="104,146,321,163,319,168,104,152"/>
+<area shape="rect" id="Node000006" href="$ui__clock_8cpp.html#ae2306cb34e0c370e7e1d2352c1393c02" title=" " alt="" coords="161,259,258,285"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="67,157,103,199,153,245,161,251,156,251,150,249,99,203,65,162"/>
+<area shape="rect" id="Node000007" href="$ui__clock_8cpp.html#a15d67d846ecb04d78091c3132f3f520b" title=" " alt="" coords="152,208,267,235"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="84,157,169,199,165,202,83,162"/>
+<area shape="rect" id="Node000009" href="$ui__clock_8cpp.html#a41e69a7f919231d8de11c2488fa6968c" title=" " alt="" coords="155,107,264,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="103,135,142,130,137,133,105,140"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="520,107,650,133"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="447,81,520,102,514,102,447,86"/>
+<area shape="rect" id="Node000008" href="$hal__interface_8cpp.html#ac575088d0288d21bd87b64145ce1df7b" title="Stop the music playback." alt="" coords="330,208,457,235"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="267,219,318,221,312,222,268,224"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="444,205,471,194,515,168,553,144,558,142,518,172,474,198,445,210"/>
+<area shape="poly" id="edge10_Node000009_Node000002" title=" " alt="" coords="225,104,264,73,314,42,330,37,325,40,316,46,267,78,228,108"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="260,104,330,86,325,89,262,108"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="264,117,506,118,503,122,265,123"/>
+<area shape="poly" id="edge13_Node000009_Node000005" title=" " alt="" coords="261,131,330,152,325,153,261,137"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="select_power_dropdown" name="select_power_dropdown">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,167,73"/>
+<area shape="rect" id="Node000002" href="$stubs_8cpp.html#ab7f300b04697c5348ea4af8cee905235" title="Get the radio transmission power from the index." alt="" coords="215,5,349,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,44,202,40,197,41,168,49"/>
+<area shape="rect" id="Node000003" href="$stubs_8cpp.html#a8d78f734b3afbfaa896cfbcfd0c99177" title="Get the radio transmission power length." alt="" coords="215,72,349,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,71,202,79,197,80,167,76"/>
+</map>

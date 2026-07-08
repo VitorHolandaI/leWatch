@@ -1,0 +1,13 @@
+<map id="scan_btn_event" name="scan_btn_event">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,119,83"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a74792277f0a50cf3bff1ca0789c8608b" title="Start a WiFi scan." alt="" coords="180,5,306,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,53,180,35,176,38,113,58"/>
+<area shape="rect" id="Node000003" href="$ui__wireless_8cpp.html#a7c4ecc61745410369ca4a25f66c319d8" title=" " alt="" coords="204,56,282,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,67,191,68,186,71,120,72"/>
+<area shape="rect" id="Node000006" href="$ui__tools_8cpp.html#a035ecbe74c836271b8cccea53d9c432b" title=" " alt="" coords="167,107,319,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="113,81,180,101,176,103,112,86"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a47b2d90a7d5ba0ed5273227e55c74592" title="Get the results of the WiFi scan." alt="" coords="367,31,531,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,62,354,55,349,56,282,67"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#adaab99eccc13b8b95917e78c4c9ace41" title="Get the WiFi scanning ?" alt="" coords="374,81,524,108"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="282,71,361,83,356,84,282,77"/>
+</map>

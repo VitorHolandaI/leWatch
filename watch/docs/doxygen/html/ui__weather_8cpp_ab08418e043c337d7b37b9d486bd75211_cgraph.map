@@ -1,0 +1,39 @@
+<map id="ui_weather_enter" name="ui_weather_enter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,126,184"/>
+<area shape="rect" id="Node000002" href="$ui__tools_8cpp.html#a7cacb0af0f83c41b7d8bfe984d778b5e" title=" " alt="" coords="189,107,286,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,154,177,136,173,140,115,159"/>
+<area shape="rect" id="Node000010" href="$ui__weather_8cpp.html#af9d8a78c8e97cdf919f675b9862f02a7" title=" " alt="" coords="174,208,301,235"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="113,182,177,202,173,204,114,187"/>
+<area shape="rect" id="Node000017" href="$ui__weather_8cpp.html#aac3be8637722912b7e0d445af74d3e25" title=" " alt="" coords="176,157,299,184"/>
+<area shape="poly" id="edge19_Node000001_Node000017" title=" " alt="" coords="125,168,163,169,158,172,127,173"/>
+<area shape="rect" id="Node000003" href="$ui__tools_8cpp.html#a1339595d52d820ddf74ce6a031bcbfa7" title=" " alt="" coords="349,56,491,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,104,357,86,353,89,287,109"/>
+<area shape="rect" id="Node000004" href="$ui__power_8cpp.html#ad129baf98d68c607824ee54981ef02a0" title=" " alt="" coords="572,81,647,108"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="285,114,558,96,555,100,286,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="491,76,560,87,554,88,492,81"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="747,5,848,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="640,78,727,42,745,37,740,39,729,46,642,83"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#ac344d549b7ceb0868bba143a57470620" title="Put the hardware into sleep mode." alt="" coords="759,56,836,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="646,87,746,76,741,77,648,92"/>
+<area shape="rect" id="Node000007" href="$ui__main_8cpp.html#a0c56b2d3230d828cbfe6624bb30c0f24" title=" " alt="" coords="728,107,867,133"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="647,97,715,108,710,109,647,102"/>
+<area shape="rect" id="Node000008" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="752,157,843,184"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="642,106,729,143,745,151,740,151,727,148,641,111"/>
+<area shape="rect" id="Node000009" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="915,157,1039,184"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="843,168,902,170,897,171,844,173"/>
+<area shape="rect" id="Node000011" href="$ui__weather_8cpp.html#a4c89be46e26d5910507b34c3aaf2b7af" title=" " alt="" coords="366,259,475,285"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="289,233,357,254,352,254,288,238"/>
+<area shape="rect" id="Node000016" href="$ui__weather_8cpp.html#aecf4f0a592aebe75ce9a4344b9253e12" title=" " alt="" coords="369,208,471,235"/>
+<area shape="poly" id="edge18_Node000010_Node000016" title=" " alt="" coords="301,219,356,221,351,222,302,224"/>
+<area shape="rect" id="Node000012" href="$ui__weather_8cpp.html#a1bcc01074084ef121e3d52237a1ea879" title=" " alt="" coords="578,309,641,336"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="473,283,566,311,561,310,473,289"/>
+<area shape="rect" id="Node000014" href="$ui__weather_8cpp.html#a203591f09b707084b5b5bafff4dd3d8f" title=" " alt="" coords="756,259,839,285"/>
+<area shape="poly" id="edge16_Node000011_Node000014" title=" " alt="" coords="475,269,742,272,737,272,475,275"/>
+<area shape="rect" id="Node000015" href="$ui__weather_8cpp.html#adcde8e77dec21dc7a81f26f7e502e91c" title=" " alt="" coords="539,208,680,235"/>
+<area shape="poly" id="edge17_Node000011_Node000015" title=" " alt="" coords="472,255,540,240,545,239,474,261"/>
+<area shape="rect" id="Node000013" href="$ui__weather_8cpp.html#a115e13465ba09c1442b6dd38833a280f" title=" " alt="" coords="922,284,1032,311"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="641,318,904,302,909,302,641,323"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="641,312,738,287,743,287,641,317"/>
+<area shape="poly" id="edge15_Node000014_Node000013" title=" " alt="" coords="839,275,910,288,905,287,839,280"/>
+<area shape="poly" id="edge20_Node000017_Node000008" title=" " alt="" coords="299,168,738,168,735,173,300,173"/>
+</map>

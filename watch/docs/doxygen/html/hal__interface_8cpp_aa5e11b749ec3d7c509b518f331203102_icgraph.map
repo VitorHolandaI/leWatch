@@ -1,0 +1,21 @@
+<map id="hw_get_monitor_params" name="hw_get_monitor_params">
+<area shape="rect" id="Node000001" title="Get the monitor parameters." alt="" coords="601,132,764,159"/>
+<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#a410b487c1f14b4b0b47401c26b5c906e" title=" " alt="" coords="397,56,553,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="627,126,514,86,514,81,632,126"/>
+<area shape="rect" id="Node000007" href="$ui__main_8cpp.html#abffa5c0a839ed83201107e4bd5e62ba1" title=" " alt="" coords="232,107,342,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="583,140,342,126,342,121,588,138"/>
+<area shape="rect" id="Node000008" href="$ui__ble__kb_8cpp.html#ab48e635ec761213692ea9e2c93fee757" title=" " alt="" coords="419,157,531,184"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="583,158,532,166,531,161,588,157"/>
+<area shape="rect" id="Node000009" href="$ui__monitor_8cpp.html#af6ff76e4433aec50f283b90fcb0a7999" title=" " alt="" coords="416,208,534,235"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="636,164,554,199,520,210,519,205,552,193,631,165"/>
+<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#ab6183c7a3d542673be67923dc8b02c3c" title=" " alt="" coords="224,5,349,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="405,52,339,35,339,30,411,51"/>
+<area shape="rect" id="Node000006" href="$ui__main_8cpp.html#a646b670e34ee4857db9d6e5835bfeb00" title=" " alt="" coords="243,56,330,83"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="380,70,331,72,330,67,385,69"/>
+<area shape="rect" id="Node000004" href="$ui__main_8cpp.html#af9a3ed82d372618825e9fd65e793792c" title=" " alt="" coords="103,56,176,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="229,39,178,59,175,54,233,36"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,56,55,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="85,71,57,72,54,67,89,68"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="225,71,177,72,176,67,230,68"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="229,102,177,85,176,79,234,100"/>
+</map>

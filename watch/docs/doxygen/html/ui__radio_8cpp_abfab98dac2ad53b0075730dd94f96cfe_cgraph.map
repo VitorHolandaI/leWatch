@@ -1,0 +1,44 @@
+<map id="create_bandwidth_dropdown" name="create_bandwidth_dropdown">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,109,192,136"/>
+<area shape="rect" id="Node000002" href="$ui__radio_8cpp.html#acc5c85c940dbd8e4fd6f38952ac4e2cc" title=" " alt="" coords="240,215,376,241"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,134,268,206,264,209,127,139"/>
+<area shape="rect" id="Node000008" href="$stubs_8cpp.html#a7cd44387f3ee4eb892c48515e4810751" title="Get the radio bandwidth from the index." alt="" coords="877,152,1017,195"/>
+<area shape="poly" id="edge22_Node000001_Node000008" title=" " alt="" coords="139,107,259,74,339,57,429,43,525,34,624,34,722,45,771,56,818,70,847,83,874,100,919,141,914,141,871,105,844,88,816,75,769,61,722,50,623,40,525,40,429,48,340,62,260,79,142,111"/>
+<area shape="rect" id="Node000013" href="$stubs_8cpp.html#ae366b96c1f7a9def73d1ee13b68f90a9" title="Get the radio bandwidth list." alt="" coords="865,467,1029,493"/>
+<area shape="poly" id="edge24_Node000001_Node000013" title=" " alt="" coords="108,134,150,198,219,289,263,337,312,383,366,424,425,456,479,476,535,490,593,499,651,504,761,503,851,496,856,496,761,508,651,509,593,505,534,496,477,481,423,461,364,428,309,387,259,341,214,292,145,201,108,139"/>
+<area shape="rect" id="Node000016" href="$stubs_8cpp.html#ad4b166dd553fe86dc8ded55a91e00030" title="Get the radio bandwidth length." alt="" coords="877,31,1017,73"/>
+<area shape="poly" id="edge23_Node000001_Node000016" title=" " alt="" coords="118,107,172,75,239,46,322,24,408,10,495,4,580,3,737,14,864,34,859,35,737,19,580,9,495,9,409,16,323,29,241,51,174,80,122,111"/>
+<area shape="rect" id="Node000003" href="$ui__radio_8cpp.html#af4d6fddb8143c09f170f3c778b538cb4" title=" " alt="" coords="428,84,579,111"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,212,362,168,391,142,423,120,437,116,433,119,425,125,394,147,365,171,323,216"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#acc08740cb37c4d31423a066b81cf8720" title="Provide hardware feedback." alt="" coords="454,369,553,396"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="320,239,363,292,393,322,426,348,447,363,442,362,422,353,389,326,359,296,318,245"/>
+<area shape="rect" id="Node000006" href="$stubs_8cpp.html#a86dfa90563487edd9cfbc51571d3cacd" title="Set the radio parameters." alt="" coords="430,420,578,447"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="315,239,331,274,354,319,385,366,426,406,433,413,428,412,422,410,381,369,349,321,326,276,313,244"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#aae170e0dce6ec697dfa538a7a951912d" title="Sets the RF switch to either a USB interface or the built&#45;in antenna." alt="" coords="428,135,579,161"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="341,212,423,178,456,166,452,169,425,182,344,216"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="371,212,492,189,631,171,751,166,864,169,858,170,752,171,632,176,492,194,373,217"/>
+<area shape="rect" id="Node000009" href="$stubs_8cpp.html#ab7f300b04697c5348ea4af8cee905235" title="Get the radio transmission power from the index." alt="" coords="880,345,1014,388"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="335,239,425,280,527,316,632,339,754,355,867,364,862,365,753,360,631,344,525,321,423,285,335,245"/>
+<area shape="rect" id="Node000010" href="$ui__radio_8cpp.html#a4b40a47dc78d397ec4645dd8fbe24003" title=" " alt="" coords="424,244,583,271"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="376,236,411,242,406,244,377,241"/>
+<area shape="rect" id="Node000004" href="$ui__radio_8cpp.html#a37ea72853bc5aaebf10811b9c98401af" title=" " alt="" coords="663,84,785,111"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="579,95,650,96,645,98,581,100"/>
+<area shape="rect" id="Node000011" href="$stubs_8cpp.html#a8bd71a4f7117586397bd0e81363f33f6" title="Get the radio frequency from the index." alt="" coords="656,236,792,279"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="583,255,643,257,637,258,584,260"/>
+<area shape="rect" id="Node000012" href="$ui__radio_8cpp.html#a30cbfbd962579b00681daf2c71f335a7" title=" " alt="" coords="656,404,792,447"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="524,269,685,394,680,395,522,274"/>
+<area shape="rect" id="Node000015" href="$ui__radio_8cpp.html#aab37a71b66cd0600659449d2896a44fb" title=" " alt="" coords="631,185,817,212"/>
+<area shape="poly" id="edge16_Node000010_Node000015" title=" " alt="" coords="556,241,659,216,654,218,557,246"/>
+<area shape="rect" id="Node000017" href="$ui__radio_8cpp.html#a3f6948851dbe5dc25441ae7bda26fe6c" title=" " alt="" coords="643,303,805,329"/>
+<area shape="poly" id="edge19_Node000010_Node000017" title=" " alt="" coords="557,269,659,298,654,299,557,274"/>
+<area shape="poly" id="edge12_Node000012_Node000008" title=" " alt="" coords="751,401,783,373,815,340,839,303,863,265,912,208,917,205,867,268,844,306,819,343,786,377,754,406"/>
+<area shape="poly" id="edge14_Node000012_Node000009" title=" " alt="" coords="791,405,862,389,867,388,793,410"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="792,439,877,463,872,462,792,445"/>
+<area shape="rect" id="Node000014" href="$stubs_8cpp.html#a8e5a3ee0c53dbbe5794657a75d816e3d" title="Get the radio transmission power list." alt="" coords="868,412,1026,439"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="792,423,855,425,849,426,792,428"/>
+<area shape="poly" id="edge17_Node000015_Node000008" title=" " alt="" coords="816,186,864,182,859,184,817,191"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="745,183,898,84,902,81,747,187"/>
+<area shape="poly" id="edge20_Node000017_Node000009" title=" " alt="" coords="786,327,867,348,862,348,786,333"/>
+<area shape="rect" id="Node000018" href="$stubs_8cpp.html#a8d78f734b3afbfaa896cfbcfd0c99177" title="Get the radio transmission power length." alt="" coords="880,279,1014,321"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="804,308,867,306,861,306,805,313"/>
+</map>

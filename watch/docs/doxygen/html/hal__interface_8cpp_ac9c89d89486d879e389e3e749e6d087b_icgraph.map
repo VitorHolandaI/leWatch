@@ -1,0 +1,9 @@
+<map id="hw_get_wifi_rssi" name="hw_get_wifi_rssi">
+<area shape="rect" id="Node000001" title="Get the current WiFi RSSI." alt="" coords="524,5,643,32"/>
+<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#acc017910ab519dce781269ae5722734a" title=" " alt="" coords="338,5,476,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="506,19,477,21,477,16,511,19"/>
+<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#ad61b7ad3a0d7a7558737fee999b7bdd7" title=" " alt="" coords="149,5,290,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,19,291,21,291,16,325,19"/>
+<area shape="rect" id="Node000004" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,5,101,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,19,101,21,101,16,135,18"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="hw_stop_nfc_discovery" name="hw_stop_nfc_discovery">
+<area shape="rect" id="Node000001" title="Stop NFC discovery." alt="" coords="191,5,349,32"/>
+<area shape="rect" id="Node000002" href="$ui__nfc_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,5,143,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,19,143,21,143,16,178,18"/>
+</map>

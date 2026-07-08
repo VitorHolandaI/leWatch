@@ -1,0 +1,17 @@
+<map id="back_event_handler" name="back_event_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,143,133"/>
+<area shape="rect" id="Node000002" href="$ui__tools_8cpp.html#acd6a1ac1452a1652d2e059722e241738" title=" " alt="" coords="191,69,313,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,104,178,98,173,100,141,109"/>
+<area shape="rect" id="Node000007" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="206,132,298,159"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="143,127,193,136,188,137,143,132"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#acf0813922ff659a6bdf248ee315fec75" title="Disable the keyboard." alt="" coords="365,5,511,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="291,66,360,41,383,36,378,38,362,47,292,71"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="375,56,501,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="313,76,362,74,357,76,314,81"/>
+<area shape="rect" id="Node000006" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="361,107,515,133"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="313,92,356,103,351,103,313,98"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="563,56,713,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="502,67,550,69,545,70,502,72"/>
+<area shape="rect" id="Node000008" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="376,157,500,184"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="298,149,363,160,358,160,298,154"/>
+</map>

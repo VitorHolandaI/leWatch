@@ -1,0 +1,15 @@
+<map id="hw_set_kb_backlight" name="hw_set_kb_backlight">
+<area shape="rect" id="Node000001" title="Set the keyboard backlight level." alt="" coords="579,31,723,57"/>
+<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#a1a600f246db04589097ac6864a9caf54" title=" " alt="" coords="369,5,531,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="561,33,532,32,532,26,566,33"/>
+<area shape="rect" id="Node000005" href="$ui__main_8cpp.html#a3fff809f04e8fff6a136369699e07cad" title=" " alt="" coords="376,56,525,83"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="566,55,526,63,525,57,561,55"/>
+<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#ac21076912bb40ffff70b53cabf4f8ca1" title=" " alt="" coords="149,5,321,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,19,322,21,321,16,356,18"/>
+<area shape="rect" id="Node000004" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,5,101,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,20,102,21,101,16,135,18"/>
+<area shape="rect" id="Node000006" href="$ui__main_8cpp.html#af9a3ed82d372618825e9fd65e793792c" title=" " alt="" coords="198,56,272,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="357,69,272,72,272,67,363,69"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="28,56,78,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="182,72,78,72,78,67,183,67"/>
+</map>

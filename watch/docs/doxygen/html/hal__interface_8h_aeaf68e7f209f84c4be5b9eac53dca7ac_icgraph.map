@@ -1,0 +1,7 @@
+<map id="hw_get_firmware_hash_string" name="hw_get_firmware_hash_string">
+<area shape="rect" id="Node000001" title="Get the firmware hash string." alt="" coords="338,5,493,48"/>
+<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#ad61b7ad3a0d7a7558737fee999b7bdd7" title=" " alt="" coords="149,13,290,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,27,290,29,290,24,325,27"/>
+<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,13,101,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,27,101,29,101,24,135,26"/>
+</map>

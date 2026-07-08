@@ -1,0 +1,13 @@
+<map id="ui_power_off_show" name="ui_power_off_show">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,138,57"/>
+<area shape="rect" id="Node000002" href="$ui__power_8cpp.html#ae6cb217904232cc8108eaf75eb961e20" title=" " alt="" coords="188,5,332,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,32,175,29,170,31,139,38"/>
+<area shape="rect" id="Node000003" href="$ui__power_8cpp.html#a3a9dcb5f6f29d51b8fe36c8da577d8c0" title=" " alt="" coords="186,56,334,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,50,173,57,168,58,138,56"/>
+<area shape="rect" id="Node000004" href="$ui__power_8cpp.html#a33d0566df3fba668d2792658a9b78c95" title=" " alt="" coords="382,56,543,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="334,67,369,69,364,70,335,72"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="610,31,712,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="543,56,592,53,597,52,544,62"/>
+<area shape="rect" id="Node000006" href="$ui__main_8cpp.html#a0c56b2d3230d828cbfe6624bb30c0f24" title=" " alt="" coords="591,81,731,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="544,77,579,84,573,84,543,82"/>
+</map>

@@ -1,0 +1,34 @@
+<map id="ui_sensor_enter" name="ui_sensor_enter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,119,159"/>
+<area shape="rect" id="Node000002" href="$ui__audio_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="183,56,320,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,129,166,92,187,87,183,89,168,97,90,134"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#a7cacb0af0f83c41b7d8bfe984d778b5e" title=" " alt="" coords="203,107,300,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,135,190,127,186,130,120,140"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#a32101b45b47b51bff226357eb30a1cea" title="Get the IMU parameters." alt="" coords="181,157,322,184"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="119,150,168,158,163,160,119,156"/>
+<area shape="rect" id="Node000015" href="$hal__interface_8cpp.html#a58db31c772d662877e099464c406b29d" title="Register the IMU processing function." alt="" coords="167,208,336,235"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="89,157,168,194,188,203,182,203,166,198,88,162"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#ac575088d0288d21bd87b64145ce1df7b" title="Stop the music playback." alt="" coords="396,5,522,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,53,389,35,384,37,310,58"/>
+<area shape="rect" id="Node000005" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="783,56,874,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="320,67,768,67,766,72,320,72"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="581,5,711,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="522,16,569,18,564,19,522,21"/>
+<area shape="rect" id="Node000006" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="946,56,1070,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="874,67,933,69,928,70,875,72"/>
+<area shape="rect" id="Node000008" href="$ui__tools_8cpp.html#a1339595d52d820ddf74ce6a031bcbfa7" title=" " alt="" coords="388,107,530,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="300,117,375,119,370,121,300,123"/>
+<area shape="rect" id="Node000009" href="$ui__power_8cpp.html#ad129baf98d68c607824ee54981ef02a0" title=" " alt="" coords="609,132,683,159"/>
+<area shape="poly" id="edge13_Node000007_Node000009" title=" " alt="" coords="300,129,384,143,496,148,596,148,590,149,496,153,384,148,300,134"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="530,127,596,138,591,138,530,132"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="676,129,758,92,771,89,776,88,760,97,677,134"/>
+<area shape="rect" id="Node000010" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="778,107,879,133"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="683,138,759,130,765,129,684,143"/>
+<area shape="rect" id="Node000011" href="$hal__interface_8cpp.html#ac344d549b7ceb0868bba143a57470620" title="Put the hardware into sleep mode." alt="" coords="790,157,866,184"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="684,148,778,163,772,163,684,153"/>
+<area shape="rect" id="Node000012" href="$ui__main_8cpp.html#a0c56b2d3230d828cbfe6624bb30c0f24" title=" " alt="" coords="759,208,898,235"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="677,157,760,194,776,202,771,202,758,198,676,162"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="384,208,533,235"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="309,182,389,204,384,204,309,187"/>
+<area shape="poly" id="edge17_Node000015_Node000014" title=" " alt="" coords="336,219,371,221,366,221,337,224"/>
+</map>

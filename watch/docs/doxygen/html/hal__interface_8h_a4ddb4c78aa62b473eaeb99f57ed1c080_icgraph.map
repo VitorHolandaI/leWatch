@@ -1,0 +1,13 @@
+<map id="hw_wifi_saved_remove" name="hw_wifi_saved_remove">
+<area shape="rect" id="Node000001" title=" " alt="" coords="677,5,834,32"/>
+<area shape="rect" id="Node000002" href="$ui__wireless_8cpp.html#afd5c19d11f1657005f1c90d12739897d" title=" " alt="" coords="501,5,629,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="658,19,629,21,629,16,663,19"/>
+<area shape="rect" id="Node000003" href="$ui__wireless_8cpp.html#a6afc7fd700ad09c567f112b90acfec5a" title=" " alt="" coords="339,5,453,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="483,28,454,30,454,25,488,28"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="469,7,504,10,498,10,469,12"/>
+<area shape="rect" id="Node000004" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="5,5,128,32"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="323,21,128,21,128,16,324,16"/>
+<area shape="rect" id="Node000005" href="$ui__wireless_8cpp.html#a12681fa5e646eb9f3650e8ed7840439c" title=" " alt="" coords="176,31,291,57"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="326,30,291,38,291,32,321,30"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="157,33,128,31,128,25,163,33"/>
+</map>

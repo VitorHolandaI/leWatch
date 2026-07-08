@@ -1,0 +1,42 @@
+<map id="create_subpage_otg" name="create_subpage_otg">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,228,144,255"/>
+<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#ab5b640e12bdaa1d058fbb65dd2d691f6" title=" " alt="" coords="198,127,330,153"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,226,190,170,218,158,214,162,193,174,99,230"/>
+<area shape="rect" id="Node000007" href="$ui__sys_8cpp.html#a3bcb01f463947fba606153957fc5a761" title=" " alt="" coords="199,11,329,37"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="79,226,119,151,151,104,190,61,218,43,214,47,193,65,156,107,124,153,84,229"/>
+<area shape="rect" id="Node000009" href="$ui__tools_8cpp.html#afaa4d34bfeb971bbe84dd16f20e0f763" title=" " alt="" coords="216,279,312,305"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="127,253,203,274,199,277,128,258"/>
+<area shape="rect" id="Node000011" href="$ui__tools_8cpp.html#a5ea9aff083415d6e5a1d05230f47eee1" title=" " alt="" coords="213,228,315,255"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="143,239,199,240,195,243,145,244"/>
+<area shape="rect" id="Node000012" href="$hal__interface_8cpp.html#acba64e7e3078edaa2186297b3f76cb3b" title="Get the number of charging levels." alt="" coords="384,189,566,216"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="129,225,191,213,282,205,371,202,366,205,282,210,192,219,132,230"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#a81448e7b26b14e4a3f5abefd865feb5c" title="Get the current charger current level." alt="" coords="395,56,555,99"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="82,226,123,169,154,138,190,112,236,93,285,81,334,74,382,73,377,75,334,79,286,86,238,98,193,117,157,142,127,173,86,229"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#a8a0a1115d67229910e5c03a1f5a678dc" title="Check if the OTG function is enabled." alt="" coords="197,329,330,356"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="94,252,139,283,193,315,207,323,202,324,190,320,136,288,94,258"/>
+<area shape="rect" id="Node000015" href="$hal__interface_8cpp.html#a4342a4e97e046d7ed669c70cc4cf6543" title="Check if the OTG function is available." alt="" coords="192,380,336,407"/>
+<area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="86,253,129,308,159,339,193,366,203,373,197,373,190,370,156,343,125,311,84,258"/>
+<area shape="rect" id="Node000016" href="$ui__sys_8cpp.html#a516f40f783dfb22c97b7f0f8273a25da" title=" " alt="" coords="212,431,316,457"/>
+<area shape="poly" id="edge22_Node000001_Node000016" title=" " alt="" coords="81,252,98,287,122,330,154,377,193,417,201,424,195,423,190,421,150,380,117,333,93,289,81,258"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a9e9c789c38e36b4dedca8c905773b09a" title="Set the charger current level." alt="" coords="395,123,555,165"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="330,139,382,141,377,143,331,144"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#adac6552dc639e9e90347eca728159570" title=" " alt="" coords="617,72,794,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="555,121,638,102,633,104,556,126"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#a42a14efb681fa440fb1a9bdcb1299e2b" title=" " alt="" coords="614,131,797,157"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="555,141,601,143,596,145,556,147"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a0227e155a59d310241e7bb0aea7b6afa" title=" " alt="" coords="845,123,997,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="757,97,832,119,827,119,757,102"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="797,141,832,143,827,145,797,147"/>
+<area shape="rect" id="Node000008" href="$hal__interface_8cpp.html#a1805eebcec270808279a803a817d910e" title="Enable or disable the charger." alt="" coords="418,5,532,32"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="328,20,405,19,400,22,330,25"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="526,30,567,41,646,66,641,68,566,47,527,35"/>
+<area shape="rect" id="Node000010" href="$ui__tools_8cpp.html#a6ebee1be7de8382adb74a9110ef4b962" title=" " alt="" coords="432,257,518,284"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="311,285,419,276,414,278,313,290"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="315,246,419,262,414,264,315,251"/>
+<area shape="poly" id="edge16_Node000012_Node000005" title=" " alt="" coords="566,193,677,182,796,167,832,163,827,164,797,172,677,188,567,198"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="530,186,638,161,633,163,531,191"/>
+<area shape="poly" id="edge18_Node000013_Node000004" title=" " alt="" coords="555,78,604,81,599,83,556,83"/>
+<area shape="poly" id="edge19_Node000013_Node000006" title=" " alt="" coords="551,96,645,125,639,126,551,102"/>
+<area shape="rect" id="Node000017" href="$hal__interface_8cpp.html#a388f291a6821b61d56b203bc918d83f8" title="Enable or disable the OTG function." alt="" coords="431,431,519,457"/>
+<area shape="poly" id="edge23_Node000016_Node000017" title=" " alt="" coords="316,441,418,444,413,444,316,447"/>
+</map>

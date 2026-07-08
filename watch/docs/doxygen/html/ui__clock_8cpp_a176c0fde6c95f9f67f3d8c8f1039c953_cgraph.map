@@ -1,0 +1,72 @@
+<map id="ui_clock_enter" name="ui_clock_enter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,335,111,361"/>
+<area shape="rect" id="Node000002" href="$ui__clock_8cpp.html#ad705c931c2b03ce6caae1cd4d36e0ca1" title=" " alt="" coords="188,31,301,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,334,63,284,78,212,91,174,108,135,130,99,157,67,175,57,172,61,160,71,134,102,112,138,96,175,83,214,68,285,63,334"/>
+<area shape="rect" id="Node000006" href="$ui__audio_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="176,284,313,311"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="108,332,180,313,176,317,112,336"/>
+<area shape="rect" id="Node000011" href="$ui__clock_8cpp.html#a4f0bcaf1d56c4ce79dbf21731121e447" title=" " alt="" coords="159,385,330,412"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="109,359,180,379,176,382,111,365"/>
+<area shape="rect" id="Node000018" href="$ui__clock_8cpp.html#ae44ff63953a2ac02c597a0bb149c85f4" title=" " alt="" coords="187,81,302,108"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="59,334,67,292,84,234,113,172,133,143,157,118,174,108,171,112,160,122,137,147,118,175,89,236,72,293,64,335"/>
+<area shape="rect" id="Node000019" href="$ui__clock_8cpp.html#ad847cbb49b881f64bcc2a7d065a6166d" title=" " alt="" coords="201,436,288,463"/>
+<area shape="poly" id="edge20_Node000001_Node000019" title=" " alt="" coords="73,359,112,391,160,422,188,434,183,436,157,426,109,395,74,364"/>
+<area shape="rect" id="Node000020" href="$ui__tools_8cpp.html#a7cacb0af0f83c41b7d8bfe984d778b5e" title=" " alt="" coords="196,335,292,361"/>
+<area shape="poly" id="edge21_Node000001_Node000020" title=" " alt="" coords="110,346,182,346,178,350,112,350"/>
+<area shape="rect" id="Node000026" href="$ui__clock_8cpp.html#a67d3aae50f406bc94e4bdb5ac01ceac2" title=" " alt="" coords="211,487,278,513"/>
+<area shape="poly" id="edge29_Node000001_Node000026" title=" " alt="" coords="66,359,103,415,129,446,160,472,198,491,193,492,157,477,126,450,99,418,66,364"/>
+<area shape="rect" id="Node000027" href="$ui__clock_8cpp.html#ae2306cb34e0c370e7e1d2352c1393c02" title=" " alt="" coords="196,537,292,564"/>
+<area shape="poly" id="edge30_Node000001_Node000027" title=" " alt="" coords="63,359,77,394,96,438,124,484,160,523,184,538,179,539,157,527,119,487,91,441,72,396,63,365"/>
+<area shape="rect" id="Node000028" href="$ui__clock_8cpp.html#af24262156398119862b9d1b9f3a2d0a4" title=" " alt="" coords="200,588,288,615"/>
+<area shape="poly" id="edge31_Node000001_Node000028" title=" " alt="" coords="61,359,72,403,89,460,118,521,137,549,160,574,188,591,182,591,157,578,133,553,113,524,84,462,67,404,61,364"/>
+<area shape="rect" id="Node000029" href="$ui__clock_8cpp.html#a94ce0fb995a15098b5a3ac52db6033dc" title=" " alt="" coords="199,639,290,665"/>
+<area shape="poly" id="edge32_Node000001_Node000029" title=" " alt="" coords="60,359,68,411,83,482,96,521,112,558,134,594,160,625,186,642,181,642,157,629,130,597,108,561,91,522,78,484,63,412,60,365"/>
+<area shape="rect" id="Node000030" href="$ui__clock_8cpp.html#a7ee869aa81ac27bf9c89f3f183bdd4cd" title=" " alt="" coords="197,132,292,159"/>
+<area shape="poly" id="edge33_Node000001_Node000030" title=" " alt="" coords="61,333,72,300,91,255,119,209,157,169,184,155,180,160,160,173,124,212,96,258,77,302,66,335"/>
+<area shape="rect" id="Node000031" href="$ui__clock_8cpp.html#a9f497b8457a3f9dfa56c7a8480e79a95" title=" " alt="" coords="186,183,303,209"/>
+<area shape="poly" id="edge35_Node000001_Node000031" title=" " alt="" coords="64,333,99,278,126,246,157,219,173,212,169,216,160,224,129,250,103,281,69,335"/>
+<area shape="rect" id="Node000032" href="$ui__clock_8cpp.html#ab76872f9486229e40f7d83f9bdbcee22" title=" " alt="" coords="213,233,276,260"/>
+<area shape="poly" id="edge37_Node000001_Node000032" title=" " alt="" coords="71,333,109,301,157,270,199,255,196,259,160,274,112,305,76,336"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a4f82c8b91ca066f79b4b76810af1a937" title=" " alt="" coords="388,5,540,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,35,375,28,371,31,303,40"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#acc08740cb37c4d31423a066b81cf8720" title="Provide hardware feedback." alt="" coords="415,132,513,159"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="298,55,331,67,429,123,424,125,329,72,300,61"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#ac7069fea2adf1d7bf01bf66bb072c279" title=" " alt="" coords="402,56,526,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="301,48,388,59,384,62,303,53"/>
+<area shape="rect" id="Node000007" href="$hal__interface_8cpp.html#ac575088d0288d21bd87b64145ce1df7b" title="Stop the music playback." alt="" coords="401,183,527,209"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="303,281,329,270,343,259,352,249,362,237,377,226,404,214,400,217,379,230,365,241,356,252,346,263,331,274,306,285"/>
+<area shape="rect" id="Node000009" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="815,233,906,260"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="313,289,800,249,797,254,314,294"/>
+<area shape="rect" id="Node000008" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="606,183,735,209"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="527,193,593,195,588,197,529,199"/>
+<area shape="rect" id="Node000010" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="978,233,1102,260"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="906,244,965,246,960,247,907,249"/>
+<area shape="rect" id="Node000012" href="$ui__clock_8cpp.html#a075931642d87fdb2651ba21fe7eb0415" title=" " alt="" coords="396,436,533,463"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="305,410,391,431,386,433,306,415"/>
+<area shape="rect" id="Node000013" href="$hal__interface_8cpp.html#a9577083d175da45556c3d80a7a89ee02" title=" " alt="" coords="598,411,743,437"/>
+<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="330,401,585,417,581,420,331,406"/>
+<area shape="rect" id="Node000014" href="$hal__interface_8cpp.html#a4c3da49ce628c497da298e8dd8555285" title=" " alt="" coords="392,487,536,513"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="306,410,331,422,347,435,356,448,365,460,380,472,391,480,385,480,376,477,361,464,352,451,343,438,329,426,306,415"/>
+<area shape="rect" id="Node000015" href="$hal__interface_8cpp.html#a9390425a20626242ef138da1b4cb230a" title="Get the list of music files from the SD card." alt="" coords="378,537,550,564"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="312,410,332,422,344,435,351,448,357,474,362,499,369,511,380,523,386,530,381,529,376,527,364,515,357,501,351,475,346,450,339,438,328,426,312,415"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="533,438,585,434,580,435,534,443"/>
+<area shape="rect" id="Node000016" href="$hal__interface_8cpp.html#a2d503f640905eb0d7ea0d692d316c278" title=" " alt="" coords="628,512,713,539"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="550,537,616,532,611,533,551,543"/>
+<area shape="rect" id="Node000017" href="$hal__interface_8cpp.html#ac0c418dca2cc4fbefb9a5aede357c4a4" title=" " alt="" coords="629,563,712,589"/>
+<area shape="poly" id="edge17_Node000015_Node000017" title=" " alt="" coords="551,559,616,569,611,569,551,564"/>
+<area shape="poly" id="edge19_Node000018_Node000004" title=" " alt="" coords="301,105,402,129,397,132,303,110"/>
+<area shape="rect" id="Node000021" href="$ui__tools_8cpp.html#a1339595d52d820ddf74ce6a031bcbfa7" title=" " alt="" coords="393,335,535,361"/>
+<area shape="poly" id="edge22_Node000020_Node000021" title=" " alt="" coords="292,345,380,347,375,349,294,351"/>
+<area shape="rect" id="Node000022" href="$ui__power_8cpp.html#ad129baf98d68c607824ee54981ef02a0" title=" " alt="" coords="633,309,708,336"/>
+<area shape="poly" id="edge28_Node000020_Node000022" title=" " alt="" coords="292,334,378,320,507,315,620,319,615,321,507,320,378,325,294,339"/>
+<area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="535,337,620,328,615,330,536,342"/>
+<area shape="poly" id="edge27_Node000022_Node000009" title=" " alt="" coords="702,306,790,270,809,265,804,267,792,274,705,311"/>
+<area shape="rect" id="Node000023" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="810,284,911,311"/>
+<area shape="poly" id="edge24_Node000022_Node000023" title=" " alt="" coords="707,315,797,305,792,307,709,320"/>
+<area shape="rect" id="Node000024" href="$hal__interface_8cpp.html#ac344d549b7ceb0868bba143a57470620" title="Put the hardware into sleep mode." alt="" coords="822,335,898,361"/>
+<area shape="poly" id="edge25_Node000022_Node000024" title=" " alt="" coords="708,325,809,340,804,341,708,330"/>
+<area shape="rect" id="Node000025" href="$ui__main_8cpp.html#a0c56b2d3230d828cbfe6624bb30c0f24" title=" " alt="" coords="791,385,930,412"/>
+<area shape="poly" id="edge26_Node000022_Node000025" title=" " alt="" coords="704,334,792,371,809,379,804,379,790,376,703,339"/>
+<area shape="poly" id="edge34_Node000030_Node000004" title=" " alt="" coords="291,143,401,144,397,147,293,148"/>
+<area shape="poly" id="edge36_Node000031_Node000004" title=" " alt="" coords="302,180,402,158,398,162,305,185"/>
+<area shape="poly" id="edge38_Node000032_Node000004" title=" " alt="" coords="275,239,302,231,329,219,343,207,352,194,361,181,377,168,403,158,399,161,379,173,365,185,356,198,347,211,331,224,304,236,278,244"/>
+</map>

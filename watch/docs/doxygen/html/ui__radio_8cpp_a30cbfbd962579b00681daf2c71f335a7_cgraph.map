@@ -1,0 +1,11 @@
+<map id="refresh_radio_range_options" name="refresh_radio_range_options">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,141,136"/>
+<area shape="rect" id="Node000002" href="$stubs_8cpp.html#a7cd44387f3ee4eb892c48515e4810751" title="Get the radio bandwidth from the index." alt="" coords="201,5,341,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,91,188,58,204,53,199,56,190,62,120,95"/>
+<area shape="rect" id="Node000003" href="$stubs_8cpp.html#ae366b96c1f7a9def73d1ee13b68f90a9" title="Get the radio bandwidth list." alt="" coords="189,72,353,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,102,176,99,171,101,142,107"/>
+<area shape="rect" id="Node000004" href="$stubs_8cpp.html#ab7f300b04697c5348ea4af8cee905235" title="Get the radio transmission power from the index." alt="" coords="204,123,338,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="141,122,191,131,186,133,141,127"/>
+<area shape="rect" id="Node000005" href="$stubs_8cpp.html#a8e5a3ee0c53dbbe5794657a75d816e3d" title="Get the radio transmission power list." alt="" coords="192,189,350,216"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="111,134,190,175,208,184,203,184,188,180,109,139"/>
+</map>

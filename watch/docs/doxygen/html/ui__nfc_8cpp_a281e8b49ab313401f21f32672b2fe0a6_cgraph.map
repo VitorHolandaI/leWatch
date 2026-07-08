@@ -1,0 +1,9 @@
+<map id="back_event_handler" name="back_event_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,143,57"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a1dd2ebd6f875bce8eb35be7848a3303c" title="Stop NFC discovery." alt="" coords="191,5,349,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,33,177,30,172,32,143,38"/>
+<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="224,56,316,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,50,212,61,206,62,143,56"/>
+<area shape="rect" id="Node000004" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="397,56,521,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="316,67,384,69,379,69,316,72"/>
+</map>

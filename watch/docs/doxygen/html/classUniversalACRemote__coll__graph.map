@@ -1,0 +1,7 @@
+<map id="UniversalACRemote" name="UniversalACRemote">
+<area shape="rect" id="Node000001" title=" " alt="" coords="16,457,147,633"/>
+<area shape="rect" id="Node000002" href="$classIrDeviceAC.html" title=" " alt="" coords="5,167,157,385"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,382,84,441,79,440,81,388"/>
+<area shape="rect" id="Node000003" href="$classIrDevice.html" title=" " alt="" coords="29,5,134,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,130,84,167,79,167,81,135"/>
+</map>

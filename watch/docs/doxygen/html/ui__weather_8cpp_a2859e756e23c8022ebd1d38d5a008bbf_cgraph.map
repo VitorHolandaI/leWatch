@@ -1,0 +1,17 @@
+<map id="ui_news_attach" name="ui_news_attach">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,118,108"/>
+<area shape="rect" id="Node000002" href="$ui__weather_8cpp.html#a4c89be46e26d5910507b34c3aaf2b7af" title=" " alt="" coords="166,56,275,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,83,153,80,148,81,119,88"/>
+<area shape="rect" id="Node000007" href="$ui__weather_8cpp.html#aecf4f0a592aebe75ce9a4344b9253e12" title=" " alt="" coords="169,107,272,133"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="118,101,156,109,151,110,118,106"/>
+<area shape="rect" id="Node000003" href="$ui__weather_8cpp.html#a1bcc01074084ef121e3d52237a1ea879" title=" " alt="" coords="362,5,424,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="268,53,345,33,350,31,269,58"/>
+<area shape="rect" id="Node000005" href="$ui__weather_8cpp.html#a203591f09b707084b5b5bafff4dd3d8f" title=" " alt="" coords="511,56,595,83"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="275,67,498,68,493,71,276,72"/>
+<area shape="rect" id="Node000006" href="$ui__weather_8cpp.html#adcde8e77dec21dc7a81f26f7e502e91c" title=" " alt="" coords="323,107,463,133"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="269,81,333,102,328,102,268,86"/>
+<area shape="rect" id="Node000004" href="$ui__weather_8cpp.html#a115e13465ba09c1442b6dd38833a280f" title=" " alt="" coords="643,31,752,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="424,19,630,38,625,39,425,24"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="425,26,499,51,494,52,425,31"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="595,59,625,57,630,56,596,65"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="update_fft_display" name="update_fft_display">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0d1129268fbafdb924786df9911c2d47" title="Get the FFT data." alt="" coords="180,5,331,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,16,167,18,162,19,132,21"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="379,5,528,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,16,366,19,361,19,331,21"/>
+</map>

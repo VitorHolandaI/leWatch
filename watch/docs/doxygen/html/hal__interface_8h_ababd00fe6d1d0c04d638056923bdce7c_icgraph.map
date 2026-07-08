@@ -1,0 +1,11 @@
+<map id="hw_get_radio_rx" name="hw_get_radio_rx">
+<area shape="rect" id="Node000001" title="Get the received radio data." alt="" coords="389,31,505,57"/>
+<area shape="rect" id="Node000002" href="$ui__msgchat_8cpp.html#a354efd135bee3d11f608f7a1092eaca1" title=" " alt="" coords="178,5,341,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,34,341,32,341,27,376,34"/>
+<area shape="rect" id="Node000004" href="$ui__radio_8cpp.html#a375119af00dd8077ed461569250c00f3" title=" " alt="" coords="201,56,318,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="376,54,319,64,318,59,371,54"/>
+<area shape="rect" id="Node000003" href="$ui__msgchat_8cpp.html#adba7e4ca9be94a18773fc377a731ec9f" title=" " alt="" coords="5,5,130,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="159,19,130,21,129,16,164,18"/>
+<area shape="rect" id="Node000005" href="$ui__radio_8cpp.html#a30702f97d00096d2d0a32c0acc4cb0af" title=" " alt="" coords="16,56,119,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="183,70,119,72,119,67,188,69"/>
+</map>

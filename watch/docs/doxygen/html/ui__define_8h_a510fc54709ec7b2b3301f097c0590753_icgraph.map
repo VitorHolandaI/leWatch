@@ -1,0 +1,24 @@
+<map id="create_msgbox" name="create_msgbox">
+<area shape="rect" id="Node000001" title=" " alt="" coords="961,157,1071,184"/>
+<area shape="rect" id="Node000002" href="$ui__msg_8cpp.html#ace5fbfd131d77736e36d007c8aa21813" title="Pop up a message box on the UI." alt="" coords="801,107,913,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="955,152,901,137,902,131,960,152"/>
+<area shape="rect" id="Node000006" href="$ui__nfc_8cpp.html#a68a174f5053fe18de131c7af8dc74b0b" title=" " alt="" coords="5,183,111,209"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="948,187,825,213,755,221,685,224,479,224,275,217,111,204,111,198,275,211,479,219,685,219,755,215,824,207,943,188"/>
+<area shape="rect" id="Node000003" href="$ui__msg_8cpp.html#ae07c5a26ec3ca76e01a2df163e8b6a31" title=" " alt="" coords="615,5,753,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="826,96,792,72,751,46,728,35,728,30,754,42,795,68,831,97"/>
+<area shape="rect" id="Node000007" href="$ui__wireless_8cpp.html#a93ccd054556feab55b5f61319cf33657" title=" " alt="" coords="617,56,751,83"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="791,102,732,86,732,81,797,102"/>
+<area shape="rect" id="Node000009" href="$ui__wireless_8cpp.html#aab35cf2d927630055322333370e35cf2" title=" " alt="" coords="633,107,735,133"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="782,120,735,123,735,117,788,120"/>
+<area shape="rect" id="Node000010" href="$ui__wireless_8cpp.html#a12681fa5e646eb9f3650e8ed7840439c" title=" " alt="" coords="626,157,742,184"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="797,138,733,159,732,154,791,139"/>
+<area shape="rect" id="Node000004" href="$ui__msg_8cpp.html#aeb15920fcb8748fe8cc02865a923435b" title="Show the WiFi connection process bar on the UI." alt="" coords="393,31,567,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="598,30,568,36,567,31,603,28"/>
+<area shape="rect" id="Node000005" href="$ui__nfc_8cpp.html#a0bd1993c3694460cc4594aac4fcb2843" title=" " alt="" coords="159,107,345,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="420,64,296,109,294,104,425,62"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="202,142,95,185,93,180,201,137"/>
+<area shape="rect" id="Node000008" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="419,107,541,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="615,86,537,109,536,103,610,88"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="615,120,542,123,542,117,620,120"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="610,153,537,137,537,131,615,153"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="restore_and_close" name="restore_and_close">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,133,57"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a6b1f2fc2fc0484376b29eb7dd04607b4" title="Stop the step counter and power the accelerometer back down." alt="" coords="188,5,326,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,33,176,29,171,31,134,38"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#aa92bf90ced5a386c2f3eee2962bd56a5" title="Set the display backlight level." alt="" coords="181,56,334,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,50,168,57,162,57,133,55"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="382,5,531,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,16,369,18,364,19,327,21"/>
+</map>

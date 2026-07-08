@@ -1,0 +1,37 @@
+<map id="IrDevice" name="IrDevice">
+<area shape="rect" id="Node000001" title=" " alt="" coords="397,5,502,117"/>
+<area shape="rect" id="Node000002" href="$classIrDeviceAC.html" title=" " alt="" coords="262,165,414,384"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,128,397,167,392,164,412,133"/>
+<area shape="rect" id="Node000010" href="$classIrDeviceTV.html" title=" " alt="" coords="566,229,671,320"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="503,126,586,229,581,230,502,131"/>
+<area shape="rect" id="Node000003" href="$classElectraAC.html" title=" " alt="" coords="5,453,96,544"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="247,331,180,379,110,434,89,455,84,452,106,430,177,374,250,327"/>
+<area shape="rect" id="Node000004" href="$classLgAC.html" title=" " alt="" coords="120,453,211,544"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,388,201,455,197,452,254,383"/>
+<area shape="rect" id="Node000005" href="$classMideaAC.html" title=" " alt="" coords="235,453,326,544"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="307,396,294,455,289,453,305,400"/>
+<area shape="rect" id="Node000008" href="$classSamsungAC.html" title=" " alt="" coords="349,453,440,544"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="370,395,386,454,381,453,368,401"/>
+<area shape="rect" id="Node000009" href="$classToshibaAC.html" title=" " alt="" coords="464,453,555,544"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="423,383,478,454,473,454,422,388"/>
+<area shape="rect" id="Node000006" href="$classKomecoMideaAC.html" title=" " alt="" coords="144,624,256,693"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="253,555,219,626,215,623,249,559"/>
+<area shape="rect" id="Node000007" href="$classSpringerMideaAC.html" title=" " alt="" coords="281,624,394,693"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="302,556,328,625,323,624,300,560"/>
+<area shape="rect" id="Node000011" href="$classNecTV.html" title=" " alt="" coords="579,453,658,544"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="620,333,621,455,616,453,617,337"/>
+<area shape="rect" id="Node000017" href="$classRcaTV.html" title=" " alt="" coords="682,432,779,565"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="649,331,701,433,695,432,647,336"/>
+<area shape="rect" id="Node000012" href="$classLgTV.html" title=" " alt="" coords="477,613,556,704"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="584,555,546,616,543,612,580,558"/>
+<area shape="rect" id="Node000013" href="$classRokuRefTV.html" title=" " alt="" coords="580,624,660,693"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="621,557,622,626,618,623,618,561"/>
+<area shape="rect" id="Node000014" href="$classAocRokuTV.html" title=" " alt="" coords="469,752,550,821"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="584,703,540,754,537,750,579,705"/>
+<area shape="rect" id="Node000015" href="$classSempRokuTV.html" title=" " alt="" coords="574,752,666,821"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="622,706,622,754,618,751,618,710"/>
+<area shape="rect" id="Node000016" href="$classTclRokuTV.html" title=" " alt="" coords="690,752,766,821"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="660,702,702,753,697,751,657,707"/>
+<area shape="rect" id="Node000018" href="$classTclAndroidTV.html" title=" " alt="" coords="686,613,775,704"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="732,578,733,615,729,612,729,582"/>
+</map>

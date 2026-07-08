@@ -1,0 +1,12 @@
+<map id="hw_alarm_sound_get" name="hw_alarm_sound_get">
+<area shape="rect" id="Node000001" title=" " alt="" coords="378,56,522,83"/>
+<area shape="rect" id="Node000002" href="$ui__clock_8cpp.html#a4f0bcaf1d56c4ce79dbf21731121e447" title=" " alt="" coords="159,5,330,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="375,52,301,35,302,30,381,51"/>
+<area shape="rect" id="Node000004" href="$ui__clock_8cpp.html#a41e69a7f919231d8de11c2488fa6968c" title=" " alt="" coords="190,56,299,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="360,70,299,72,299,67,366,69"/>
+<area shape="rect" id="Node000005" href="$ui__clock_8cpp.html#a4bcd316666ebd250fcddb3d28ebf179e" title=" " alt="" coords="9,81,107,108"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="383,86,330,97,210,103,107,100,107,95,210,98,330,92,378,87"/>
+<area shape="rect" id="Node000003" href="$ui__clock_8cpp.html#a176c0fde6c95f9f67f3d8c8f1039c953" title=" " alt="" coords="5,5,111,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,20,112,21,111,16,146,18"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="172,79,108,91,107,85,177,78"/>
+</map>

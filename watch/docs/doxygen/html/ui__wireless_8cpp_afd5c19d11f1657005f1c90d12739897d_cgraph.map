@@ -1,0 +1,13 @@
+<map id="saved_remove_cb" name="saved_remove_cb">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,133,57"/>
+<area shape="rect" id="Node000002" href="$ui__wireless_8cpp.html#a6afc7fd700ad09c567f112b90acfec5a" title=" " alt="" coords="202,5,316,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,42,201,34,196,37,134,47"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#af7bf70b50bdb10360d87e7515e58584b" title=" " alt="" coords="393,56,525,83"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="133,45,379,62,377,67,133,51"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a4ddb4c78aa62b473eaeb99f57ed1c080" title=" " alt="" coords="181,107,338,133"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="105,55,212,99,208,102,104,61"/>
+<area shape="poly" id="edge4_Node000002_Node000001" title=" " alt="" coords="199,19,131,30,130,25,204,16"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a376f24e24dc2d9b290099ceb08feb175" title=" " alt="" coords="386,5,532,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="316,16,373,18,368,19,317,21"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="315,30,392,51,386,52,315,35"/>
+</map>

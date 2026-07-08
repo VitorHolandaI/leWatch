@@ -1,0 +1,11 @@
+<map id="send_btn_cb" name="send_btn_cb">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,101,108"/>
+<area shape="rect" id="Node000002" href="$ui__msgchat_8cpp.html#a3a2fd3413389713a5b2cdb906e25cfdc" title=" " alt="" coords="164,5,287,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,79,148,42,167,36,162,39,150,46,79,83"/>
+<area shape="rect" id="Node000003" href="$ui__msgchat_8cpp.html#a2dd0d6001fc319ab5791492fd6356de6" title=" " alt="" coords="159,56,292,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="100,85,146,80,141,83,102,90"/>
+<area shape="rect" id="Node000004" href="$stubs_8cpp.html#ad18a9661acbf6d5b137bb3a79674fa47" title="Set the radio to listening mode." alt="" coords="149,107,302,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="101,99,135,105,131,107,102,104"/>
+<area shape="rect" id="Node000005" href="$stubs_8cpp.html#a3e1218e57aed63068a1ed9351a0e65ae" title="Transmit data via radio." alt="" coords="174,157,277,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="78,106,150,143,167,152,162,152,148,148,77,111"/>
+</map>

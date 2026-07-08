@@ -1,0 +1,30 @@
+<map id="_msg_ta_cb" name="_msg_ta_cb">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,98,209"/>
+<area shape="rect" id="Node000002" href="$ui__tools_8cpp.html#a0c08164f4e0fdc81da8aca7f2694262d" title=" " alt="" coords="360,107,480,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,180,104,160,145,143,196,130,249,122,347,118,342,120,249,128,197,136,147,148,107,165,74,184"/>
+<area shape="rect" id="Node000008" href="$ui__msgchat_8cpp.html#accbfc0b104f8c9d9f800f44933b20eda" title=" " alt="" coords="166,157,291,184"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="97,187,153,180,149,183,99,192"/>
+<area shape="rect" id="Node000011" href="$ui__msgchat_8cpp.html#a021fadc9f963e405b67916d885448441" title=" " alt="" coords="146,208,311,235"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="98,200,132,206,128,208,99,205"/>
+<area shape="rect" id="Node000013" href="$ui__msgchat_8cpp.html#a2a5b03354f114e774d9e45bc86c590ba" title=" " alt="" coords="169,259,288,285"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="76,207,147,244,165,253,160,253,145,249,74,212"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a2174ca3712df9af31308e7d86d2b0213" title="Enable the keyboard." alt="" coords="535,5,678,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="436,104,477,73,528,42,545,37,540,39,531,46,480,78,439,109"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a18dad207b50ac8d54907f9b55c715d22" title="Flush the keyboard input buffer." alt="" coords="540,56,673,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="471,103,543,86,538,88,473,109"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="543,107,670,133"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="480,117,530,120,525,120,480,123"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="529,157,684,184"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="472,131,543,153,538,153,472,137"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="732,81,881,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="673,75,719,83,714,84,674,80"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="670,109,719,106,714,107,671,115"/>
+<area shape="rect" id="Node000009" href="$ui__tools_8cpp.html#acd6a1ac1452a1652d2e059722e241738" title=" " alt="" coords="359,157,481,184"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="291,168,346,170,341,171,292,173"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="471,154,538,139,543,137,473,159"/>
+<area shape="poly" id="edge12_Node000009_Node000007" title=" " alt="" coords="481,168,516,170,511,171,482,173"/>
+<area shape="rect" id="Node000010" href="$hal__interface_8cpp.html#acf0813922ff659a6bdf248ee315fec75" title="Disable the keyboard." alt="" coords="533,208,680,235"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="472,182,543,203,538,203,472,187"/>
+<area shape="rect" id="Node000012" href="$hal__interface_8cpp.html#acc08740cb37c4d31423a066b81cf8720" title="Provide hardware feedback." alt="" coords="371,208,469,235"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="311,219,358,221,353,222,312,224"/>
+</map>

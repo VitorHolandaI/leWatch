@@ -1,0 +1,67 @@
+// T-Watch S3 power-up / power-state map
+// Render: dot -Tpng docs/power_up.dot -o docs/power_up.png
+// Source of truth: factory.ino setup() + hal_interface.cpp hw_init()
+digraph power_up {
+    rankdir=TB;
+    node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // ---- boot sequence (left spine) ----
+    subgraph cluster_boot {
+        label="setup() boot sequence";
+        style=dashed; color=gray;
+        b0 [label="setCpuFrequencyMhz(240)", fillcolor="#cfe8ff"];
+        b1 [label="WiFi.mode(STA)\nsetAutoReconnect(false)\ndisconnect(true)", fillcolor="#ffe0b3"];
+        b2 [label="instance.begin()\n(brings up all I2C/SPI HW)", fillcolor="#cfe8ff"];
+        b3 [label="hw_rtc_sync_build()", fillcolor="#cfe8ff"];
+        b4 [label="hw_enable_power_key_toggle()", fillcolor="#cfe8ff"];
+        b5 [label="beginLvglHelper()", fillcolor="#cfe8ff"];
+        b6 [label="hw_init()", fillcolor="#cfe8ff"];
+        b7 [label="setupGui()\n5 s splash -> home", fillcolor="#cfe8ff"];
+        b0 -> b1 -> b2 -> b3 -> b4 -> b5 -> b6 -> b7;
+    }
+
+    // ---- hw_init() detail ----
+    subgraph cluster_hwinit {
+        label="hw_init()";
+        style=dashed; color=gray;
+        h1 [label="hw_init_player()\nFreeRTOS play task", fillcolor="#d9d9d9"];
+        h2 [label="hw_init_radios()\nradio_begin -> radio.sleep()", fillcolor="#ffd6d6"];
+        h3 [label="hw_init_audio_codec()\nES8311 vol/gain", fillcolor="#d9d9d9"];
+        h4 [label="hw_init_keyboard_feedback()", fillcolor="#d9d9d9"];
+        h5 [label="load+apply user settings\nbrightness / charger", fillcolor="#cfe8ff"];
+        b6 -> h1 -> h2 -> h3 -> h4 -> h5 [style=dotted];
+    }
+
+    // ---- subsystem power states ----
+    subgraph cluster_state {
+        label="subsystem power state after boot";
+        style=dashed; color=gray;
+
+        cpu  [label="ESP32-S3 CPU\n240 MHz active, drops to 80 MHz\nwhen screen idle", fillcolor="#bfe6bf"];
+        pmu  [label="AXP2101 PMU\nALWAYS ON (rail control)", fillcolor="#bfe6bf"];
+        rtc  [label="PCF8563 RTC\nALWAYS ON (timekeeping/alarm)", fillcolor="#bfe6bf"];
+        disp [label="Display + backlight\nON; dims/off on timeout\n(dominant drain)", fillcolor="#bfe6bf"];
+        touch[label="CST816 touch\nON", fillcolor="#bfe6bf"];
+
+        wifi [label="WiFi (STA powered, not connected)\nturn off until needed?", fillcolor="#ffe0b3"];
+        codec[label="ES8311 codec\nidle, plays on demand", fillcolor="#ffe0b3"];
+
+        accel[label="BMA423 accel\nOFF until IMU/Pedometer app", fillcolor="#ffd6d6"];
+        lora [label="SX1262 LoRa\nSLEEP (~1 uA) until LoRa app", fillcolor="#ffd6d6"];
+        nfc  [label="ST25R3916 NFC\nOFF (app deactivated)", fillcolor="#ffd6d6"];
+        haptic[label="DRV2605 haptic\nidle, buzz on demand", fillcolor="#ffd6d6"];
+    }
+
+    b7 -> cpu [style=invis];
+
+    // legend
+    subgraph cluster_legend {
+        label="legend";
+        style=dashed; color=gray;
+        L1 [label="always on (needed)", fillcolor="#bfe6bf"];
+        L2 [label="on-demand / review", fillcolor="#ffe0b3"];
+        L3 [label="off / slept", fillcolor="#ffd6d6"];
+        L1 -> L2 -> L3 [style=invis];
+    }
+}

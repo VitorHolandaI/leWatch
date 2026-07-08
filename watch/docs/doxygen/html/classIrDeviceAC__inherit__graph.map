@@ -1,0 +1,19 @@
+<map id="IrDeviceAC" name="IrDeviceAC">
+<area shape="rect" id="Node000001" title=" " alt="" coords="204,165,356,384"/>
+<area shape="rect" id="Node000003" href="$classElectraAC.html" title=" " alt="" coords="5,432,96,523"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,355,98,438,94,435,194,350"/>
+<area shape="rect" id="Node000004" href="$classLgAC.html" title=" " alt="" coords="120,432,211,523"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="212,395,193,434,188,431,209,399"/>
+<area shape="rect" id="Node000005" href="$classMideaAC.html" title=" " alt="" coords="235,432,326,523"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,396,283,433,278,431,279,401"/>
+<area shape="rect" id="Node000008" href="$classSamsungAC.html" title=" " alt="" coords="349,432,440,523"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="350,394,372,433,367,432,349,399"/>
+<area shape="rect" id="Node000009" href="$classToshibaAC.html" title=" " alt="" coords="464,432,555,523"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="368,350,467,436,462,437,367,355"/>
+<area shape="rect" id="Node000002" href="$classIrDevice.html" title=" " alt="" coords="228,5,333,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,130,283,166,278,165,279,135"/>
+<area shape="rect" id="Node000006" href="$classKomecoMideaAC.html" title=" " alt="" coords="154,571,267,640"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="251,534,231,573,227,569,246,537"/>
+<area shape="rect" id="Node000007" href="$classSpringerMideaAC.html" title=" " alt="" coords="292,571,404,640"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="312,534,333,572,328,570,310,538"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="hw_get_charge_level_nums" name="hw_get_charge_level_nums">
+<area shape="rect" id="Node000001" title="Get the number of charging levels." alt="" coords="5,31,188,57"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a42a14efb681fa440fb1a9bdcb1299e2b" title=" " alt="" coords="236,5,418,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,31,223,30,217,31,188,37"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0227e155a59d310241e7bb0aea7b6afa" title=" " alt="" coords="466,23,618,65"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="188,41,451,41,450,47,188,47"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="418,27,454,33,448,33,418,32"/>
+</map>

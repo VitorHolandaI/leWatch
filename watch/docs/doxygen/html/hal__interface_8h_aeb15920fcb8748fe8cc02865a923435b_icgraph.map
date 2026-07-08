@@ -1,0 +1,7 @@
+<map id="ui_show_wifi_process_bar" name="ui_show_wifi_process_bar">
+<area shape="rect" id="Node000001" title="Show the WiFi connection process bar on the UI." alt="" coords="393,5,567,32"/>
+<area shape="rect" id="Node000002" href="$ui__nfc_8cpp.html#a0bd1993c3694460cc4594aac4fcb2843" title=" " alt="" coords="159,5,345,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="375,19,346,21,346,16,381,19"/>
+<area shape="rect" id="Node000003" href="$ui__nfc_8cpp.html#a68a174f5053fe18de131c7af8dc74b0b" title=" " alt="" coords="5,5,111,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="140,19,111,21,111,16,146,18"/>
+</map>

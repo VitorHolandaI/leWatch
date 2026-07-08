@@ -1,0 +1,9 @@
+<map id="msgbox_event" name="msgbox_event">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,112,57"/>
+<area shape="rect" id="Node000002" href="$ui__tools_8cpp.html#ae2c0cea030e820564ae4e647e0f7497a" title=" " alt="" coords="189,5,306,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,34,175,28,171,30,113,39"/>
+<area shape="rect" id="Node000004" href="$ui__main_8cpp.html#ab7a481ef8ea452b4cbd235e40e798630" title=" " alt="" coords="160,56,335,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="112,48,147,55,141,56,112,54"/>
+<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="383,5,507,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="306,16,370,18,365,19,306,21"/>
+</map>

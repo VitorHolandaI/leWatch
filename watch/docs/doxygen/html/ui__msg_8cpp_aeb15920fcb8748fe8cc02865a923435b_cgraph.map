@@ -1,0 +1,49 @@
+<map id="ui_show_wifi_process_bar" name="ui_show_wifi_process_bar">
+<area shape="rect" id="Node000001" title="Show the WiFi connection process bar on the UI." alt="" coords="5,284,180,311"/>
+<area shape="rect" id="Node000002" href="$ui__msg_8cpp.html#ae07c5a26ec3ca76e01a2df163e8b6a31" title=" " alt="" coords="235,284,372,311"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,295,222,296,218,299,181,300"/>
+<area shape="rect" id="Node000019" href="$ui__tools_8cpp.html#a99f642ce04079116b2f453bd79a4619b" title=" " alt="" coords="432,107,581,133"/>
+<area shape="poly" id="edge21_Node000001_Node000019" title=" " alt="" coords="120,281,251,218,427,143,448,137,444,140,429,148,254,223,123,286"/>
+<area shape="rect" id="Node000021" href="$ui__tools_8cpp.html#a035ecbe74c836271b8cccea53d9c432b" title=" " alt="" coords="228,335,380,361"/>
+<area shape="poly" id="edge26_Node000001_Node000021" title=" " alt="" coords="151,309,233,329,228,332,152,314"/>
+<area shape="rect" id="Node000003" href="$ui__tools_8cpp.html#a3e4c5d4f5fed81c9891ee7694076216b" title=" " alt="" coords="434,208,580,235"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="341,281,457,239,452,242,343,286"/>
+<area shape="rect" id="Node000009" href="$hal__interface_8cpp.html#a6092a2b1f031d2c98af9a611c5e6e3fe" title="Get the current IP address." alt="" coords="440,360,573,387"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="350,309,381,320,429,346,447,355,442,354,427,350,379,325,350,314"/>
+<area shape="rect" id="Node000010" href="$hal__interface_8cpp.html#acda83b790f34afcb947731d72cebd9e3" title="Check if the device is connected to a WiFi network." alt="" coords="428,411,585,437"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="361,309,382,321,399,340,406,360,414,379,430,397,437,404,432,403,426,401,409,381,401,362,394,343,378,325,360,314"/>
+<area shape="rect" id="Node000011" href="$hal__interface_8cpp.html#a0797a2133d18837a407eeff51ea97c09" title="Get the current WiFi SSID." alt="" coords="446,461,567,488"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="364,309,382,321,395,337,402,354,407,386,411,417,417,432,430,447,436,454,431,453,426,451,413,435,406,419,401,386,397,355,390,340,378,325,363,314"/>
+<area shape="rect" id="Node000012" href="$hal__interface_8cpp.html#ac4311eb50ce869581df3abaa5a0ce85e" title="Get the current WiFi status." alt="" coords="440,157,573,184"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="317,282,363,239,393,215,427,194,442,189,438,192,429,198,397,219,366,243,320,286"/>
+<area shape="rect" id="Node000013" href="$ui__main_8cpp.html#ab7a481ef8ea452b4cbd235e40e798630" title=" " alt="" coords="855,309,1030,336"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="373,293,568,291,687,294,807,301,842,307,837,308,806,307,687,299,568,296,373,298"/>
+<area shape="rect" id="Node000014" href="$ui__msg_8cpp.html#ace5fbfd131d77736e36d007c8aa21813" title="Pop up a message box on the UI." alt="" coords="450,309,563,336"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="373,303,438,313,433,314,373,309"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a0f0cb8f8e3a2a03283fb657860f9f0e1" title="Enable all input devices." alt="" coords="635,208,805,235"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="580,219,622,221,617,222,581,224"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a66cb498fe877b3cb970279bc1a331e7a" title="Check if the keyboard is available." alt="" coords="657,107,783,133"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="561,205,584,194,598,182,607,169,616,156,632,143,646,139,641,141,635,148,620,160,611,172,602,185,587,198,564,210"/>
+<area shape="rect" id="Node000007" href="$ui__tools_8cpp.html#a79b6e55b8ae7da2ea587b00b35c9ed1a" title=" " alt="" coords="646,56,794,83"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="566,205,584,194,594,182,601,170,607,145,613,119,620,105,632,93,636,92,641,89,635,97,624,109,618,120,612,146,606,172,599,185,587,198,569,210"/>
+<area shape="rect" id="Node000008" href="$ui__tools_8cpp.html#aa7b9cfeab2845e3fa4a2ea3772739dd8" title=" " alt="" coords="643,157,797,184"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="565,205,649,187,644,189,567,210"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="868,107,1017,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="783,117,855,119,850,121,784,123"/>
+<area shape="poly" id="edge20_Node000014_Node000013" title=" " alt="" coords="563,320,842,322,837,323,563,325"/>
+<area shape="rect" id="Node000015" href="$ui__tools_8cpp.html#a510fc54709ec7b2b3301f097c0590753" title=" " alt="" coords="887,411,998,437"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="563,334,587,346,602,359,611,373,620,386,635,396,694,417,757,428,818,431,875,432,869,432,818,436,756,433,693,422,632,401,616,389,606,376,598,363,584,350,562,339"/>
+<area shape="rect" id="Node000017" href="$ui__msg_8cpp.html#ab19ed21fb9ddb38cd2687bf75f44dd9e" title=" " alt="" coords="667,360,773,387"/>
+<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="563,333,654,357,649,357,563,339"/>
+<area shape="rect" id="Node000016" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="1078,385,1202,412"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="998,414,1060,409,1066,408,998,420"/>
+<area shape="poly" id="edge19_Node000017_Node000013" title=" " alt="" coords="773,359,863,341,868,340,774,364"/>
+<area shape="rect" id="Node000018" href="$ui__tools_8cpp.html#ae2c0cea030e820564ae4e647e0f7497a" title=" " alt="" coords="884,360,1001,387"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="773,371,871,373,865,374,774,376"/>
+<area shape="poly" id="edge18_Node000018_Node000016" title=" " alt="" coords="1001,378,1066,389,1060,389,1001,383"/>
+<area shape="poly" id="edge23_Node000019_Node000005" title=" " alt="" coords="581,117,644,119,638,121,582,123"/>
+<area shape="poly" id="edge24_Node000019_Node000007" title=" " alt="" coords="565,104,649,86,644,88,567,108"/>
+<area shape="poly" id="edge25_Node000019_Node000008" title=" " alt="" coords="566,131,649,153,644,154,566,137"/>
+<area shape="rect" id="Node000020" href="$hal__interface_8cpp.html#a6b57ced9e99f1041d3d46b5e1dedb9a6" title="Disable all input devices." alt="" coords="633,5,807,32"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="526,104,573,73,632,42,652,36,648,39,634,46,576,78,529,108"/>
+</map>

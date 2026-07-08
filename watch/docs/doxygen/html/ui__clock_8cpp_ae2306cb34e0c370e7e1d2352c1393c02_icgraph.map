@@ -1,0 +1,7 @@
+<map id="make_button" name="make_button">
+<area shape="rect" id="Node000001" title=" " alt="" coords="159,31,255,57"/>
+<area shape="rect" id="Node000002" href="$ui__clock_8cpp.html#a4bcd316666ebd250fcddb3d28ebf179e" title=" " alt="" coords="9,5,107,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,34,108,30,107,24,146,32"/>
+<area shape="rect" id="Node000003" href="$ui__clock_8cpp.html#a176c0fde6c95f9f67f3d8c8f1039c953" title=" " alt="" coords="5,56,111,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,55,112,63,111,58,146,54"/>
+</map>

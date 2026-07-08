@@ -1,0 +1,19 @@
+<map id="cache_is_fresh" name="cache_is_fresh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="748,31,857,57"/>
+<area shape="rect" id="Node000002" href="$ui__weather_8cpp.html#a1bcc01074084ef121e3d52237a1ea879" title=" " alt="" coords="506,5,569,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="730,37,569,24,569,19,735,37"/>
+<area shape="rect" id="Node000008" href="$ui__weather_8cpp.html#a203591f09b707084b5b5bafff4dd3d8f" title=" " alt="" coords="617,56,700,83"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="735,56,701,65,700,59,730,57"/>
+<area shape="rect" id="Node000003" href="$ui__weather_8cpp.html#a4c89be46e26d5910507b34c3aaf2b7af" title=" " alt="" coords="349,31,458,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="493,27,459,36,459,31,488,28"/>
+<area shape="rect" id="Node000004" href="$ui__weather_8cpp.html#a2859e756e23c8022ebd1d38d5a008bbf" title=" " alt="" coords="181,5,294,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="331,34,294,30,294,25,337,33"/>
+<area shape="rect" id="Node000006" href="$ui__weather_8cpp.html#af9d8a78c8e97cdf919f675b9862f02a7" title=" " alt="" coords="174,56,301,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="337,54,302,62,301,57,331,55"/>
+<area shape="rect" id="Node000005" href="$ui__weather_8cpp.html#ae56265753e792108ab2240c459eb95ff" title=" " alt="" coords="13,5,118,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="163,20,119,21,118,16,168,18"/>
+<area shape="rect" id="Node000007" href="$ui__weather_8cpp.html#ab08418e043c337d7b37b9d486bd75211" title=" " alt="" coords="5,56,126,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="155,70,126,72,126,67,161,69"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="608,49,569,34,570,29,613,50"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="599,64,458,52,459,47,604,64"/>
+</map>

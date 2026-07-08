@@ -1,0 +1,7 @@
+<map id="hw_set_charger" name="hw_set_charger">
+<area shape="rect" id="Node000001" title="Enable or disable the charger." alt="" coords="5,13,119,40"/>
+<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#adac6552dc639e9e90347eca728159570" title=" " alt="" coords="167,13,344,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,24,154,26,149,27,119,29"/>
+<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0227e155a59d310241e7bb0aea7b6afa" title=" " alt="" coords="392,5,544,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,24,379,27,374,27,345,29"/>
+</map>

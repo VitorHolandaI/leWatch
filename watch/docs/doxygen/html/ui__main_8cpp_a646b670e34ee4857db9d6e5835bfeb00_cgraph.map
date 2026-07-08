@@ -1,0 +1,16 @@
+<map id="setupClock" name="setupClock">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,93,83"/>
+<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#aa859a803a6a633ff9452bc13a2c428a4" title=" " alt="" coords="159,5,278,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,54,159,35,155,39,94,59"/>
+<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#a410b487c1f14b4b0b47401c26b5c906e" title=" " alt="" coords="141,56,296,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,67,128,68,123,70,94,72"/>
+<area shape="rect" id="Node000007" href="$ui__main_8cpp.html#a6e272fcaeaeefce055a30d0497333485" title=" " alt="" coords="164,107,272,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="94,80,159,101,155,103,93,85"/>
+<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#aade54ac2e175dcf91cd574701376e9be" title="Get the current date and time as a string." alt="" coords="362,31,489,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="296,57,350,53,344,54,297,62"/>
+<area shape="rect" id="Node000006" href="$hal__interface_8cpp.html#aa5e11b749ec3d7c509b518f331203102" title="Get the monitor parameters." alt="" coords="344,81,507,108"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="296,76,331,83,326,83,296,82"/>
+<area shape="rect" id="Node000005" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="555,56,705,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="490,49,543,58,537,58,490,55"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="508,82,537,81,543,80,508,87"/>
+</map>

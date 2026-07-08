@@ -1,0 +1,5 @@
+<map id="hw_radio_sleep" name="hw_radio_sleep">
+<area shape="rect" id="Node000001" title="Put the LoRa radio into low&#45;power sleep." alt="" coords="191,5,302,32"/>
+<area shape="rect" id="Node000002" href="$ui__radio_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,5,143,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,19,143,21,143,16,178,18"/>
+</map>
