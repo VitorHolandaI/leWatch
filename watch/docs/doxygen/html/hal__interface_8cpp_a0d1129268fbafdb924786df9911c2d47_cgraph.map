@@ -1,5 +1,0 @@
-<map id="hw_audio_get_fft_data" name="hw_audio_get_fft_data">
-<area shape="rect" id="Node000001" title="Get the FFT data." alt="" coords="5,5,157,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="205,5,354,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,16,192,19,187,19,157,21"/>
-</map>

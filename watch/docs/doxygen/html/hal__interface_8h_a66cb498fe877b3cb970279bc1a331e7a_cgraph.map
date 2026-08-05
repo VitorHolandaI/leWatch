@@ -1,5 +1,0 @@
-<map id="hw_has_keyboard" name="hw_has_keyboard">
-<area shape="rect" id="Node000001" title="Check if the keyboard is available." alt="" coords="5,5,132,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="180,5,329,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,16,166,18,161,19,132,21"/>
-</map>

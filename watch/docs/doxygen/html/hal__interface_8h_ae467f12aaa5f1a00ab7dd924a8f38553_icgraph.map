@@ -1,9 +1,0 @@
-<map id="hw_set_keyboard_read_callback" name="hw_set_keyboard_read_callback">
-<area shape="rect" id="Node000001" title="Set the callback function for keyboard reading." alt="" coords="191,48,346,91"/>
-<area shape="rect" id="Node000002" href="$ui__ble__kb_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,5,143,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,46,128,35,128,30,178,44"/>
-<area shape="rect" id="Node000003" href="$ui__msgchat_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,56,143,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,70,143,72,143,67,178,69"/>
-<area shape="rect" id="Node000004" href="$ui__ble__kb_8cpp.html#ab48e635ec761213692ea9e2c93fee757" title=" " alt="" coords="18,107,130,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,93,129,109,127,103,173,94"/>
-</map>

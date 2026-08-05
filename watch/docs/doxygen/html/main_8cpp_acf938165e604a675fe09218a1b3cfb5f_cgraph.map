@@ -1,9 +1,0 @@
-<map id="hw_init" name="hw_init">
-<area shape="rect" id="Node000001" title="Initialize the hardware." alt="" coords="5,13,68,40"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#adb7eeedd2ab49d4ae60ee34c84f09a87" title=" " alt="" coords="116,5,257,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,24,103,26,98,27,69,29"/>
-<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#adac6552dc639e9e90347eca728159570" title=" " alt="" coords="305,13,482,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,24,292,27,287,27,258,29"/>
-<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a0227e155a59d310241e7bb0aea7b6afa" title=" " alt="" coords="530,5,683,48"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="483,24,518,27,512,27,483,29"/>
-</map>

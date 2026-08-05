@@ -1,7 +1,0 @@
-<map id="hw_enter_alarm_sleep" name="hw_enter_alarm_sleep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="320,5,471,32"/>
-<area shape="rect" id="Node000002" href="$ui__clock_8cpp.html#ad705c931c2b03ce6caae1cd4d36e0ca1" title=" " alt="" coords="159,5,272,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="302,19,273,21,272,16,307,19"/>
-<area shape="rect" id="Node000003" href="$ui__clock_8cpp.html#a176c0fde6c95f9f67f3d8c8f1039c953" title=" " alt="" coords="5,5,111,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="140,19,111,21,111,16,146,18"/>
-</map>

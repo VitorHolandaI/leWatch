@@ -1,7 +1,0 @@
-<map id="hw_audio_get_fft_data" name="hw_audio_get_fft_data">
-<area shape="rect" id="Node000001" title="Get the FFT data." alt="" coords="369,5,520,32"/>
-<area shape="rect" id="Node000002" href="$ui__microphone_8cpp.html#a492b77258d8c70594c77a6ebc1d0da01" title=" " alt="" coords="195,5,321,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="351,19,322,21,322,16,356,19"/>
-<area shape="rect" id="Node000003" href="$ui__microphone_8cpp.html#a4616bedf7c210e2523a1eb417ee2337d" title=" " alt="" coords="5,5,147,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,19,147,21,147,16,182,19"/>
-</map>

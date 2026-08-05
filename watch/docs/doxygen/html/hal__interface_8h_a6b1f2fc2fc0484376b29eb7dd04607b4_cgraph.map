@@ -1,5 +1,0 @@
-<map id="hw_pedometer_stop" name="hw_pedometer_stop">
-<area shape="rect" id="Node000001" title="Stop the step counter and power the accelerometer back down." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="192,5,341,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,16,179,19,173,19,144,21"/>
-</map>

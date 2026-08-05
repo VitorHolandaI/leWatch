@@ -1,5 +1,0 @@
-<map id="hw_set_volume" name="hw_set_volume">
-<area shape="rect" id="Node000001" title="Set the volume level." alt="" coords="5,5,118,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="166,5,315,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,16,153,18,147,19,118,21"/>
-</map>

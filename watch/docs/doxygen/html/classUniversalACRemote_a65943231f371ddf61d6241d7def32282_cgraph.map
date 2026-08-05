@@ -1,9 +1,0 @@
-<map id="UniversalACRemote::execute" name="UniversalACRemote::execute">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,35,155,77"/>
-<area shape="rect" id="Node000002" href="$classUniversalACRemote.html#af2337660dbb79550641f11909c7e2775" title=" " alt="" coords="203,5,352,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,42,190,39,185,41,156,48"/>
-<area shape="rect" id="Node000003" href="$classIrDeviceAC.html#afd1d54511768dc3d75ce76cc01bc634c" title=" " alt="" coords="206,72,349,99"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,64,193,72,188,73,155,70"/>
-<area shape="rect" id="Node000004" href="$classIrDeviceAC.html#a995a4e2e9c592564e2e79525581756e7" title=" " alt="" coords="400,72,556,99"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="350,83,387,85,382,85,350,88"/>
-</map>

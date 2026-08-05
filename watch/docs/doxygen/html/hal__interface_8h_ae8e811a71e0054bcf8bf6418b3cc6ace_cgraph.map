@@ -1,5 +1,0 @@
-<map id="hw_has_indicator_led" name="hw_has_indicator_led">
-<area shape="rect" id="Node000001" title="Check if the indicator LED is available." alt="" coords="5,5,152,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="200,5,349,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,16,187,19,182,19,152,21"/>
-</map>

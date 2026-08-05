@@ -1,5 +1,0 @@
-<map id="hw_set_sd_music_play" name="hw_set_sd_music_play">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,163,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a3c8132bf5fffb69621ca107c488148f4" title="Check if the music player is running." alt="" coords="211,5,340,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,16,198,19,192,19,163,21"/>
-</map>

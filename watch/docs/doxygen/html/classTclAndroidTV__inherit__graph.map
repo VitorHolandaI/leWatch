@@ -1,9 +1,0 @@
-<map id="TclAndroidTV" name="TclAndroidTV">
-<area shape="rect" id="Node000001" title=" " alt="" coords="14,485,102,576"/>
-<area shape="rect" id="Node000002" href="$classRcaTV.html" title=" " alt="" coords="9,304,106,437"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,450,60,486,55,485,57,455"/>
-<area shape="rect" id="Node000003" href="$classIrDeviceTV.html" title=" " alt="" coords="5,165,110,256"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="58,268,60,305,55,304,58,274"/>
-<area shape="rect" id="Node000004" href="$classIrDevice.html" title=" " alt="" coords="5,5,110,117"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="58,130,60,166,55,166,58,135"/>
-</map>

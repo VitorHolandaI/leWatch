@@ -1,7 +1,0 @@
-<map id="hw_set_default_user_settings" name="hw_set_default_user_settings">
-<area shape="rect" id="Node000001" title=" " alt="" coords="213,5,354,48"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#acf938165e604a675fe09218a1b3cfb5f" title="Initialize the hardware." alt="" coords="103,13,165,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,27,165,29,165,24,200,26"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,13,55,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,28,55,29,55,24,89,26"/>
-</map>

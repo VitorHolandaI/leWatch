@@ -1,7 +1,0 @@
-<map id="hw_set_radio_tx" name="hw_set_radio_tx">
-<area shape="rect" id="Node000001" title="Start radio transmission." alt="" coords="321,5,437,32"/>
-<area shape="rect" id="Node000002" href="$ui__radio_8cpp.html#a375119af00dd8077ed461569250c00f3" title=" " alt="" coords="156,5,273,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,19,273,21,273,16,308,19"/>
-<area shape="rect" id="Node000003" href="$ui__radio_8cpp.html#a30702f97d00096d2d0a32c0acc4cb0af" title=" " alt="" coords="5,5,108,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="137,19,108,21,108,16,143,18"/>
-</map>

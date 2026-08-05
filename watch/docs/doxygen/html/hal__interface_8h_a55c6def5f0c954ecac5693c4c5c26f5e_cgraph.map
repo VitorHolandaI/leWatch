@@ -1,5 +1,0 @@
-<map id="hw_get_devices_name" name="hw_get_devices_name">
-<area shape="rect" id="Node000001" title="Get the name of a specific hardware device." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#afd7827bfe740c2362e412608f17400af" title="Get the number of connected hardware devices." alt="" coords="208,5,362,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,16,195,19,190,19,160,21"/>
-</map>

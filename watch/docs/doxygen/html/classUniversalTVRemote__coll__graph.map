@@ -1,7 +1,0 @@
-<map id="UniversalTVRemote" name="UniversalTVRemote">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,329,134,505"/>
-<area shape="rect" id="Node000002" href="$classIrDeviceTV.html" title=" " alt="" coords="17,167,122,257"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,255,72,313,67,312,69,260"/>
-<area shape="rect" id="Node000003" href="$classIrDevice.html" title=" " alt="" coords="17,5,122,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,129,72,167,67,167,69,135"/>
-</map>

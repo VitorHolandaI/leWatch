@@ -1,5 +1,0 @@
-<map id="hw_start_nfc_discovery" name="hw_start_nfc_discovery">
-<area shape="rect" id="Node000001" title="Start NFC discovery." alt="" coords="146,5,305,32"/>
-<area shape="rect" id="Node000002" href="$ui__nfc_8cpp.html#ac05804819261cc786f0af09963d66b09" title=" " alt="" coords="5,5,98,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,19,98,21,98,16,133,18"/>
-</map>

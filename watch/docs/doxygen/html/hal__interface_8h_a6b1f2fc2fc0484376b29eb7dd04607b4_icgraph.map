@@ -1,7 +1,0 @@
-<map id="hw_pedometer_stop" name="hw_pedometer_stop">
-<area shape="rect" id="Node000001" title="Stop the step counter and power the accelerometer back down." alt="" coords="366,5,504,32"/>
-<area shape="rect" id="Node000002" href="$ui__pedometer_8cpp.html#a25542209b08ec0009fd9a7bd0c7da584" title=" " alt="" coords="191,5,318,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="348,19,318,21,318,16,353,19"/>
-<area shape="rect" id="Node000003" href="$ui__pedometer_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,5,143,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,19,143,21,143,16,178,18"/>
-</map>

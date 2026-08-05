@@ -1,9 +1,0 @@
-<map id="hw_get_wifi_scan_result" name="hw_get_wifi_scan_result">
-<area shape="rect" id="Node000001" title="Get the results of the WiFi scan." alt="" coords="462,5,627,32"/>
-<area shape="rect" id="Node000002" href="$ui__wireless_8cpp.html#a7c4ecc61745410369ca4a25f66c319d8" title=" " alt="" coords="337,5,414,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="444,19,415,21,415,16,450,19"/>
-<area shape="rect" id="Node000003" href="$ui__wireless_8cpp.html#a59ebc810126767c0f9f6eade6796267e" title=" " alt="" coords="176,5,289,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,19,290,21,289,16,324,19"/>
-<area shape="rect" id="Node000004" href="$ui__wireless_8cpp.html#ad721a9d43e91608fd0e5d5aa07b5a7a0" title=" " alt="" coords="5,5,128,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="157,19,128,21,128,16,163,18"/>
-</map>

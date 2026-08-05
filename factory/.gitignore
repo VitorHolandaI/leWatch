@@ -1,0 +1,13 @@
+build/
+*.o
+*.elf
+*.bin.tmp
+.cache/
+.venv/
+sim/sim
+sim/build/
+compile_commands.json
+sim/compile_commands.json
+docs/doxygen/
+.clangd
+.cache/

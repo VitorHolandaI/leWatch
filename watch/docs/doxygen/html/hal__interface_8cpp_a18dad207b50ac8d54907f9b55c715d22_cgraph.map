@@ -1,5 +1,0 @@
-<map id="hw_flush_keyboard" name="hw_flush_keyboard">
-<area shape="rect" id="Node000001" title="Flush the keyboard input buffer." alt="" coords="5,5,139,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="187,5,336,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,16,174,18,169,19,139,21"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="otg_output_cb" name="otg_output_cb">
-<area shape="rect" id="Node000001" title=" " alt="" coords="335,5,438,32"/>
-<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#ac6904d613d241e74ab70575a32e0fb67" title=" " alt="" coords="149,5,287,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,19,287,21,287,16,322,19"/>
-<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,5,101,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,19,101,21,101,16,136,18"/>
-</map>

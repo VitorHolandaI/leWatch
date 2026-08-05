@@ -1,7 +1,0 @@
-<map id="pedometer_tick" name="pedometer_tick">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#abc10b63f98deb1c302133fe6a2484afd" title="Read the accumulated step count from the hardware step counter." alt="" coords="164,5,334,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,16,151,18,145,19,116,21"/>
-<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="382,5,531,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,16,369,19,364,19,334,21"/>
-</map>

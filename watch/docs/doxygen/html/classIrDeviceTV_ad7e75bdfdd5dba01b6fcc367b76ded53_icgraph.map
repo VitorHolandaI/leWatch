@@ -1,7 +1,0 @@
-<map id="IrDeviceTV::execute" name="IrDeviceTV::execute">
-<area shape="rect" id="Node000001" title=" " alt="" coords="221,43,361,69"/>
-<area shape="rect" id="Node000002" href="$classUniversalTVRemote.html#ab2a5ab6aec89a5bc4c84ba0550b6e875" title=" " alt="" coords="15,5,163,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,44,163,40,163,35,208,43"/>
-<area shape="rect" id="Node000003" href="$classIrDeviceTV.html#a01620e4ff878f78b32d274d5c93e0165" title=" " alt="" coords="5,72,173,99"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,69,173,76,173,71,208,68"/>
-</map>

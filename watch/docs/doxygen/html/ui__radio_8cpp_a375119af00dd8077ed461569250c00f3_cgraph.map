@@ -1,9 +1,0 @@
-<map id="radio_timer_task" name="radio_timer_task">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,123,83"/>
-<area shape="rect" id="Node000002" href="$stubs_8cpp.html#ababd00fe6d1d0c04d638056923bdce7c" title="Get the received radio data." alt="" coords="174,5,290,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,53,173,36,168,39,112,58"/>
-<area shape="rect" id="Node000003" href="$stubs_8cpp.html#a6316bcd64302f44c2b58c388e6d4a2bb" title="Start radio transmission." alt="" coords="174,56,290,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,67,160,68,155,70,124,72"/>
-<area shape="rect" id="Node000004" href="$ui__radio_8cpp.html#a37ea72853bc5aaebf10811b9c98401af" title=" " alt="" coords="171,107,293,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="111,81,173,101,168,102,111,86"/>
-</map>

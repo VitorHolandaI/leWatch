@@ -1,7 +1,0 @@
-<map id="hw_set_ble_kb_enable" name="hw_set_ble_kb_enable">
-<area shape="rect" id="Node000001" title="Enable the BLE keyboard function." alt="" coords="218,31,371,57"/>
-<area shape="rect" id="Node000002" href="$ui__ble__kb_8cpp.html#ab48e635ec761213692ea9e2c93fee757" title=" " alt="" coords="31,5,144,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,33,144,28,144,23,205,32"/>
-<area shape="rect" id="Node000003" href="$ui__camera__remote_8cpp.html#adc6d50b0685ce6e9bf45325aaa9142f9" title=" " alt="" coords="5,56,170,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,56,170,62,170,57,205,55"/>
-</map>

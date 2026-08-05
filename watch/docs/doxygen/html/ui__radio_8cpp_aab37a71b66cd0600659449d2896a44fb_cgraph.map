@@ -1,7 +1,0 @@
-<map id="select_bandwidth_dropdown" name="select_bandwidth_dropdown">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,191,73"/>
-<area shape="rect" id="Node000002" href="$stubs_8cpp.html#a7cd44387f3ee4eb892c48515e4810751" title="Get the radio bandwidth from the index." alt="" coords="239,5,379,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,43,226,39,221,41,187,49"/>
-<area shape="rect" id="Node000003" href="$stubs_8cpp.html#ad4b166dd553fe86dc8ded55a91e00030" title="Get the radio bandwidth length." alt="" coords="239,72,379,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,71,226,80,221,80,186,77"/>
-</map>

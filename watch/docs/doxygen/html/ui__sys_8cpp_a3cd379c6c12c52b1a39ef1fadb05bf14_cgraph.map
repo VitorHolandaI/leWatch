@@ -1,7 +1,0 @@
-<map id="led_brightness_cb" name="led_brightness_cb">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,132,57"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a300bde807904d500760e1c00195455de" title="Set the indicator LED backlight level." alt="" coords="180,5,326,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,33,167,30,162,32,132,38"/>
-<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#af5823f9e20353f81e92e97be2ef4b2b4" title=" " alt="" coords="224,56,282,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,50,211,63,206,64,132,55"/>
-</map>

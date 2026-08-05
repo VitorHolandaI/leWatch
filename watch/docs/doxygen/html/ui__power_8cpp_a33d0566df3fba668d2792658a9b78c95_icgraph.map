@@ -1,7 +1,0 @@
-<map id="power_off_do_shutdown" name="power_off_do_shutdown">
-<area shape="rect" id="Node000001" title=" " alt="" coords="382,5,543,32"/>
-<area shape="rect" id="Node000002" href="$ui__power_8cpp.html#a3a9dcb5f6f29d51b8fe36c8da577d8c0" title=" " alt="" coords="186,5,334,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="364,19,334,21,334,16,369,19"/>
-<area shape="rect" id="Node000003" href="$ui__power_8cpp.html#a1cbd3a69d53bb6ee30f2e7622c5c9087" title=" " alt="" coords="5,5,138,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,19,138,21,138,16,173,18"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="hw_pedometer_start" name="hw_pedometer_start">
-<area shape="rect" id="Node000001" title="Start the low&#45;power hardware step counter (BMA423 pedometer feature)." alt="" coords="189,5,328,32"/>
-<area shape="rect" id="Node000002" href="$ui__pedometer_8cpp.html#a17edce0093b00f3eb37ecc20dc6c08da" title=" " alt="" coords="5,5,141,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,19,141,21,141,16,176,18"/>
-</map>

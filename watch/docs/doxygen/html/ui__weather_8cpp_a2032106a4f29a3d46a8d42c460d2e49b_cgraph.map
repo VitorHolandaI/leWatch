@@ -1,7 +1,0 @@
-<map id="news_back_cb" name="news_back_cb">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,114,32"/>
-<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#aacbd3ab5885aa663bfae18f8ba403d14" title=" " alt="" coords="162,5,253,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,16,149,18,143,19,114,21"/>
-<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="301,5,425,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,16,288,19,283,19,253,21"/>
-</map>

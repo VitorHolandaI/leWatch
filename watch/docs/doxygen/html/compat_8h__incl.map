@@ -1,7 +1,0 @@
-<map id="sim/compat.h" name="sim/compat.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="28,5,128,32"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,66,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,31,53,68,48,65,69,34"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="89,80,152,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="87,30,108,67,103,67,84,35"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="hw_get_charger_current_level" name="hw_get_charger_current_level">
-<area shape="rect" id="Node000001" title="Get the current charger current level." alt="" coords="335,5,495,48"/>
-<area shape="rect" id="Node000002" href="$ui__sys_8cpp.html#ac6904d613d241e74ab70575a32e0fb67" title=" " alt="" coords="149,13,287,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,27,288,29,288,24,322,27"/>
-<area shape="rect" id="Node000003" href="$ui__sys_8cpp.html#aac2698f451dec6990c348e5dd0357509" title=" " alt="" coords="5,13,101,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,27,101,29,101,24,136,26"/>
-</map>

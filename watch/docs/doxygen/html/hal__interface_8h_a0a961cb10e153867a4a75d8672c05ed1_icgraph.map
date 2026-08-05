@@ -1,5 +1,0 @@
-<map id="hw_deinit_ble" name="hw_deinit_ble">
-<area shape="rect" id="Node000001" title="Deinitialize the BLE module." alt="" coords="191,5,291,32"/>
-<area shape="rect" id="Node000002" href="$ui__ble_8cpp.html#a281e8b49ab313401f21f32672b2fe0a6" title=" " alt="" coords="5,5,143,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,19,143,21,143,16,178,18"/>
-</map>

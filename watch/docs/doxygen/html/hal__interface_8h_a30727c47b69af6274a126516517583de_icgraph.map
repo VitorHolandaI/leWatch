@@ -1,8 +1,0 @@
-<map id="hw_vibrate_max" name="hw_vibrate_max">
-<area shape="rect" id="Node000001" title=" " alt="" coords="309,31,425,57"/>
-<area shape="rect" id="Node000002" href="$ui__clock_8cpp.html#a41e69a7f919231d8de11c2488fa6968c" title=" " alt="" coords="152,5,261,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,32,261,30,262,25,296,32"/>
-<area shape="rect" id="Node000003" href="$ui__clock_8cpp.html#a4bcd316666ebd250fcddb3d28ebf179e" title=" " alt="" coords="5,31,104,57"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="293,47,104,47,104,41,294,41"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="133,31,105,38,104,33,139,30"/>
-</map>

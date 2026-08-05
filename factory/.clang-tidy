@@ -1,0 +1,13 @@
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  performance-*,
+  portability-*,
+  clang-analyzer-*,
+  cert-*,
+  readability-function-size,
+  readability-braces-around-statements
+WarningsAsErrors: ''
+HeaderFilterRegex: '^(ui_|hal_interface|app_nfc|ir_control|main|factory).*'
+FormatStyle: none

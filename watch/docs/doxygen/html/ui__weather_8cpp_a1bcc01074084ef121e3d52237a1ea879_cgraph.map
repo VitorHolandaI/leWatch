@@ -1,8 +1,0 @@
-<map id="poll_cb" name="poll_cb">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,68,32"/>
-<area shape="rect" id="Node000002" href="$ui__weather_8cpp.html#a115e13465ba09c1442b6dd38833a280f" title=" " alt="" coords="247,5,356,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,16,232,16,231,21,68,21"/>
-<area shape="rect" id="Node000003" href="$ui__weather_8cpp.html#a203591f09b707084b5b5bafff4dd3d8f" title=" " alt="" coords="116,31,199,57"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="68,23,103,31,98,33,68,28"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="199,34,229,31,235,31,200,39"/>
-</map>

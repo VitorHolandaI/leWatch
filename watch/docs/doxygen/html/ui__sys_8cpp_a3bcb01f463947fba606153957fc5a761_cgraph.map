@@ -1,9 +1,0 @@
-<map id="charger_enable_cb" name="charger_enable_cb">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,136,40"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#a1805eebcec270808279a803a817d910e" title="Enable or disable the charger." alt="" coords="184,13,297,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,24,171,26,165,27,136,29"/>
-<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#adac6552dc639e9e90347eca728159570" title=" " alt="" coords="345,13,522,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,24,332,27,327,27,297,29"/>
-<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a0227e155a59d310241e7bb0aea7b6afa" title=" " alt="" coords="570,5,723,48"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="523,24,558,27,552,27,523,29"/>
-</map>

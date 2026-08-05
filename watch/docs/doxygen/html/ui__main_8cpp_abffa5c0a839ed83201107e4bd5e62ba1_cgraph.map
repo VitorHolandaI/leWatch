@@ -1,9 +1,0 @@
-<map id="hw_device_poll" name="hw_device_poll">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,116,57"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#aa5e11b749ec3d7c509b518f331203102" title="Get the monitor parameters." alt="" coords="164,5,327,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,34,151,31,146,33,117,39"/>
-<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#aa2b943cf1bdd2889e3ac76016e4ae359" title="Shutdown the hardware." alt="" coords="195,56,296,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="116,49,182,60,177,61,116,54"/>
-<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a0962c4ad5380756e98f3fd31f5cf9978" title="Get the online status of the hardware devices." alt="" coords="375,5,524,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,16,362,18,357,19,328,21"/>
-</map>

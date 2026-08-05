@@ -1,9 +1,0 @@
-<map id="_ui_ble_obj_event" name="_ui_ble_obj_event">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,131,83"/>
-<area shape="rect" id="Node000002" href="$hal__interface_8cpp.html#ad574a66c8f0bde439395016b2847c437" title="Disable the BLE module." alt="" coords="198,5,308,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,53,189,35,185,38,121,58"/>
-<area shape="rect" id="Node000003" href="$hal__interface_8cpp.html#a44e0fe6d06ed60fd1868ad856b7b2245" title="Enable the BLE module." alt="" coords="199,56,306,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,67,187,68,182,70,131,72"/>
-<area shape="rect" id="Node000004" href="$hal__interface_8cpp.html#a3887aa6c09f2b766eec093a24a8d00a8" title="Get the variant name of the device." alt="" coords="179,107,327,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,81,190,101,185,103,119,86"/>
-</map>

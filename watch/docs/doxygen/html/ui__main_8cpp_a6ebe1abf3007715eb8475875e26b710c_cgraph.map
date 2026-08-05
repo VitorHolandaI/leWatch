@@ -1,7 +1,0 @@
-<map id="create_app_cell" name="create_app_cell">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,118,57"/>
-<area shape="rect" id="Node000002" href="$ui__main_8cpp.html#ae8e3657613b04057801b8b6cad1d2cf0" title=" " alt="" coords="179,5,277,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,33,166,28,161,29,119,38"/>
-<area shape="rect" id="Node000003" href="$ui__main_8cpp.html#a4f5bd886e20577ce1b85532aea982b14" title=" " alt="" coords="166,56,290,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,50,153,57,148,58,118,55"/>
-</map>
