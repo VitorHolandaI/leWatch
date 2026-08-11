@@ -9,10 +9,15 @@
  */
 #pragma once
 
-// MCP Streamable HTTP endpoint. Use the server's LAN address: the watch is not
-// on the WireGuard VPN, so a 10.66.x.x VPN address will not resolve for it.
+// MCP Streamable HTTP endpoint. Primary + fallback: the appliance tries the
+// primary, then the fallback if it fails. LAN first (192.168.0.24) so home use
+// works even with the VPN off; the VPN address (10.66.66.16, inside
+// WG_ALLOWED_IP) is the away fallback. Swap the two to prefer the tunnel.
 #ifndef NEXTCLOUD_MCP_URL
 #define NEXTCLOUD_MCP_URL "http://192.168.0.24:8001/mcp"
+#endif
+#ifndef NEXTCLOUD_MCP_URL_FALLBACK
+#define NEXTCLOUD_MCP_URL_FALLBACK "http://10.66.66.16:8001/mcp"
 #endif
 
 // Local timezone offset from UTC, in minutes (Campina Grande / America/Recife
@@ -25,6 +30,16 @@
 // How many days of agenda to request (bounded 1..31 by the server).
 #ifndef NEXTCLOUD_SYNC_DAYS
 #define NEXTCLOUD_SYNC_DAYS 7
+#endif
+
+// ServitorAssistant voice endpoint (FastAPI on port 8000). Primary + fallback,
+// same LAN-first / VPN-fallback logic as the MCP URL above. The watch uploads a
+// recorded WAV and gets back the LLM answer as text or synthesized audio.
+#ifndef SERVITOR_API_URL
+#define SERVITOR_API_URL "http://192.168.0.24:8000/file_recorded"
+#endif
+#ifndef SERVITOR_API_URL_FALLBACK
+#define SERVITOR_API_URL_FALLBACK "http://10.66.66.16:8000/file_recorded"
 #endif
 
 // Default reminder lead (minutes) when an item carries no VALARM of its own.

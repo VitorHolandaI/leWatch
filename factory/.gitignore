@@ -11,3 +11,7 @@ sim/compile_commands.json
 docs/doxygen/
 .clangd
 .cache/
+
+# WireGuard private key + peer secrets — never commit, never sync to git mirror.
+# Copy wireguard_secrets.h.example -> wireguard_secrets.h and fill locally.
+wireguard_secrets.h

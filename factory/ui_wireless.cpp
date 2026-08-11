@@ -25,6 +25,11 @@ extern void ui_show_wifi_process_bar();
 static lv_obj_t *saved_page = NULL;
 static void build_saved_list(lv_obj_t *page);
 
+// ---- VPN (WireGuard) toggle ----
+static lv_obj_t  *s_vpn_btn_label = NULL;
+static lv_obj_t  *s_vpn_status = NULL;
+static lv_timer_t *s_vpn_timer = NULL;
+
 static void back_event_handler(lv_event_t *e)
 {
     lv_obj_t *obj = (lv_obj_t *)lv_event_get_target(e);
@@ -35,6 +40,9 @@ static void back_event_handler(lv_event_t *e)
             keyboard = NULL;
         }
 #endif
+        if (s_vpn_timer) { lv_timer_del(s_vpn_timer); s_vpn_timer = NULL; }
+        s_vpn_btn_label = NULL;
+        s_vpn_status = NULL;
         lv_obj_clean(menu);
         lv_obj_del(menu);
         disable_keyboard();
@@ -376,6 +384,58 @@ static void build_saved_list(lv_obj_t *page)
     }
 }
 
+// Reflect real tunnel state: "conectada" once the netif is up, "conectando..."
+// while enabled but not yet up, "desligada" when off.
+static void vpn_refresh_status(void)
+{
+    if (!s_vpn_status) return;
+    bool on = hw_vpn_enabled_get();
+    const char *txt = !on ? "VPN desligada"
+                      : (hw_vpn_up() ? LV_SYMBOL_OK " VPN conectada"
+                                     : "VPN conectando...");
+    lv_label_set_text(s_vpn_status, txt);
+    if (s_vpn_btn_label) {
+        lv_label_set_text(s_vpn_btn_label, on ? LV_SYMBOL_POWER " Desligar VPN"
+                                              : LV_SYMBOL_POWER " Ligar VPN");
+    }
+}
+
+static void vpn_status_tick(lv_timer_t *t)
+{
+    LV_UNUSED(t);
+    vpn_refresh_status();
+}
+
+static void vpn_toggle_event(lv_event_t *e)
+{
+    LV_UNUSED(e);
+    bool on = !hw_vpn_enabled_get();
+    hw_vpn_enabled_set(on);
+    if (on) {
+        if (!hw_get_wifi_connected()) {
+            ui_msg_pop_up("VPN", "Conecte o WiFi primeiro");
+        }
+        hw_vpn_start_async();   // safe: begin()+probe() run on their own task
+    } else {
+        hw_vpn_end();
+    }
+    vpn_refresh_status();
+}
+
+static lv_obj_t *vpn_control_create(lv_obj_t *parent)
+{
+    lv_obj_t *b = lv_btn_create(parent);
+    lv_obj_set_width(b, lv_pct(90));
+    lv_obj_set_style_text_font(b, &lv_font_montserrat_18, 0);
+    lv_obj_add_event_cb(b, vpn_toggle_event, LV_EVENT_CLICKED, NULL);
+    s_vpn_btn_label = lv_label_create(b);
+    lv_obj_center(s_vpn_btn_label);
+
+    s_vpn_status = lv_label_create(parent);
+    vpn_refresh_status();
+    return b;
+}
+
 void ui_wireless_enter(lv_obj_t *parent)
 {
     menu = create_menu(parent, back_event_handler);
@@ -394,7 +454,10 @@ void ui_wireless_enter(lv_obj_t *parent)
     wide_action_button(main_page, LV_SYMBOL_OK      " Conectar",      wifi_connect_event);
     wide_action_button(main_page, LV_SYMBOL_POWER   " Desligar WiFi", wifi_off_event);
 
-
+    // VPN WireGuard: liga/desliga em runtime (persiste em NVS). Fica no fim pra
+    // nao atrapalhar o fluxo de conectar WiFi (o tunel precisa do WiFi antes).
+    vpn_control_create(main_page);
+    if (!s_vpn_timer) s_vpn_timer = lv_timer_create(vpn_status_tick, 1000, NULL);
 
     // Redes salvas como sub-pagina (listar/remover). WiFi cuida so de WiFi;
     // Weather/News viraram apps proprios na grade.

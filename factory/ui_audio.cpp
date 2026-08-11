@@ -17,15 +17,20 @@ static lv_timer_t *timer = NULL;
 static lv_obj_t *last_play_obj = NULL;
 static lv_obj_t *menu = NULL;
 static lv_obj_t *quit_btn = NULL;
+static lv_obj_t *s_music_list = NULL;   // the list widget, for rebuild after delete
+
+static void populate_music_list(void);
 
 static void back_event_handler(lv_event_t *e)
 {
     lv_obj_t *obj = (lv_obj_t *)lv_event_get_target(e);
     if (lv_menu_back_btn_is_root(menu, obj)) {
         hw_set_play_stop();
+        if (timer) { lv_timer_del(timer); timer = NULL; }
         lv_obj_clean(menu);
         lv_obj_del(menu);
         last_play_obj = NULL;
+        s_music_list = NULL;   // a pending music_rebuild_async must become a no-op
 
         if (quit_btn) {
             lv_obj_del_async(quit_btn);
@@ -84,6 +89,57 @@ static void audio_play_event(lv_event_t *e)
             lv_label_set_text(symbol, LV_SYMBOL_PLAY);
             hw_set_sd_music_pause();
         }
+    }
+}
+
+// Rebuild the list outside the button's own event context (deleting the row that
+// fired the event inline would be a use-after-free).
+static void music_rebuild_async(void *unused)
+{
+    LV_UNUSED(unused);
+    populate_music_list();
+}
+
+static void music_delete_event(lv_event_t *e)
+{
+    AudioParams_t *p = (AudioParams_t *)lv_event_get_user_data(e);
+    if (!p) return;
+    printf("[music] delete cb: %s src=%d\n", p->file_name.c_str(), p->source_type);
+    // Stop any playback first so we never delete a file being read.
+    hw_set_play_stop();
+    if (timer) { lv_timer_del(timer); timer = NULL; }
+    last_play_obj = NULL;
+    hw_delete_audio_file(p->source_type, p->file_name.c_str());
+    lv_async_call(music_rebuild_async, NULL);
+}
+
+// (Re)fill s_music_list: one row per audio file, with a play toggle and a trash
+// button. Rows carry &music_list[i]; safe because we rebuild the whole list on
+// any change, so no stale pointer is ever used.
+static void populate_music_list(void)
+{
+    if (!s_music_list) return;
+    lv_obj_clean(s_music_list);
+    music_list.clear();
+    hw_get_filesystem_music(music_list);
+    int index = 0;
+    for (const auto &file_info : music_list) {
+        string name = file_info.source_type == AUDIO_SOURCE_SDCARD ? "[SD]" : "[FFat]";
+        name += file_info.file_name;
+        lv_obj_t *row = lv_list_add_button(s_music_list, LV_SYMBOL_AUDIO, name.c_str());
+        lv_obj_set_user_data(row, &(music_list[index]));
+
+        lv_obj_t *play = lv_label_create(row);
+        lv_label_set_text(play, LV_SYMBOL_PLAY);
+        lv_obj_add_event_cb(row, audio_play_event, LV_EVENT_CLICKED, play);
+
+        lv_obj_t *del = lv_btn_create(row);
+        lv_obj_add_event_cb(del, music_delete_event, LV_EVENT_CLICKED, &(music_list[index]));
+        lv_obj_t *del_lbl = lv_label_create(del);
+        lv_label_set_text(del_lbl, LV_SYMBOL_TRASH);
+        lv_obj_center(del_lbl);
+
+        index++;
     }
 }
 
@@ -172,23 +228,12 @@ void ui_audio_enter(lv_obj_t *parent)
 #endif
     lv_obj_center(list1);
 
-    /*Add buttons to the list*/
-    lv_obj_t *obj, *label;
-    int index = 0;
-    for (const auto &file_info : music_list) {
-        string file_name = file_info.source_type == AUDIO_SOURCE_SDCARD ? "[SD]" : "[FFat]";
-        file_name += file_info.file_name;
-        obj = lv_list_add_button(list1, LV_SYMBOL_AUDIO, file_name.c_str());
-        // printf("Add file: %s source:%d obj:%p\n", file_name.c_str(), file_info.source_type, obj);
-        lv_obj_set_user_data(obj, &(music_list[index]));
-        index++;
-        label = lv_label_create(obj);
-        lv_label_set_text(label, LV_SYMBOL_PLAY);
-        lv_obj_add_event_cb(obj, audio_play_event, LV_EVENT_CLICKED, label);
-    }
+    /*Add buttons to the list (play toggle + trash per row)*/
+    s_music_list = list1;
+    populate_music_list();
 
 #ifdef HAS_VOLUME_SLIDER
-    obj = lv_menu_cont_create(main_page);
+    lv_obj_t *obj = lv_menu_cont_create(main_page);
     lv_obj_set_style_pad_all(obj, 0, LV_PART_MAIN);
     lv_obj_set_size(obj, lv_pct(100), lv_pct(20));
     lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_COLUMN);

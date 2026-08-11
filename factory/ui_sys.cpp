@@ -371,6 +371,15 @@ static lv_obj_t *create_device_probe(lv_obj_t *menu, lv_obj_t *main_page)
     return cont;
 }
 
+// Reboot the watch (software reset). Handy to recover a hung state or to hand the
+// USB over to the flasher. Not a bootloader/download mode — just a clean restart.
+static void reboot_event_cb(lv_event_t *e)
+{
+    LV_UNUSED(e);
+#if defined(ARDUINO)
+    ESP.restart();
+#endif
+}
 
 void ui_sys_enter(lv_obj_t *parent)
 {
@@ -399,6 +408,12 @@ void ui_sys_enter(lv_obj_t *parent)
 
     cont = create_subpage_otg(menu, main_page);
     lv_group_add_obj(menu_g, cont);
+
+    // Reboot button (software reset).
+    lv_obj_t *reboot_cont = lv_menu_cont_create(main_page);
+    lv_label_set_text(lv_label_create(reboot_cont), LV_SYMBOL_POWER " Reiniciar");
+    lv_obj_add_event_cb(reboot_cont, reboot_event_cb, LV_EVENT_CLICKED, NULL);
+    lv_group_add_obj(menu_g, reboot_cont);
 
     lv_menu_set_page(menu, main_page);
 

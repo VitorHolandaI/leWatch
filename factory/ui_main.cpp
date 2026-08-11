@@ -661,6 +661,9 @@ void setupGui()
     extern app_t ui_recorder_main;
     create_app_cell(grid_panel,"Recorder", &img_microphone, &ui_recorder_main);
 
+    extern app_t ui_servitor_main;
+    create_app_cell(grid_panel,"Servitor", &img_microphone, &ui_servitor_main);
+
     extern app_t ui_share_main;
     create_app_cell(grid_panel,"Share", &img_wifi, &ui_share_main);
 
@@ -673,13 +676,11 @@ void setupGui()
     create_app_cell(grid_panel,"Weather", &img_gps, &ui_weather_main);
     create_app_cell(grid_panel,"News", &img_msgchat, &ui_news_main);
 
-#if defined(USING_UART_BLE)
-    create_app_cell(grid_panel,"Bluetooth", &img_bluetooth, &ui_ble_main);
-#endif
-
+    // Bluetooth + BLE Keyboard apps removed: BLE is unused and its controller RAM
+    // is released at boot (factory.ino) to free internal SRAM for LVGL buffers.
+    // The physical/on-device keyboard app is kept (it is not BLE).
 #if defined(USING_INPUT_DEV_KEYBOARD)
     if (hw_has_keyboard()) {
-        create_app_cell(grid_panel,"BLE Keyboard", &img_bluetooth, &ui_ble_kb_main);
         create_app_cell(grid_panel,"Keyboard", &img_keyboard, &ui_keyboard_main);
     }
 #endif

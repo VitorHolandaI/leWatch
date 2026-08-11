@@ -22,9 +22,31 @@
 
 // Campina Grande - PB
 #define WEATHER_URL "http://api.open-meteo.com/v1/forecast?latitude=-7.23&longitude=-35.88&current=temperature_2m,relative_humidity_2m,weather_code&timezone=America/Fortaleza"
-#define NEWS_URL    "https://www.tomshardware.com/feeds.xml"
 
-#define NEWS_MAX       5
+// Selectable news categories. Each maps to 1-3 RSS 2.0 feeds (with <item><title>).
+// The News app has a dropdown to pick one; headlines are split across its feeds.
+typedef struct {
+    const char *name;
+    const char *feeds[3];   // unused slots are NULL
+} NewsCategory;
+
+static const NewsCategory NEWS_CATS[] = {
+    { "Linux",         { "https://www.phoronix.com/rss.php",
+                         "https://lwn.net/headlines/newrss",
+                         "https://www.omgubuntu.co.uk/feed" } },
+    { "Phoronix",      { "https://www.phoronix.com/rss.php", NULL, NULL } },
+    { "Level1Techs",   { "https://forum.level1techs.com/latest.rss", NULL, NULL } },
+    { "Toms Hardware", { "https://www.tomshardware.com/feeds.xml", NULL, NULL } },
+    { "Geral (tech)",  { "http://feeds.arstechnica.com/arstechnica/index",
+                         "https://hnrss.org/frontpage", NULL } },
+    { "Acoes BR",      { "https://www.infomoney.com.br/feed/",
+                         "https://g1.globo.com/rss/g1/economia/", NULL } },
+};
+#define NEWS_CAT_COUNT (int)(sizeof(NEWS_CATS) / sizeof(NEWS_CATS[0]))
+
+static int s_news_cat = 0;   // selected category index
+
+#define NEWS_MAX       10
 #define HTTP_BUF_SIZE  16384
 #define TITLE_LEN      100
 #define FETCH_INTERVAL_MS (10UL * 60UL * 1000UL)
@@ -168,12 +190,14 @@ static void parse_weather(const char *buf)
     s_has_weather = true;
 }
 
-static void parse_news(const char *buf)
+// Append up to @p per_feed headlines from one RSS feed to s_news_text, without
+// exceeding NEWS_MAX overall. Caller resets s_news_count before the first feed.
+static void parse_news_feed(const char *buf, int per_feed)
 {
-    s_news_count = 0;
     const char *p = strstr(buf, "<item>");
     if (!p) return;
-    while (s_news_count < NEWS_MAX) {
+    int taken = 0;
+    while (s_news_count < NEWS_MAX && taken < per_feed) {
         p = strstr(p, "<title>");
         if (!p) break;
         p += 7;
@@ -194,6 +218,7 @@ static void parse_news(const char *buf)
         unescape_basic(dst);
         to_ascii(dst);
         s_news_count++;
+        taken++;
         p = end + 8;
     }
 }
@@ -206,7 +231,17 @@ static void weather_task(void *arg)
     char *buf = (char *)malloc(HTTP_BUF_SIZE);
     if (buf) {
         if (hw_http_get(WEATHER_URL, buf, HTTP_BUF_SIZE) > 0) parse_weather(buf);
-        if (hw_http_get(NEWS_URL, buf, HTTP_BUF_SIZE) > 0) parse_news(buf);
+        s_news_count = 0;
+        const NewsCategory &cat = NEWS_CATS[s_news_cat];
+        int nfeeds = 0;
+        while (nfeeds < 3 && cat.feeds[nfeeds]) nfeeds++;
+        int per_feed = nfeeds > 0 ? NEWS_MAX / nfeeds : NEWS_MAX;
+        if (per_feed < 2) per_feed = 2;
+        for (int i = 0; i < nfeeds && s_news_count < NEWS_MAX; i++) {
+            if (hw_http_get(cat.feeds[i], buf, HTTP_BUF_SIZE) > 0) {
+                parse_news_feed(buf, per_feed);
+            }
+        }
         free(buf);
     }
     if (!s_has_weather && !s_weather_text[0]) {
@@ -236,7 +271,9 @@ static void start_fetch()
     if (WiFi.status() != WL_CONNECTED) return;
     s_fetching = true;
     s_ready = false;
-    if (xTaskCreate(weather_task, "weather", 24576, NULL, 1, NULL) != pdPASS) {
+    // 16 KB stack: the HTTP buffer is heap/PSRAM, task frame is small. 24 KB was
+    // wasteful and risked OOM after draw buffers moved to internal SRAM.
+    if (xTaskCreate(weather_task, "weather", 16384, NULL, 1, NULL) != pdPASS) {
         snprintf(s_weather_text, sizeof(s_weather_text), "Sem memoria p/ atualizar");
         s_last_fetch_ms = millis();
         s_ready = true;
@@ -314,6 +351,19 @@ void ui_weather_attach(lv_obj_t *parent)
     ensure_running(cont);
 }
 
+// Category dropdown changed: switch source and force a refetch.
+static void news_cat_cb(lv_event_t *e)
+{
+    lv_obj_t *dd = (lv_obj_t *)lv_event_get_target(e);
+    s_news_cat = (int)lv_dropdown_get_selected(dd);
+    s_last_fetch_ms = 0;   // invalidate cache so poll refetches this category
+    s_news_count = 0;
+    for (int i = 0; i < NEWS_MAX; i++) {
+        if (s_news_labels[i]) lv_label_set_text(s_news_labels[i], i == 0 ? "Carregando..." : "");
+    }
+    start_fetch();
+}
+
 // News sub-page content.
 void ui_news_attach(lv_obj_t *parent)
 {
@@ -321,7 +371,19 @@ void ui_news_attach(lv_obj_t *parent)
 
     lv_obj_t *cont = make_section(parent);
     lv_obj_t *ntitle = lv_label_create(cont);
-    lv_label_set_text(ntitle, LV_SYMBOL_LIST " Tech News (Tom's)");
+    lv_label_set_text(ntitle, LV_SYMBOL_LIST " Tech News");
+
+    char opts[160] = "";
+    for (int i = 0; i < NEWS_CAT_COUNT; i++) {
+        strncat(opts, NEWS_CATS[i].name, sizeof(opts) - strlen(opts) - 2);
+        if (i < NEWS_CAT_COUNT - 1) strncat(opts, "\n", sizeof(opts) - strlen(opts) - 1);
+    }
+    lv_obj_t *dd = lv_dropdown_create(cont);
+    lv_obj_set_width(dd, lv_pct(100));
+    lv_dropdown_set_options(dd, opts);
+    lv_dropdown_set_selected(dd, s_news_cat);
+    lv_obj_add_event_cb(dd, news_cat_cb, LV_EVENT_VALUE_CHANGED, NULL);
+
     for (int i = 0; i < NEWS_MAX; i++) {
         s_news_labels[i] = lv_label_create(cont);
         lv_obj_set_width(s_news_labels[i], lv_pct(100));

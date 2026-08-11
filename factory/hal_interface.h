@@ -843,6 +843,16 @@ void hw_alarm_sound_set(uint8_t source_type, const char *file);
 bool hw_alarm_sound_get(uint8_t &source_type, std::string &file);
 
 /**
+ * @brief Create a built-in beep at /alarm.wav on FFat if it is missing.
+ *
+ * The music/alarm library lives on the FAT partition, which is wiped by a full
+ * flash erase (and can be filled by recordings). This guarantees the alarm
+ * always has a playable sound. Call once at boot, after the filesystem mounts.
+ * No-op if the file already exists or on the simulator.
+ */
+void hw_ensure_default_alarm();
+
+/**
  * @brief Show the WiFi connection process bar on the UI.
  *
  * This function is responsible for displaying a progress bar on the user interface
@@ -1082,6 +1092,14 @@ size_t hw_record_list(std::vector<std::string> &out);
  * @return True if the file was removed.
  */
 bool hw_record_delete(const char *path);
+
+/**
+ * @brief Delete any audio file listed by hw_get_filesystem_music().
+ * @param source_type AUDIO_SOURCE_FATFS or AUDIO_SOURCE_SDCARD.
+ * @param path File path as stored in AudioParams_t::file_name.
+ * @return True if removed. Use this to prune music/alarm files, not just recordings.
+ */
+bool hw_delete_audio_file(uint8_t source_type, const char *path);
 
 /**
  * @brief Get the FFT data.
@@ -1479,6 +1497,26 @@ int hw_http_get(const char *url, char *out, uint32_t out_size);
 int hw_mcp_post(const char *url, const char *body, char *out, uint32_t out_size);
 
 /**
+ * @brief Multipart POST of a WAV file to a voice endpoint, response saved to disk.
+ *
+ * Uploads @p wav_path as multipart field `my_file` (Content-Type audio/wav) plus
+ * a `response_format` field ("text" or "audio"), matching the ServitorAssistant
+ * `/file_recorded` contract. The whole response body is streamed to @p resp_path
+ * on the filesystem (small JSON in text mode, a WAV blob in audio mode). Plain
+ * HTTP only. Blocks; call from a task.
+ *
+ * @param url             Endpoint URL (http).
+ * @param wav_path        Recorded WAV on the filesystem to upload.
+ * @param response_format "text" or "audio".
+ * @param resp_path       Where to write the response body.
+ * @param is_audio        Out: true if the server replied audio/wav. May be NULL.
+ * @return Bytes written to resp_path, or -1 on error.
+ */
+int hw_http_post_wav(const char *url, const char *wav_path,
+                     const char *response_format, const char *resp_path,
+                     bool *is_audio);
+
+/**
  * @brief Overwrite a file on the internal filesystem with @p data.
  * @return true on success. On the simulator this is a no-op returning false.
  */
@@ -1489,6 +1527,57 @@ bool hw_fs_write_file(const char *path, const char *data, uint32_t len);
  * @return Number of bytes read (NUL-terminated), or -1 on error / not found.
  */
 int hw_fs_read_file(const char *path, char *out, uint32_t out_size);
+
+/**
+ * @brief Bring up the WireGuard tunnel to the ServitorAssistant server.
+ *
+ * Wraps the vendored WireGuard-ESP32 lib. Reads keys from wireguard_secrets.h
+ * and parameters from wireguard_config.h. The handshake needs a synced clock,
+ * so call this only after WiFi is connected AND SNTP has set the time.
+ * Idempotent: returns true if already up.
+ * @return true if the interface came up (or was already up).
+ *         Always false on the simulator or when no secrets are configured.
+ *
+ * Example:
+ *   if (hw_get_wifi_connected() && clock_synced) hw_vpn_begin();
+ */
+bool hw_vpn_begin();
+
+/** @brief Tear down the WireGuard tunnel. No-op if not up / on the simulator. */
+void hw_vpn_end();
+
+/** @brief True if the tunnel is initialized and WiFi is connected. */
+bool hw_vpn_up();
+
+/**
+ * @brief Bring the tunnel up on a dedicated task (safe to call from UI/callbacks).
+ * begin()+probe() do crypto and a blocking connect that would overflow small
+ * caller stacks. No-op if already up/starting or on the simulator.
+ */
+void hw_vpn_start_async();
+
+/** @brief Persisted "VPN on" preference (NVS). Default false. */
+bool hw_vpn_enabled_get();
+void hw_vpn_enabled_set(bool on);
+
+/**
+ * @brief Crash breadcrumb (RTC memory, survives crash+reboot, not power loss).
+ * Read on the NEXT boot to see how far VPN bring-up got before a crash — the S3
+ * native-USB panic dump is lost on reset, this isn't. Reset it after reading.
+ * 0=none, 10=task started, 1=in begin, 2=in lib begin (crypto), 3=begin ok,
+ * 4=probe connect, 5=probe done.
+ */
+uint32_t hw_vpn_last_stage();
+void hw_vpn_stage_reset();
+
+/**
+ * @brief Log whether the WireGuard tunnel actually routes traffic.
+ *
+ * TCP-connects to WG_PROBE_HOST:WG_PROBE_PORT (a VPN-only host), which forces the
+ * on-demand handshake, and prints "[wg] probe ... OK/FAIL". Never logs any key.
+ * Blocks up to 5 s — call off the LVGL thread. No-op on sim / without secrets.
+ */
+void hw_vpn_probe();
 
 /**
  * @brief Set the RTC from the firmware build time, once per build.

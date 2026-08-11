@@ -65,6 +65,11 @@ typedef struct device_const_var {
 #include "driver/rtc_io.h"
 #include "app_nfc.h"
 #include <FFat.h>
+#include <WireGuard-ESP32.h>
+#include "wireguard_config.h"
+#if __has_include("wireguard_secrets.h")
+#include "wireguard_secrets.h"
+#endif
 
 static Preferences           prefs;
 static TaskHandle_t          recTaskHandle;
@@ -820,6 +825,7 @@ void hw_set_mic_stop()
 #define REC_DIR_PREFIX      "/rec_"
 #define REC_SUFFIX          ".wav"
 #define REC_MIN_FREE_BYTES  (64 * 1024)   // stop before the partition is full
+#define DEFAULT_ALARM_PATH  "/alarm.wav"  // built-in beep, auto-created if missing
 
 #if defined(ARDUINO)
 static TaskHandle_t       recTaskHandler = NULL;
@@ -1110,6 +1116,32 @@ bool hw_record_delete(const char *path)
     return path && FFat.remove(path);
 #else
     (void)path;
+    return false;
+#endif
+}
+
+bool hw_delete_audio_file(uint8_t source_type, const char *path)
+{
+#ifdef ARDUINO
+    if (!path || !path[0]) return false;
+    // listDir() stores file.name() verbatim, which on this core can lack the
+    // leading '/'. FFat/SD remove() needs the absolute path (files live in root),
+    // so normalize; fall back to the raw name just in case.
+    String abs = (path[0] == '/') ? String(path) : (String("/") + path);
+#if defined(HAS_SD_CARD_SOCKET)
+    if (source_type == AUDIO_SOURCE_SDCARD) {
+        bool ok = SD.remove(abs.c_str()) || SD.remove(path);
+        Serial.printf("[music] SD delete %s -> %d\n", abs.c_str(), ok);
+        return ok;
+    }
+#else
+    (void)source_type;
+#endif
+    bool ok = FFat.remove(abs.c_str()) || FFat.remove(path);
+    Serial.printf("[music] FFat delete %s -> %d\n", abs.c_str(), ok);
+    return ok;
+#else
+    (void)source_type; (void)path;
     return false;
 #endif
 }
@@ -2770,12 +2802,53 @@ bool hw_alarm_sound_get(uint8_t &source_type, std::string &file)
     String f = p.getString("file", "");
     source_type = p.getUChar("src", 0);
     p.end();
-    if (f.length() == 0) return false;
+    // Fall back to the built-in beep when nothing is set, or the saved FFat file
+    // no longer exists (partition wiped/reflashed), so the alarm still rings.
+    bool have = f.length() > 0;
+    if (have && source_type == AUDIO_SOURCE_FATFS && !FFat.exists(f.c_str())) have = false;
+    if (!have) {
+        if (!FFat.exists(DEFAULT_ALARM_PATH)) return false;
+        source_type = AUDIO_SOURCE_FATFS;
+        file = DEFAULT_ALARM_PATH;
+        return true;
+    }
     file = f.c_str();
     return true;
 #else
     (void)source_type; (void)file;
     return false;
+#endif
+}
+
+void hw_ensure_default_alarm()
+{
+#ifdef ARDUINO
+    if (FFat.exists(DEFAULT_ALARM_PATH)) return;
+    const uint32_t rate = REC_SAMPLE_RATE;       // 16 kHz, matches the player
+    const uint32_t total = rate * 3 / 2;         // 1.5 s
+    const uint32_t dataLen = total * 2;          // mono 16-bit
+    File f = FFat.open(DEFAULT_ALARM_PATH, FILE_WRITE);
+    if (!f) { log_e("default alarm create failed"); return; }
+    uint8_t hdr[44];
+    hw_wav_fill_header(hdr, dataLen);
+    f.write(hdr, sizeof(hdr));
+    // 880 Hz tone in a 200 ms-on / 100 ms-off pattern -> a clear repeating beep.
+    const float w = 2.0f * (float)M_PI * 880.0f / (float)rate;
+    const uint32_t slot = rate / 10;             // 100 ms per slot
+    int16_t chunk[256];
+    uint32_t i = 0;
+    while (i < total) {
+        int n = 0;
+        while (n < 256 && i < total) {
+            bool on = ((i / slot) % 3) != 2;     // 2 slots on, 1 off
+            chunk[n++] = on ? (int16_t)(sinf(w * (float)i) * 12000.0f) : 0;
+            i++;
+        }
+        f.write((uint8_t *)chunk, n * 2);
+    }
+    f.close();
+    Serial.printf("[alarm] wrote default %s (%u bytes)\n",
+                  DEFAULT_ALARM_PATH, (unsigned)(dataLen + 44));
 #endif
 }
 
@@ -3700,6 +3773,464 @@ int hw_fs_read_file(const char *path, char *out, uint32_t out_size)
 #else
     (void)path; (void)out; (void)out_size;
     return -1;
+#endif
+}
+
+#if defined(ARDUINO)
+static uint8_t *read_file_psram(const char *path, size_t &out_len)
+{
+    File f = FILESYSTEM.open(path, FILE_READ);
+    if (!f) return NULL;
+    size_t sz = f.size();
+    uint8_t *buf = (uint8_t *)ps_malloc(sz ? sz : 1);
+    if (!buf) { f.close(); return NULL; }
+    out_len = f.readBytes((char *)buf, sz);
+    f.close();
+    return buf;
+}
+
+// Parse "http://host[:port]/path" into parts. HTTP only. Returns false on bad URL.
+static bool parse_http_url(const char *url, char *host, int hsz, int &port, char *path, int psz)
+{
+    if (strncmp(url, "http://", 7) != 0) return false;
+    const char *p = url + 7;
+    const char *slash = strchr(p, '/');
+    const char *colon = strchr(p, ':');
+    const char *host_end = slash ? slash : p + strlen(p);
+    port = 80;
+    if (colon && (!slash || colon < slash)) {
+        port = atoi(colon + 1);
+        host_end = colon;
+    }
+    int hlen = (int)(host_end - p);
+    if (hlen <= 0 || hlen >= hsz) return false;
+    memcpy(host, p, hlen);
+    host[hlen] = 0;
+    strncpy(path, slash ? slash : "/", psz - 1);
+    path[psz - 1] = 0;
+    return true;
+}
+
+// Read one CRLF line into buf (without CR/LF), honoring an absolute millis
+// deadline. Returns length; 0 for a blank line (end of headers) or timeout.
+static int read_http_line(WiFiClient &c, char *buf, int size, uint32_t deadline)
+{
+    int n = 0;
+    while ((int32_t)(deadline - millis()) > 0) {
+        if (!c.available()) {
+            if (!c.connected()) break;
+            delay(5);
+            continue;
+        }
+        int ch = c.read();
+        if (ch < 0) continue;
+        if (ch == '\n') break;
+        if (ch == '\r') continue;
+        if (n < size - 1) buf[n++] = (char)ch;
+    }
+    buf[n] = 0;
+    return n;
+}
+
+// Assemble prefix+wav+suffix multipart body in PSRAM; caller frees. Returns NULL
+// on OOM. Sets body_len.
+static uint8_t *build_wav_multipart(const uint8_t *wav, size_t wav_len,
+                                    const String &boundary,
+                                    const char *response_format, size_t &body_len)
+{
+    String head = "--" + boundary + "\r\n"
+                  "Content-Disposition: form-data; name=\"my_file\"; filename=\"rec.wav\"\r\n"
+                  "Content-Type: audio/wav\r\n\r\n";
+    String tail = "\r\n--" + boundary + "\r\n"
+                  "Content-Disposition: form-data; name=\"response_format\"\r\n\r\n"
+                  + String(response_format) + "\r\n--" + boundary + "--\r\n";
+    body_len = head.length() + wav_len + tail.length();
+    uint8_t *body = (uint8_t *)ps_malloc(body_len);
+    if (!body) return NULL;
+    memcpy(body, head.c_str(), head.length());
+    memcpy(body + head.length(), wav, wav_len);
+    memcpy(body + head.length() + wav_len, tail.c_str(), tail.length());
+    return body;
+}
+
+// Write buf to the socket, retrying on partial writes, until len bytes or deadline.
+static bool send_all(WiFiClient &c, const uint8_t *buf, size_t len, uint32_t deadline)
+{
+    size_t off = 0;
+    while (off < len && (int32_t)(deadline - millis()) > 0) {
+        size_t w = c.write(buf + off, len - off);
+        if (w == 0) { delay(2); continue; }
+        off += w;
+    }
+    return off == len;
+}
+
+// Read up to want bytes, honoring an absolute millis deadline. Returns bytes read.
+static int read_some(WiFiClient &c, uint8_t *buf, int want, uint32_t deadline)
+{
+    int n = 0;
+    while (n < want && (int32_t)(deadline - millis()) > 0) {
+        if (!c.available()) {
+            if (!c.connected()) break;
+            delay(5);
+            continue;
+        }
+        int r = c.read(buf + n, want - n);
+        if (r > 0) n += r;
+    }
+    return n;
+}
+#endif
+
+int hw_http_post_wav(const char *url, const char *wav_path,
+                     const char *response_format, const char *resp_path,
+                     bool *is_audio)
+{
+#if defined(ARDUINO)
+    if (is_audio) *is_audio = false;
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.println("[srv] WiFi not connected");
+        return -1;
+    }
+
+    size_t wav_len = 0;
+    uint8_t *wav = read_file_psram(wav_path, wav_len);
+    if (!wav || wav_len == 0) {
+        Serial.printf("[srv] wav read fail: %s\n", wav_path);
+        free(wav);
+        return -1;
+    }
+    Serial.printf("[srv] wav=%s len=%u fmt=%s\n", wav_path, (unsigned)wav_len, response_format);
+    String boundary = "----twatch" + String(millis());
+    size_t body_len = 0;
+    uint8_t *body = build_wav_multipart(wav, wav_len, boundary, response_format, body_len);
+    free(wav);
+    if (!body) { Serial.println("[srv] body OOM"); return -1; }
+
+    char host[96], path[256];
+    int port = 80;
+    if (!parse_http_url(url, host, sizeof(host), port, path, sizeof(path))) {
+        Serial.printf("[srv] bad url: %s\n", url);
+        free(body);
+        return -1;
+    }
+
+    WiFiClient client;
+    client.setTimeout(15);
+    Serial.printf("[srv] connect %s:%d\n", host, port);
+    if (!client.connect(host, port)) {
+        Serial.printf("[srv] connect fail %s:%d\n", host, port);
+        free(body);
+        return -1;
+    }
+
+    String req = "POST " + String(path) + " HTTP/1.1\r\n"
+                 "Host: " + String(host) + ":" + String(port) + "\r\n"
+                 "Content-Type: multipart/form-data; boundary=" + boundary + "\r\n"
+                 "Content-Length: " + String((unsigned long)body_len) + "\r\n"
+                 "Connection: close\r\n\r\n";
+    Serial.printf("[srv] POST %s body=%u ...\n", url, (unsigned)body_len);
+    uint32_t t0 = millis();
+    // Raw socket instead of HTTPClient: its timeout is uint16 (max ~65 s), but
+    // STT + LLM (+ TTS) can need minutes before the first response byte, and
+    // setTimeout(300000) wraps to ~38 s (watch gave up while server worked).
+    if (!send_all(client, (const uint8_t *)req.c_str(), req.length(), millis() + 15000) ||
+        !send_all(client, body, body_len, millis() + 15000)) {
+        Serial.printf("[srv] send fail after %ums\n", (unsigned)(millis() - t0));
+        free(body);
+        client.stop();
+        return -1;
+    }
+    free(body);
+    client.flush();
+
+    // First response byte can take minutes (STT + LLM + TTS run before the
+    // server writes its status line), so status + headers share the long
+    // 5-minute wait; only the body idle re-arm is shorter.
+    uint32_t resp_deadline = millis() + 300000;
+    char line[256];
+    int len = read_http_line(client, line, sizeof(line), resp_deadline);
+    if (len < 12 || strncmp(line, "HTTP/1.", 7) != 0) {
+        Serial.printf("[srv] bad status line: '%s' after %ums connected=%d\n",
+                      line, (unsigned)(millis() - t0), client.connected());
+        client.stop();
+        return -1;
+    }
+    int code = atoi(line + 9);
+    Serial.printf("[srv] status %d after %ums\n", code, (unsigned)(millis() - t0));
+
+    bool chunked = false;
+    bool wav_reply = false;
+    while (read_http_line(client, line, sizeof(line), resp_deadline) > 0) {
+        if (strncasecmp(line, "Content-Type:", 13) == 0 && strstr(line + 13, "audio/"))
+            wav_reply = true;
+        if (strncasecmp(line, "Transfer-Encoding:", 18) == 0 &&
+            strstr(line + 18, "chunked"))
+            chunked = true;
+    }
+    Serial.printf("[srv] content-type wav=%d chunked=%d\n", wav_reply, chunked);
+    if (is_audio) *is_audio = wav_reply;
+    if (code != 200) {
+        Serial.printf("[srv] http code %d\n", code);
+        client.stop();
+        return -1;
+    }
+
+    File out = FILESYSTEM.open(resp_path, FILE_WRITE);
+    if (!out) {
+        Serial.printf("[srv] resp open fail: %s\n", resp_path);
+        client.stop();
+        return -1;
+    }
+    int total = 0;
+    uint8_t chunk[512];
+    uint32_t deadline = millis() + 300000;   // first byte may take minutes (LLM)
+    if (chunked) {
+        while (true) {
+            int cs = read_http_line(client, line, sizeof(line), deadline);
+            if (cs <= 0) break;
+            long size = strtol(line, NULL, 16);
+            if (size <= 0) break;
+            long got = 0;
+            while (got < size) {
+                int want = (size - got) < (long)sizeof(chunk)
+                               ? (int)(size - got) : (int)sizeof(chunk);
+                int r = read_some(client, chunk, want, deadline);
+                if (r <= 0) { total = -1; break; }
+                out.write(chunk, r);
+                got += r;
+                total += r;
+            }
+            if (total < 0) break;
+            read_http_line(client, line, sizeof(line), deadline);   // CRLF after data
+            deadline = millis() + 15000;
+        }
+    } else {
+        while (true) {
+            if (!client.available()) {
+                if (!client.connected()) break;
+                if ((int32_t)(deadline - millis()) <= 0) {
+                    Serial.println("[srv] body timeout");
+                    break;
+                }
+                delay(5);
+                continue;
+            }
+            size_t avail = client.available();
+            size_t want = avail > sizeof(chunk) ? sizeof(chunk) : avail;
+            int r = client.read(chunk, want);
+            if (r > 0) {
+                out.write(chunk, r);
+                total += r;
+                deadline = millis() + 15000;
+            }
+        }
+    }
+    out.close();
+    client.stop();
+    Serial.printf("[srv] resp bytes=%d -> %s\n", total, resp_path);
+    return total;
+#else
+    (void)url; (void)wav_path; (void)response_format; (void)resp_path;
+    if (is_audio) *is_audio = false;
+    return -1;
+#endif
+}
+
+// --- WireGuard VPN ---------------------------------------------------------
+// Thin wrapper owning the vendored WireGuard-ESP32 lib (CLAUDE.md: third-party
+// stays behind a project interface). Reaches the ServitorAssistant server off
+// the trusted LAN. Handshake needs a synced clock, so call hw_vpn_begin() only
+// after WiFi is up AND SNTP has set the time. Keys come from wireguard_secrets.h.
+
+#if defined(ARDUINO)
+static WireGuard s_wg;
+
+// hw_vpn_begin() runs on the SNTP task, hw_vpn_end() on the WiFi-event task.
+// They race on s_wg (the lib is not thread-safe), so serialize every access
+// through this mutex to avoid a torn begin()/end() that could freeze the netif.
+static SemaphoreHandle_t s_wg_lock = xSemaphoreCreateMutex();
+
+// Crash breadcrumb: survives a crash+reboot in RTC memory (not power loss). On
+// ESP32-S3 native USB the live panic dump is lost when USB-CDC resets, so we read
+// the last stage on the NEXT boot instead. 10=task started, 1=in begin, 2=about
+// to call lib begin (crypto in lwIP task), 3=lib begin returned, 4=probe connect,
+// 5=probe done. If boot prints prev=2, the crash is inside the WireGuard crypto.
+RTC_NOINIT_ATTR uint32_t g_wg_stage;
+#endif
+
+uint32_t hw_vpn_last_stage()
+{
+#if defined(ARDUINO)
+    return g_wg_stage;
+#else
+    return 0;
+#endif
+}
+
+void hw_vpn_stage_reset()
+{
+#if defined(ARDUINO)
+    g_wg_stage = 0;
+#endif
+}
+
+bool hw_vpn_begin()
+{
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+    g_wg_stage = 1;   // breadcrumb: entered begin
+    // Keys not filled in yet (blank wireguard_secrets.h): stay a no-op instead of
+    // handing empty base64 to the lib. Cheap check, done before taking the lock.
+    if (WG_PRIVATE_KEY[0] == '\0' || WG_PEER_PUBLIC_KEY[0] == '\0') {
+        return false;
+    }
+    // A WireGuard key is 32 bytes = exactly 44 base64 chars. A wrong length means
+    // the lib's base64 decoder writes past its 32-byte buffer -> memory corruption
+    // and reboot. Reject early with a clear log instead of crashing.
+    if (strlen(WG_PRIVATE_KEY) != 44 || strlen(WG_PEER_PUBLIC_KEY) != 44) {
+        Serial.println("[wg] chave invalida: private/public devem ter 44 chars base64");
+        return false;
+    }
+    if (WG_PRESHARED_KEY != nullptr && ((const char *)WG_PRESHARED_KEY)[0] != '\0' &&
+        strlen((const char *)WG_PRESHARED_KEY) != 44) {
+        Serial.println("[wg] chave invalida: preshared deve ter 44 chars base64 (ou nullptr)");
+        return false;
+    }
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.println("[wg] WiFi down, skip");
+        return false;
+    }
+    if (!s_wg_lock || xSemaphoreTake(s_wg_lock, portMAX_DELAY) != pdTRUE) return false;
+    if (s_wg.is_initialized()) {
+        xSemaphoreGive(s_wg_lock);
+        return true;
+    }
+    // Non-secret params only: never log WG_PRIVATE_KEY / peer / preshared keys.
+    Serial.printf("[wg] begin endpoint=%s:%d local=%s allowed=%s\n",
+                  WG_PEER_ENDPOINT, WG_PEER_PORT,
+                  IPAddress(WG_LOCAL_IP).toString().c_str(),
+                  IPAddress(WG_ALLOWED_IP).toString().c_str());
+    Serial.printf("[wg] free heap before begin=%u largest=%u\n",
+                  (unsigned)heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+                  (unsigned)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
+    Serial.println("[wg] calling lib begin (crypto in lwIP task)...");
+    Serial.flush();   // force the logs out before any crash inside begin()
+    g_wg_stage = 2;   // breadcrumb: about to enter lib begin (crypto)
+    // make_default=false: only WG_ALLOWED_IP/mask routes through the tunnel, so
+    // WiFi keeps serving LAN/Internet (weather, news) while VPN carries server.
+    bool ok = s_wg.begin(
+        IPAddress(WG_LOCAL_IP), IPAddress(WG_SUBNET), WG_LOCAL_PORT,
+        IPAddress(WG_GATEWAY), WG_PRIVATE_KEY,
+        WG_PEER_ENDPOINT, WG_PEER_PUBLIC_KEY, WG_PEER_PORT,
+        IPAddress(WG_ALLOWED_IP), IPAddress(WG_ALLOWED_MASK),
+        /*make_default=*/false, WG_PRESHARED_KEY);
+    g_wg_stage = 3;   // breadcrumb: lib begin survived
+    Serial.printf("[wg] lib begin returned -> %d\n", ok);
+    Serial.flush();
+    xSemaphoreGive(s_wg_lock);
+    return ok;
+#else
+    // sim / no secrets configured
+    return false;
+#endif
+}
+
+void hw_vpn_end()
+{
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+    if (!s_wg_lock || xSemaphoreTake(s_wg_lock, portMAX_DELAY) != pdTRUE) return;
+    if (s_wg.is_initialized()) { s_wg.end(); }
+    xSemaphoreGive(s_wg_lock);
+#endif
+}
+
+bool hw_vpn_up()
+{
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+    return s_wg.is_initialized() && WiFi.status() == WL_CONNECTED;
+#else
+    return false;
+#endif
+}
+
+void hw_vpn_probe()
+{
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+    if (!hw_vpn_up()) {
+        Serial.println("[wg] probe skip: vpn/wifi down");
+        return;
+    }
+    // Connecting to a VPN-only host forces the WireGuard handshake (traffic is
+    // on-demand) and proves the tunnel actually routes. Blocks up to 5 s, so call
+    // this off the LVGL thread (it runs from the SNTP callback task).
+    // The WireGuard handshake is on-demand and needs a round-trip, so the first
+    // connect right after begin often times out before the session exists. Retry
+    // a few times with a short gap so a working tunnel isn't reported as FAIL.
+    g_wg_stage = 4;   // breadcrumb: probe connect
+    bool ok = false;
+    for (int attempt = 1; attempt <= 3 && !ok; attempt++) {
+        WiFiClient c;
+        uint32_t t0 = millis();
+        ok = c.connect(WG_PROBE_HOST, WG_PROBE_PORT, 4000);
+        Serial.printf("[wg] probe #%d %s:%d -> %s (%lums)\n", attempt,
+                      WG_PROBE_HOST, WG_PROBE_PORT,
+                      ok ? "OK tunnel routes" : "fail, retry",
+                      (unsigned long)(millis() - t0));
+        if (ok) { c.stop(); break; }
+        delay(2000);   // give the handshake time to complete
+    }
+    g_wg_stage = 5;   // breadcrumb: probe returned
+    if (!ok) Serial.println("[wg] probe: FAIL no route after retries");
+#endif
+}
+
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+static volatile bool s_vpn_bringup = false;
+static void vpn_bringup_task(void *arg)
+{
+    (void)arg;
+    g_wg_stage = 10;   // breadcrumb: bring-up task started
+    if (hw_vpn_begin()) hw_vpn_probe();
+    s_vpn_bringup = false;
+    vTaskDelete(NULL);
+}
+#endif
+
+void hw_vpn_start_async()
+{
+#if defined(ARDUINO) && defined(WG_PRIVATE_KEY)
+    // Runs begin() (crypto) + probe() (blocking connect) on a dedicated 8 KB task,
+    // never on the caller's stack (SNTP callback / LVGL thread would overflow).
+    if (hw_vpn_up() || s_vpn_bringup) return;
+    s_vpn_bringup = true;
+    if (xTaskCreate(vpn_bringup_task, "wg", 8192, NULL, 1, NULL) != pdPASS) {
+        s_vpn_bringup = false;
+    }
+#endif
+}
+
+bool hw_vpn_enabled_get()
+{
+#ifdef ARDUINO
+    Preferences p;
+    if (!p.begin("vpn", true)) return false;
+    bool on = p.getBool("on", false);
+    p.end();
+    return on;
+#else
+    return false;
+#endif
+}
+
+void hw_vpn_enabled_set(bool on)
+{
+#ifdef ARDUINO
+    Preferences p;
+    if (!p.begin("vpn", false)) return;
+    p.putBool("on", on);
+    p.end();
+#else
+    (void)on;
 #endif
 }
 

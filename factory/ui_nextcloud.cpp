@@ -24,10 +24,11 @@
 #endif
 
 #define AGENDA_PATH   "/nc_agenda.json"
-#define MAX_ITEMS     128
+#define MAX_ITEMS     200
+#define MAX_TASK_LISTS 32   // distinct Nextcloud task lists shown as groups
 #define TITLE_LEN     48
-#define RAW_BUF_SIZE  65536   // outer SSE/JSON-RPC envelope (inner JSON is escaped)
-#define JSON_BUF_SIZE 49152   // inner snapshot JSON after unescape
+#define RAW_BUF_SIZE  131072  // outer SSE/JSON-RPC envelope (inner JSON is escaped)
+#define JSON_BUF_SIZE 98304   // inner snapshot JSON after unescape (~53KB observed)
 #define LIST_SHOWN    12
 
 // A busy week can produce tens of KB of snapshot; allocate the scratch buffers
@@ -40,6 +41,7 @@
 
 typedef struct {
     char title[TITLE_LEN];
+    char list[24];        // task list name (empty for events)
     long long when_utc;   // epoch seconds (UTC); -1 when the task has no due date
     int lead_min;         // reminder lead in minutes before when_utc
     bool is_task;
@@ -51,7 +53,8 @@ static int s_item_count = 0;
 
 static lv_obj_t  *s_menu = NULL;
 static lv_obj_t  *s_status_label = NULL;
-static lv_obj_t  *s_list = NULL;
+static lv_obj_t  *s_events_cont = NULL;   // today's calendar events (root page)
+static lv_obj_t  *s_tasks_page = NULL;    // tasks grouped by list (sub-page)
 static lv_timer_t *s_poll_timer = NULL;
 static lv_timer_t *s_reminder_timer = NULL;   // persists across screens
 static lv_obj_t  *s_notify_overlay = NULL;
@@ -184,6 +187,10 @@ static void add_item(const char *obj, const char *objend, bool is_task)
     AgendaItem &it = s_items[s_item_count];
     if (!json_get_string(obj, objend, "\"title\":", it.title, sizeof(it.title))) return;
     nc_fold_ascii(it.title);
+    it.list[0] = 0;
+    if (is_task && json_get_string(obj, objend, "\"list\":", it.list, sizeof(it.list))) {
+        nc_fold_ascii(it.list);
+    }
     char when[32] = "";
     json_get_string(obj, objend, is_task ? "\"due\":" : "\"start\":", when, sizeof(when));
     it.when_utc = when[0] ? parse_iso_utc(when) : -1;
@@ -275,17 +282,29 @@ static void agenda_task(void *arg)
     char body[176];
     snprintf(body, sizeof(body),
              "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":"
-             "{\"name\":\"sync_nextcloud_agenda\",\"arguments\":{\"days\":%d}}}",
+             "{\"name\":\"sync_nextcloud_agenda\",\"arguments\":"
+             "{\"days\":%d,\"all_tasks\":true}}}",
              NEXTCLOUD_SYNC_DAYS);
     char *raw = (char *)NC_ALLOC(RAW_BUF_SIZE);
     char *json = (char *)NC_ALLOC(JSON_BUF_SIZE);
     s_last_ok = false;
+    // Try LAN first, then the VPN fallback (see nextcloud_config.h).
+    static const char *const mcp_urls[] = { NEXTCLOUD_MCP_URL, NEXTCLOUD_MCP_URL_FALLBACK };
     if (raw && json) {
-        int n = hw_mcp_post(NEXTCLOUD_MCP_URL, body, raw, RAW_BUF_SIZE);
-        if (n > 0 && extract_snapshot(raw, json, JSON_BUF_SIZE)) {
+        for (const char *url : mcp_urls) {
+            int n = hw_mcp_post(url, body, raw, RAW_BUF_SIZE);
+            if (n <= 0 || !extract_snapshot(raw, json, JSON_BUF_SIZE)) {
+                Serial.printf("[agenda] %s failed, trying next\n", url);
+                continue;
+            }
+            // Only persist to flash here. Parsing into s_items[] is deliberately
+            // NOT done on this task thread: s_items[]/s_item_count are also read
+            // by reminder_cb (a persistent LVGL timer) and load_from_flash, both
+            // on the LVGL thread. poll_cb reparses from flash on the LVGL thread
+            // so every s_items[] access stays single-threaded (no lock needed).
             hw_fs_write_file(AGENDA_PATH, json, strlen(json));
-            parse_snapshot(json);
             s_last_ok = true;
+            break;
         }
     }
     free(raw);
@@ -307,7 +326,9 @@ static void start_fetch()
     s_fetching = true;
     s_ready = false;
     if (s_status_label) lv_label_set_text(s_status_label, "Sincronizando...");
-    if (xTaskCreate(agenda_task, "agenda", 24576, NULL, 1, NULL) != pdPASS) {
+    // 16 KB stack: raw/json buffers (128+96 KB) are in PSRAM (NC_ALLOC), so the
+    // task frame is small. 24 KB failed once draw buffers moved to internal SRAM.
+    if (xTaskCreate(agenda_task, "agenda", 16384, NULL, 1, NULL) != pdPASS) {
         s_fetching = false;
         if (s_status_label) lv_label_set_text(s_status_label, "Sem memoria");
     }
@@ -318,12 +339,21 @@ static void start_fetch()
 
 // --- reminder notification (works over any screen) -------------------------
 
+// Clear the guard whenever the overlay dies by ANY path (OK button, screen
+// rebuild, sleep/wake, layer_top clean). Without this, a teardown that bypassed
+// notify_dismiss_cb left s_notify_overlay dangling non-NULL, so reminder_cb /
+// show_notify returned early forever -> reminders "worked once, then never".
+static void notify_deleted_cb(lv_event_t *e)
+{
+    LV_UNUSED(e);
+    s_notify_overlay = NULL;
+}
+
 static void notify_dismiss_cb(lv_event_t *e)
 {
     LV_UNUSED(e);
     if (s_notify_overlay) {
-        lv_obj_del(s_notify_overlay);
-        s_notify_overlay = NULL;
+        lv_obj_del(s_notify_overlay);   // triggers notify_deleted_cb -> NULLs it
     }
 }
 
@@ -332,6 +362,7 @@ static void show_notify(const AgendaItem &it)
     if (s_notify_overlay) return;   // one reminder at a time
     hw_vibrate_max();
     s_notify_overlay = lv_obj_create(lv_layer_top());
+    lv_obj_add_event_cb(s_notify_overlay, notify_deleted_cb, LV_EVENT_DELETE, NULL);
     lv_obj_set_size(s_notify_overlay, lv_pct(100), lv_pct(100));
     lv_obj_set_flex_flow(s_notify_overlay, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(s_notify_overlay, LV_FLEX_ALIGN_CENTER,
@@ -377,32 +408,101 @@ static void reminder_cb(lv_timer_t *t)
 
 // --- list UI ---------------------------------------------------------------
 
-static void build_list()
+static bool same_local_day(long long when_utc, int ny, int nmo, int nd)
 {
-    if (!s_list) return;
-    lv_obj_clean(s_list);
-    if (s_item_count == 0) {
-        lv_obj_t *empty = lv_label_create(s_list);
-        lv_label_set_text(empty, "Nada nos proximos dias.\nToque em Sync.");
-        return;
-    }
-    int shown = s_item_count < LIST_SHOWN ? s_item_count : LIST_SHOWN;
-    for (int i = 0; i < shown; i++) {
+    if (when_utc < 0) return false;
+    int y, mo, d, h, mi;
+    utc_to_local_wall(when_utc, y, mo, d, h, mi);
+    return y == ny && mo == nmo && d == nd;
+}
+
+// First page: only today's calendar events (already time-sorted).
+static void build_today_events()
+{
+    if (!s_events_cont) return;
+    lv_obj_clean(s_events_cont);
+    struct tm now = {};
+    hw_get_date_time(now);
+    int ny = now.tm_year + 1900, nmo = now.tm_mon + 1, nd = now.tm_mday;
+    int shown = 0;
+    for (int i = 0; i < s_item_count; i++) {
         AgendaItem &it = s_items[i];
-        char line[TITLE_LEN + 32];
-        if (it.when_utc >= 0) {
-            int y, mo, d, h, mi;
-            utc_to_local_wall(it.when_utc, y, mo, d, h, mi);
-            snprintf(line, sizeof(line), "%02d/%02d %02d:%02d  %s%s",
-                     d, mo, h, mi, it.is_task ? "* " : "", it.title);
-        } else {
-            snprintf(line, sizeof(line), "--/-- --:--  * %s", it.title);
-        }
-        lv_obj_t *lbl = lv_label_create(s_list);
+        if (it.is_task || !same_local_day(it.when_utc, ny, nmo, nd)) continue;
+        int y, mo, d, h, mi;
+        utc_to_local_wall(it.when_utc, y, mo, d, h, mi);
+        char line[TITLE_LEN + 16];
+        snprintf(line, sizeof(line), "%02d:%02d  %s", h, mi, it.title);
+        lv_obj_t *lbl = lv_label_create(s_events_cont);
         lv_obj_set_width(lbl, lv_pct(100));
         lv_label_set_long_mode(lbl, LV_LABEL_LONG_DOT);
         lv_label_set_text(lbl, line);
+        shown++;
     }
+    if (shown == 0) {
+        lv_obj_t *empty = lv_label_create(s_events_cont);
+        lv_label_set_text(empty, "Sem eventos hoje.");
+    }
+}
+
+// Tasks sub-page: grouped by Nextcloud list, mirroring the server's task lists.
+static void build_tasks_page()
+{
+    if (!s_tasks_page) return;
+    lv_obj_clean(s_tasks_page);
+    // Distinct Nextcloud task lists are few (~a handful); 32 is ample. Sized well
+    // below MAX_ITEMS to avoid reserving 4.8 KB of .bss for a transient dedup.
+    static char seen[MAX_TASK_LISTS][24];
+    int seen_n = 0;
+    bool any = false;
+    for (int i = 0; i < s_item_count; i++) {
+        if (!s_items[i].is_task) continue;
+        const char *lst = s_items[i].list[0] ? s_items[i].list : "Tasks";
+        bool done = false;
+        for (int k = 0; k < seen_n; k++) {
+            if (strcmp(seen[k], lst) == 0) { done = true; break; }
+        }
+        if (done) continue;
+        if (seen_n >= MAX_TASK_LISTS) break;   // dedup table full: stop adding new groups
+        strncpy(seen[seen_n], lst, sizeof(seen[0]) - 1);
+        seen[seen_n][sizeof(seen[0]) - 1] = 0;
+        seen_n++;
+
+        lv_obj_t *hdr = lv_label_create(s_tasks_page);
+        lv_obj_set_width(hdr, lv_pct(100));
+        char htext[40];
+        snprintf(htext, sizeof(htext), LV_SYMBOL_DIRECTORY " %s", lst);
+        lv_label_set_text(hdr, htext);
+
+        for (int j = 0; j < s_item_count; j++) {
+            AgendaItem &it = s_items[j];
+            if (!it.is_task) continue;
+            const char *jl = it.list[0] ? it.list : "Tasks";
+            if (strcmp(jl, lst) != 0) continue;
+            char line[TITLE_LEN + 24];
+            if (it.when_utc >= 0) {
+                int y, mo, d, h, mi;
+                utc_to_local_wall(it.when_utc, y, mo, d, h, mi);
+                snprintf(line, sizeof(line), "  %02d/%02d  %s", d, mo, it.title);
+            } else {
+                snprintf(line, sizeof(line), "  --/--  %s", it.title);
+            }
+            lv_obj_t *lbl = lv_label_create(s_tasks_page);
+            lv_obj_set_width(lbl, lv_pct(100));
+            lv_label_set_long_mode(lbl, LV_LABEL_LONG_DOT);
+            lv_label_set_text(lbl, line);
+            any = true;
+        }
+    }
+    if (!any) {
+        lv_obj_t *empty = lv_label_create(s_tasks_page);
+        lv_label_set_text(empty, "Sem tarefas.");
+    }
+}
+
+static void refresh_views()
+{
+    build_today_events();
+    build_tasks_page();
 }
 
 static void poll_cb(lv_timer_t *t)
@@ -410,7 +510,10 @@ static void poll_cb(lv_timer_t *t)
     LV_UNUSED(t);
     if (!s_ready) return;
     s_ready = false;
-    build_list();
+    // Reparse on the LVGL thread (the task only wrote flash) so s_items[] is
+    // never touched from two threads. See agenda_task for the rationale.
+    if (s_last_ok) load_from_flash();
+    refresh_views();
     if (s_status_label) {
         lv_label_set_text(s_status_label,
                           s_last_ok ? "Atualizado" : "Falha ao sincronizar");
@@ -431,7 +534,8 @@ static void cleanup_cb(lv_event_t *e)
         s_poll_timer = NULL;
     }
     s_status_label = NULL;
-    s_list = NULL;
+    s_events_cont = NULL;
+    s_tasks_page = NULL;
     // s_reminder_timer intentionally kept alive so reminders fire from any screen.
 }
 
@@ -449,34 +553,55 @@ static void back_event_handler(lv_event_t *e)
 void ui_nextcloud_enter(lv_obj_t *parent)
 {
     s_menu = create_menu(parent, back_event_handler);
-    lv_obj_t *page = lv_menu_page_create(s_menu, NULL);
-    lv_obj_set_flex_flow(page, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_style_pad_row(page, 6, 0);
-    lv_obj_add_event_cb(page, cleanup_cb, LV_EVENT_DELETE, NULL);
+    lv_obj_t *root = lv_menu_page_create(s_menu, NULL);
+    lv_obj_set_flex_flow(root, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_style_pad_row(root, 6, 0);
+    lv_obj_add_event_cb(root, cleanup_cb, LV_EVENT_DELETE, NULL);
 
-    lv_obj_t *title = lv_label_create(page);
+    lv_obj_t *title = lv_label_create(root);
     lv_label_set_text(title, LV_SYMBOL_CALL " Agenda (Nextcloud)");
 
-    lv_obj_t *sync_btn = lv_btn_create(page);
+    lv_obj_t *sync_btn = lv_btn_create(root);
     lv_obj_add_event_cb(sync_btn, sync_click_cb, LV_EVENT_CLICKED, NULL);
     lv_label_set_text(lv_label_create(sync_btn), LV_SYMBOL_REFRESH " Sync");
 
-    s_status_label = lv_label_create(page);
+    s_status_label = lv_label_create(root);
     lv_label_set_text(s_status_label, "Pronto");
 
-    s_list = lv_obj_create(page);
-    lv_obj_set_width(s_list, lv_pct(100));
-    lv_obj_set_height(s_list, lv_pct(70));
-    lv_obj_set_flex_flow(s_list, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_style_pad_row(s_list, 4, 0);
+    lv_obj_t *ev_hdr = lv_label_create(root);
+    lv_label_set_text(ev_hdr, LV_SYMBOL_BELL " Eventos de hoje");
+
+    s_events_cont = lv_obj_create(root);
+    lv_obj_set_width(s_events_cont, lv_pct(100));
+    lv_obj_set_height(s_events_cont, LV_SIZE_CONTENT);
+    lv_obj_set_flex_flow(s_events_cont, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_style_pad_row(s_events_cont, 4, 0);
+
+    // Tasks sub-page (grouped by list) + button that navigates to it.
+    s_tasks_page = lv_menu_page_create(s_menu, NULL);
+    lv_obj_set_flex_flow(s_tasks_page, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_style_pad_row(s_tasks_page, 4, 0);
+
+    lv_obj_t *tasks_btn = lv_btn_create(root);
+    lv_label_set_text(lv_label_create(tasks_btn), LV_SYMBOL_LIST " Tarefas");
+    lv_menu_set_load_page_event(s_menu, tasks_btn, s_tasks_page);
 
     load_from_flash();
-    build_list();
+    refresh_views();
 
     if (!s_poll_timer) s_poll_timer = lv_timer_create(poll_cb, 500, NULL);
     if (!s_reminder_timer) s_reminder_timer = lv_timer_create(reminder_cb, 30000, NULL);
 
-    lv_menu_set_page(s_menu, page);
+    lv_menu_set_page(s_menu, root);
+}
+
+// Start agenda reminders at boot so notifications fire in the background without
+// having to open the Agenda app first. Loads the last synced snapshot from flash
+// and arms the persistent 30 s reminder timer. Call once from setup (LVGL up).
+void ui_nextcloud_reminders_init(void)
+{
+    load_from_flash();
+    if (!s_reminder_timer) s_reminder_timer = lv_timer_create(reminder_cb, 30000, NULL);
 }
 
 app_t ui_nextcloud_main = {
