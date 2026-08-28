@@ -190,14 +190,12 @@ static void handle_msg_key(lv_event_t *e, lv_event_code_t code)
 #ifdef USING_TOUCHPAD
 static void hide_msg_keyboard()
 {
-    lv_keyboard_set_textarea(keyboard, NULL);
-    lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    watch_touch_keyboard_hide(keyboard);
 }
 
 static void show_msg_keyboard(lv_obj_t *ta)
 {
-    lv_keyboard_set_textarea(keyboard, ta);
-    lv_obj_remove_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    watch_touch_keyboard_show(keyboard, ta);
     lv_obj_align(quit_btn, quit_btn_align, quit_btn_x_ofs, quit_btn_y_ofs);
 }
 #endif
@@ -379,10 +377,9 @@ void ui_msgchat_enter(lv_obj_t *parent)
     lv_menu_set_page(menu, sub_mechanics_page);
 
 #ifdef USING_TOUCHPAD
-    keyboard = lv_keyboard_create(lv_scr_act());
-    lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    keyboard = watch_touch_keyboard_create(lv_scr_act());
     lv_obj_add_event(keyboard, [](lv_event_t * e) {
-        lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+        watch_touch_keyboard_hide(keyboard);
         lv_obj_align(quit_btn, quit_btn_align, quit_btn_x_ofs, quit_btn_y_ofs);
     }, LV_EVENT_READY, NULL);
 

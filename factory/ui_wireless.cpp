@@ -90,14 +90,12 @@ static void copy_current_wifi_form()
 #ifdef USING_TOUCHPAD
 static void hide_password_keyboard()
 {
-    lv_keyboard_set_textarea(keyboard, NULL);
-    lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    watch_touch_keyboard_hide(keyboard);
 }
 
 static void show_password_keyboard(lv_obj_t *ta)
 {
-    lv_keyboard_set_textarea(keyboard, ta);
-    lv_obj_clear_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    watch_touch_keyboard_show(keyboard, ta);
 }
 #endif
 
@@ -192,8 +190,7 @@ static lv_obj_t *password_text_crate(lv_obj_t *parent)
 #endif
 
 #ifdef USING_TOUCHPAD
-    keyboard = lv_keyboard_create(lv_scr_act());
-    lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    keyboard = watch_touch_keyboard_create(lv_scr_act());
 #endif
     lv_obj_add_event_cb(pwd_ta, password_ta_event_cb, LV_EVENT_ALL, NULL);
 

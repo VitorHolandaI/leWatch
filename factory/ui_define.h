@@ -25,6 +25,7 @@
 using namespace std;
 
 #define DEFAULT_OPA          100
+#define WATCH_BACK_RAIL_WIDTH 16
 
 /** @brief Callback signature for an app's setup/exit hook; @p parent is the host tile. */
 typedef void (*app_func_t)(lv_obj_t *parent);
@@ -137,6 +138,25 @@ lv_obj_t *create_floating_button(lv_event_cb_t event_cb, void* user_data);
 lv_obj_t *create_menu(lv_obj_t *parent, lv_event_cb_t event_cb, int back_size = 0);
 /** @brief Create a circular image button. */
 lv_obj_t *create_radius_button(lv_obj_t *parent, const void *image, lv_event_cb_t event_cb, void* user_data);
+
+/**
+ * @brief Create the watch's paged touch keyboard, initially hidden.
+ * @par Example
+ * @code lv_obj_t *keyboard = watch_touch_keyboard_create(lv_screen_active()); @endcode
+ */
+lv_obj_t *watch_touch_keyboard_create(lv_obj_t *parent);
+/**
+ * @brief Show @p keyboard and direct its keys to @p textarea.
+ * @par Example
+ * @code watch_touch_keyboard_show(keyboard, password_textarea); @endcode
+ */
+void watch_touch_keyboard_show(lv_obj_t *keyboard, lv_obj_t *textarea);
+/**
+ * @brief Hide @p keyboard and detach its current textarea.
+ * @par Example
+ * @code watch_touch_keyboard_hide(keyboard); @endcode
+ */
+void watch_touch_keyboard_hide(lv_obj_t *keyboard);
 
 // Weather (Open-Meteo) and News (Tom's Hardware RSS) sub-page content for the WiFi menu.
 void ui_weather_attach(lv_obj_t *parent);

@@ -319,60 +319,63 @@ lv_obj_t *create_radius_button(lv_obj_t *parent, const void *image, lv_event_cb_
 }
 
 #ifdef USING_TOUCHPAD
-// Standard floating back button for touch boards (which have no header root
-// back button). It triggers the menu's own back handler, so each app keeps its
-// existing back logic. Lives on the top layer to stay above app content, and is
-// removed automatically when the menu is destroyed.
-static void menu_floating_back_cb(lv_event_t *e)
+static void menu_back_rail_cb(lv_event_t *e)
 {
-    lv_obj_t *menu = (lv_obj_t *)lv_event_get_user_data(e);
-    lv_obj_send_event(lv_menu_get_main_header_back_button(menu), LV_EVENT_CLICKED, NULL);
+    lv_obj_t *menu = static_cast<lv_obj_t *>(lv_event_get_user_data(e));
+    lv_obj_t *header_back = lv_menu_get_main_header_back_button(menu);
+    if (!header_back) {
+        return;
+    }
+    lv_obj_send_event(header_back, LV_EVENT_CLICKED, NULL);
 }
 
-static void menu_floating_back_del_cb(lv_event_t *e)
+static void menu_back_rail_del_cb(lv_event_t *e)
 {
-    lv_obj_t *back = (lv_obj_t *)lv_event_get_user_data(e);
-    if (back) {
-        lv_obj_del(back);
+    lv_obj_t *back_rail = static_cast<lv_obj_t *>(lv_event_get_user_data(e));
+    if (back_rail) {
+        lv_obj_del(back_rail);
     }
 }
 
-static void menu_floating_back_visibility_cb(lv_event_t *e)
+static lv_obj_t *create_menu_back_rail(lv_obj_t *menu)
 {
-    lv_obj_t *menu = (lv_obj_t *)lv_event_get_target(e);
-    lv_obj_t *back = (lv_obj_t *)lv_event_get_user_data(e);
-    lv_obj_t *header_back = lv_menu_get_main_header_back_button(menu);
-
-    if (!back) return;
-
-    // Back padronizado = sempre o flutuante. Esconde o back do header do lv_menu
-    // (subpaginas tipo Weather/News) pra nao aparecer um botao diferente.
-    if (header_back) lv_obj_add_flag(header_back, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_remove_flag(back, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_t *back_rail = lv_button_create(lv_layer_top());
+    lv_obj_set_size(back_rail, WATCH_BACK_RAIL_WIDTH, lv_pct(100));
+    lv_obj_align(back_rail, LV_ALIGN_LEFT_MID, 0, 0);
+    lv_obj_set_style_radius(back_rail, 0, LV_PART_MAIN);
+    lv_obj_set_style_border_width(back_rail, 0, LV_PART_MAIN);
+    lv_obj_set_style_pad_all(back_rail, 0, LV_PART_MAIN);
+    lv_obj_set_style_bg_color(back_rail, lv_color_hex(0x111827), LV_PART_MAIN);
+    lv_obj_add_event_cb(back_rail, menu_back_rail_cb, LV_EVENT_CLICKED, menu);
+    lv_obj_t *label = lv_label_create(back_rail);
+    lv_label_set_text(label, LV_SYMBOL_LEFT);
+    lv_obj_set_style_text_color(label, lv_color_white(), LV_PART_MAIN);
+    lv_obj_center(label);
+    return back_rail;
 }
 #endif
 
 lv_obj_t *create_menu(lv_obj_t *parent, lv_event_cb_t event_cb, int back_size)
 {
+    (void)back_size;
     lv_obj_t *menu = lv_menu_create(parent);
 #ifndef USING_TOUCHPAD
     lv_menu_set_mode_root_back_btn(menu, LV_MENU_ROOT_BACK_BTN_ENABLED);
 #endif
     lv_obj_add_event_cb(menu, event_cb, LV_EVENT_CLICKED, NULL);
+#ifdef USING_TOUCHPAD
+    int32_t menu_width = lv_display_get_horizontal_resolution(NULL) - WATCH_BACK_RAIL_WIDTH;
+    lv_obj_set_size(menu, menu_width, LV_PCT(100));
+    lv_obj_align(menu, LV_ALIGN_RIGHT_MID, 0, 0);
+    lv_obj_t *back_rail = create_menu_back_rail(menu);
+    lv_obj_t *hb = lv_menu_get_main_header_back_button(menu);
+    if (hb) {
+        lv_obj_add_flag(hb, LV_OBJ_FLAG_HIDDEN);
+    }
+    lv_obj_add_event_cb(menu, menu_back_rail_del_cb, LV_EVENT_DELETE, back_rail);
+#else
     lv_obj_set_size(menu, LV_PCT(100), LV_PCT(100));
     lv_obj_center(menu);
-
-#ifdef USING_TOUCHPAD
-    lv_obj_t *back = create_radius_button(lv_layer_top(), LV_SYMBOL_LEFT, menu_floating_back_cb, menu);
-    if (back_size > 0) {   // back menor (ex.: IR usa um pouco menor que o padrao)
-        lv_obj_set_size(back, back_size, back_size);
-    }
-    lv_obj_align(back, LV_ALIGN_BOTTOM_LEFT, 15, -15);
-    // Esconde o back do header do lv_menu: o padrao e' sempre o flutuante.
-    lv_obj_t *hb = lv_menu_get_main_header_back_button(menu);
-    if (hb) lv_obj_add_flag(hb, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_add_event_cb(menu, menu_floating_back_del_cb, LV_EVENT_DELETE, back);
-    lv_obj_add_event_cb(menu, menu_floating_back_visibility_cb, LV_EVENT_VALUE_CHANGED, back);
 #endif
     return menu;
 }
