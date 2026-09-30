@@ -671,6 +671,9 @@ void setupGui()
     create_app_cell(grid_panel,"Setting", &img_configuration, &ui_sys_main);
     create_app_cell(grid_panel,"Wireless", &img_wifi, &ui_wireless_main);
 
+    extern app_t ui_deauth_main;
+    create_app_cell(grid_panel,"Deauth", &img_wifi, &ui_deauth_main);
+
     extern app_t ui_weather_main;
     extern app_t ui_news_main;
     create_app_cell(grid_panel,"Weather", &img_gps, &ui_weather_main);
