@@ -21,7 +21,6 @@ static void msgbox_event(lv_event_t *e)
 
 void ui_msg_pop_up(const char *title_txt, const char *msg_txt)
 {
-
     set_low_power_mode_flag(false);
 
     static const char *btns[] = {"Close", ""};
@@ -33,6 +32,11 @@ void ui_msg_pop_up(const char *title_txt, const char *msg_txt)
     msgbox = create_msgbox(lv_scr_act(), title_txt,
                            msg_txt, btns,
                            msgbox_event, NULL);
+}
+
+bool ui_msg_is_open()
+{
+    return msgbox != NULL;
 }
 
 

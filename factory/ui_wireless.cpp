@@ -1,4 +1,4 @@
-/**
+ /**
  * @file      ui_wireless.cpp
  * @author    Lewis He (lewishe@outlook.com)
  * @license   MIT
@@ -19,11 +19,11 @@ static char wifi_password[128];
 static lv_obj_t *wifi_dd;
 static lv_obj_t *password_ta;
 static bool scanning = false;
+static uint32_t scan_started_tick = 0;
 
 extern void ui_show_wifi_process_bar();
 
-static lv_obj_t *saved_page = NULL;
-static void build_saved_list(lv_obj_t *page);
+static lv_obj_t *saved_panel = NULL;
 
 // ---- VPN (WireGuard) toggle ----
 static lv_obj_t  *s_vpn_btn_label = NULL;
@@ -43,6 +43,7 @@ static void back_event_handler(lv_event_t *e)
         if (s_vpn_timer) { lv_timer_del(s_vpn_timer); s_vpn_timer = NULL; }
         s_vpn_btn_label = NULL;
         s_vpn_status = NULL;
+        saved_panel = NULL;
         lv_obj_clean(menu);
         lv_obj_del(menu);
         disable_keyboard();
@@ -70,7 +71,6 @@ static void copy_password_to_buffer(lv_obj_t *ta)
 
     if (lv_strlen(password) > 0) {
         lv_snprintf(wifi_password, sizeof(wifi_password), "%s", password);
-        printf("PWD:%s\n", wifi_password);
     } else {
         wifi_password[0] = '\0';
         printf("PWD IS EMPTY!\n");
@@ -85,6 +85,13 @@ static void copy_current_wifi_form()
     if (password_ta) {
         copy_password_to_buffer(password_ta);
     }
+}
+
+// 1..7 caracteres nao existe em WPA (min 8) e tambem nao e rede aberta.
+static bool password_length_rejected()
+{
+    size_t len = lv_strlen(wifi_password);
+    return len > 0 && len < 8;
 }
 
 #ifdef USING_TOUCHPAD
@@ -197,21 +204,27 @@ static lv_obj_t *password_text_crate(lv_obj_t *parent)
     return pwd_ta;
 }
 
-// Salva a rede atual (SSID do dropdown + senha digitada) no NVS pro WiFiMulti.
-static void wifi_save_event(lv_event_t *e)
+static void fill_ssid_dropdown_from_scan()
 {
-    copy_current_wifi_form();
+    vector <wifi_scan_params_t> list;
+    hw_get_wifi_scan_result(list);
 
-    if (lv_strlen(wifi_ssid) == 0) {
-        ui_msg_pop_up("WiFi", "SSID is null");
-    } else if (lv_strlen(wifi_password) < 8) {
-        ui_msg_pop_up("WiFi", "Password too short");
-    } else if (hw_wifi_saved_add(wifi_ssid, wifi_password)) {
-        if (saved_page) build_saved_list(saved_page);
-        ui_msg_pop_up("WiFi", "Rede salva");
-    } else {
-        ui_msg_pop_up("WiFi", "Falha ao salvar");
+    // Monta as opcoes inteiras antes de trocar: se a varredura voltar vazia a
+    // lista anterior continua valida (antes o dropdown ficava sem opcao).
+    std::string options;
+    uint16_t count = 0;
+    for (const auto &net : list) {
+        if (net.ssid.empty()) continue;     // SSID oculto nao entra no dropdown
+        if (count++ > 0) options += '\n';
+        options += net.ssid;
     }
+    if (count == 0) {
+        ui_msg_pop_up("WiFi", "Nenhuma rede encontrada");
+        return;
+    }
+    lv_dropdown_set_options(wifi_dd, options.c_str());
+    lv_dropdown_set_selected(wifi_dd, 0);
+    lv_dropdown_get_selected_str(wifi_dd, wifi_ssid, sizeof(wifi_ssid));
 }
 
 // Desliga o radio WiFi (volta ao repouso/economia).
@@ -221,12 +234,11 @@ static void wifi_off_event(lv_event_t *e)
     ui_msg_pop_up("WiFi", "WiFi desligado");
 }
 
-// Conecta: WiFiMulti varre e conecta na rede salva de melhor sinal disponivel.
-// (WiFi fica off ate aqui.) Bloqueia ate conectar/timeout.
-static void wifi_connect_event(lv_event_t *e)
+// Sem SSID no formulario: WiFiMulti varre e conecta na salva de melhor sinal.
+static void connect_best_saved()
 {
     if (hw_wifi_saved_count() == 0) {
-        ui_msg_pop_up("WiFi", "Nenhuma rede salva");
+        ui_msg_pop_up("WiFi", "Escolha uma rede, digite a senha e conecte");
         return;
     }
     if (hw_wifi_multi_connect()) {
@@ -236,29 +248,106 @@ static void wifi_connect_event(lv_event_t *e)
     }
 }
 
-static void dropdown_event(lv_event_t *e)
+// Conecta na rede do formulario (scan + senha). O HAL grava no NVS quando a
+// rede sobe (GOT_IP), entao nao precisa salvar antes de conectar.
+static void wifi_connect_event(lv_event_t *e)
 {
-    char buf[128];
-    lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t *dd = (lv_obj_t *)lv_event_get_target(e);
-    if (code == LV_EVENT_VALUE_CHANGED) {
-        lv_dropdown_get_selected_str(dd, buf, 128);
-        printf("select option = %s\n", buf);
-        lv_strcpy(wifi_ssid, buf);
+    (void)e;
+    copy_current_wifi_form();
+
+    if (lv_strlen(wifi_ssid) == 0) {
+        connect_best_saved();
+        return;
+    }
+    if (password_length_rejected()) {
+        ui_msg_pop_up("WiFi", "Senha curta (min 8) ou vazio p/ rede aberta");
+        return;
+    }
+
+    wifi_conn_params_t params;
+    params.ssid = wifi_ssid;
+    params.password = wifi_password;
+    if (!hw_set_wifi_connect(params)) {
+        ui_msg_pop_up("WiFi", "SSID is null");
+        return;
+    }
+    ui_show_wifi_process_bar();
+}
+
+// Preenche o formulario com uma rede salva (lapis na lista de baixo).
+static void load_saved_into_form(const char *ssid, const char *password)
+{
+    if (!ssid || lv_strlen(ssid) == 0) return;
+    lv_snprintf(wifi_ssid, sizeof(wifi_ssid), "%s", ssid);
+    lv_snprintf(wifi_password, sizeof(wifi_password), "%s", password ? password : "");
+    if (password_ta) {
+        lv_textarea_set_text(password_ta, wifi_password);
+    }
+    if (!wifi_dd) return;
+    // A rede salva pode nao estar na ultima varredura: entra no fim da lista.
+    int32_t index = lv_dropdown_get_option_index(wifi_dd, ssid);
+    if (index < 0) {
+        lv_dropdown_add_option(wifi_dd, ssid, lv_dropdown_get_option_count(wifi_dd));
+        index = (int32_t)lv_dropdown_get_option_count(wifi_dd) - 1;
+    }
+    lv_dropdown_set_selected(wifi_dd, (uint32_t)index);
+    printf("saved network loaded into form: %s\n", ssid);
+}
+
+static void set_password_text(const char *password)
+{
+    lv_snprintf(wifi_password, sizeof(wifi_password), "%s", password ? password : "");
+    if (password_ta) {
+        lv_textarea_set_text(password_ta, wifi_password);
+    }
+}
+
+// Senha da propria NVS quando a rede escolhida ja esta salva. Sem isso o campo
+// ficava com a senha da rede anterior (ou vazia) ao trocar de SSID.
+static bool load_saved_password(const char *ssid)
+{
+    uint8_t count = hw_wifi_saved_count();
+    for (uint8_t i = 0; i < count; i++) {
+        std::string stored;
+        std::string password;
+        if (!hw_wifi_saved_get(i, stored) || stored != ssid) continue;
+        if (!hw_wifi_saved_get_password(i, password)) return false;
+        set_password_text(password.c_str());
+        return true;
+    }
+    return false;
+}
+
+static void fill_password_from_build_config()
+{
 #ifdef WIFI_SSID
-        if (lv_strcmp(wifi_ssid, WIFI_SSID) == 0) {
-            lv_snprintf(wifi_password, sizeof(wifi_password), "%s", WIFI_PASSWORD);
-            if (password_ta) lv_textarea_set_text(password_ta, wifi_password);
-            printf("Copy ssid:%s password to buffer:%s\n", wifi_ssid, wifi_password);
-        }
+    if (lv_strcmp(wifi_ssid, WIFI_SSID) == 0) {
+        set_password_text(WIFI_PASSWORD);
+        return;
+    }
 #endif
 #ifdef WIFI_SSID2
-        if (lv_strcmp(wifi_ssid, WIFI_SSID2) == 0) {
-            lv_snprintf(wifi_password, sizeof(wifi_password), "%s", WIFI_PASSWORD2);
-            if (password_ta) lv_textarea_set_text(password_ta, wifi_password);
-            printf("Copy ssid:%s password to buffer:%s\n", wifi_ssid, wifi_password);
-        }
+    if (lv_strcmp(wifi_ssid, WIFI_SSID2) == 0) {
+        set_password_text(WIFI_PASSWORD2);
+        return;
+    }
 #endif
+    set_password_text("");
+}
+
+static void dropdown_event(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t *dd = (lv_obj_t *)lv_event_get_target(e);
+    if (code != LV_EVENT_VALUE_CHANGED) {
+        return;
+    }
+    char buf[128];
+    lv_dropdown_get_selected_str(dd, buf, 128);
+    printf("select option = %s\n", buf);
+    lv_strcpy(wifi_ssid, buf);
+    if (!load_saved_password(wifi_ssid)) {
+        fill_password_from_build_config();
     }
 }
 
@@ -281,37 +370,25 @@ static lv_obj_t *dropdown_create(lv_obj_t *parent)
 
 static void set_angle(void *obj, int32_t val)
 {
-    char buf[128];
     lv_obj_t *bar = (lv_obj_t *)obj;
     lv_bar_set_value(bar, val, LV_ANIM_ON);
 
-    bool running = hw_get_wifi_scanning();
-
-    if (val == 100 || !running) {
-
-        lv_obj_del(lv_obj_get_parent(bar));
-
-        scanning = false;
-
-        vector <wifi_scan_params_t> list;
-        hw_get_wifi_scan_result(list);
-
-        // wifi_dd
-        lv_dropdown_clear_options(wifi_dd);
-        int16_t pos = 0;
-        for (const auto &i : list) {
-            lv_dropdown_add_option(wifi_dd, i.ssid.c_str(), pos++);
-        }
-        lv_dropdown_set_selected(wifi_dd, 0);
-        lv_dropdown_get_selected_str(wifi_dd, buf, 128);
-        lv_strcpy(wifi_ssid, buf);
+    // No primeiro tick a varredura pode nem ter comecado: exigir 500ms evita
+    // fechar o scan cedo e deixar o dropdown vazio.
+    uint32_t elapsed = lv_tick_get() - scan_started_tick;
+    bool scan_done = elapsed >= 500 && !hw_get_wifi_scanning();
+    if (!scan_done && (val < 100 || elapsed < 500)) {
+        return;
     }
+
+    lv_obj_del(lv_obj_get_parent(bar));
+    scanning = false;
+    fill_ssid_dropdown_from_scan();
 }
 
 static void scan_btn_event(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t *btn = (lv_obj_t *)lv_event_get_target(e);
 
     if (code == LV_EVENT_CLICKED) {
 
@@ -321,6 +398,7 @@ static void scan_btn_event(lv_event_t *e)
         }
 
         scanning = true;
+        scan_started_tick = lv_tick_get();
 
         hw_set_wifi_scan();
 
@@ -349,38 +427,6 @@ static lv_obj_t *wide_action_button(lv_obj_t *page, const char *txt, lv_event_cb
     return b;
 }
 
-// ---- Redes salvas: sub-pagina listando SSIDs com botao de remover ----
-static void saved_remove_cb(lv_event_t *e)
-{
-    uint8_t idx = (uint8_t)(intptr_t)lv_event_get_user_data(e);
-    std::string ssid;
-    if (hw_wifi_saved_get(idx, ssid)) hw_wifi_saved_remove(ssid.c_str());
-    build_saved_list(saved_page);
-}
-
-static void build_saved_list(lv_obj_t *page)
-{
-    lv_obj_clean(page);
-    uint8_t n = hw_wifi_saved_count();
-    if (n == 0) {
-        lv_label_set_text(lv_label_create(page), "Nenhuma rede salva");
-        return;
-    }
-    for (uint8_t i = 0; i < n; i++) {
-        std::string ssid;
-        if (!hw_wifi_saved_get(i, ssid)) continue;
-        lv_obj_t *row = lv_menu_cont_create(page);
-        lv_obj_set_flex_flow(row, LV_FLEX_FLOW_ROW);
-        lv_obj_set_flex_align(row, LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
-        lv_label_set_text(lv_label_create(row), ssid.c_str());
-        lv_obj_t *del = lv_btn_create(row);
-        lv_obj_set_size(del, 40, 40);
-        lv_obj_center(lv_label_create(del));
-        lv_label_set_text(lv_obj_get_child(del, 0), LV_SYMBOL_TRASH);
-        lv_obj_add_event_cb(del, saved_remove_cb, LV_EVENT_CLICKED, (void *)(intptr_t)i);
-    }
-}
-
 // Reflect real tunnel state: "conectada" once the netif is up, "conectando..."
 // while enabled but not yet up, "desligada" when off.
 static void vpn_refresh_status(void)
@@ -397,10 +443,36 @@ static void vpn_refresh_status(void)
     }
 }
 
+// Erro do autosave chega aqui: o HAL grava no GOT_IP, fora da task da UI, e
+// deixa a falha pendente pra ser mostrada quando der (uma vez so).
+static void report_pending_save_failure()
+{
+    if (ui_msg_is_open()) {
+        return;     // deixa pendente; ui_msg_pop_up descartaria a mensagem
+    }
+    wifi_saved_result_t failure = hw_wifi_saved_take_failure();
+    if (failure == WIFI_SAVED_OK) {
+        return;
+    }
+    char msg[96];
+    if (failure == WIFI_SAVED_FULL) {
+        lv_snprintf(msg, sizeof(msg), "Lista cheia (%u): toque na lixeira",
+                    hw_wifi_saved_capacity());
+    } else {
+        lv_snprintf(msg, sizeof(msg), "Rede nao salva: %s",
+                    hw_wifi_saved_result_name(failure));
+    }
+    ui_msg_pop_up("WiFi", msg);
+}
+
 static void vpn_status_tick(lv_timer_t *t)
 {
     LV_UNUSED(t);
     vpn_refresh_status();
+    // A rede conectada agora e salva pelo HAL no GOT_IP; o painel se atualiza
+    // sozinho quando a revision muda.
+    ui_wifi_saved_panel_refresh(saved_panel);
+    report_pending_save_failure();
 }
 
 static void vpn_toggle_event(lv_event_t *e)
@@ -439,15 +511,15 @@ void ui_wireless_enter(lv_obj_t *parent)
 
     lv_obj_t *main_page = lv_menu_page_create(menu, NULL);
 
-    lv_obj_t *con2 = ui_create_option(main_page, LV_SYMBOL_WIFI" Password:", NULL, password_text_crate, NULL);
-    lv_obj_t *con1 = ui_create_option(main_page, LV_SYMBOL_WIFI" SSID:", NULL, dropdown_create, NULL);
+    ui_create_option(main_page, LV_SYMBOL_WIFI" Password:", NULL, password_text_crate, NULL);
+    ui_create_option(main_page, LV_SYMBOL_WIFI" SSID:", NULL, dropdown_create, NULL);
 
 
 
 
     // Acoes como botoes largos empilhados (rola a pagina) em vez de redondos amontoados.
+    // Nao existe botao "Salvar": conectar ja grava a rede no NVS quando ela sobe.
     wide_action_button(main_page, LV_SYMBOL_REFRESH " Scan",          scan_btn_event);
-    wide_action_button(main_page, LV_SYMBOL_SAVE    " Salvar rede",   wifi_save_event);
     wide_action_button(main_page, LV_SYMBOL_OK      " Conectar",      wifi_connect_event);
     wide_action_button(main_page, LV_SYMBOL_POWER   " Desligar WiFi", wifi_off_event);
 
@@ -456,13 +528,9 @@ void ui_wireless_enter(lv_obj_t *parent)
     vpn_control_create(main_page);
     if (!s_vpn_timer) s_vpn_timer = lv_timer_create(vpn_status_tick, 1000, NULL);
 
-    // Redes salvas como sub-pagina (listar/remover). WiFi cuida so de WiFi;
-    // Weather/News viraram apps proprios na grade.
-    lv_obj_t *saved_cont = lv_menu_cont_create(main_page);
-    lv_label_set_text(lv_label_create(saved_cont), LV_SYMBOL_WIFI " Saved networks");
-    saved_page = lv_menu_page_create(menu, NULL);
-    build_saved_list(saved_page);
-    lv_menu_set_load_page_event(menu, saved_cont, saved_page);
+    // Redes salvas na propria pagina (o usuario ve o que ja esta no NVS sem
+    // abrir sub-pagina). WiFi cuida so de WiFi; Weather/News sao apps proprios.
+    saved_panel = ui_wifi_saved_panel_create(main_page, load_saved_into_form);
 
     lv_menu_set_page(menu, main_page);
 

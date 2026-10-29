@@ -499,11 +499,12 @@ bool hw_get_wifi_scanning();
 void hw_get_wifi_scan_result(vector < wifi_scan_params_t > &list);
 
 /**
- * @brief Set up a WiFi connection.
+ * @brief Liga a STA numa rede especifica (ssid + senha) e grava em NVS quando
+ * ela realmente sobe (GOT_IP) — senha errada nunca e salva.
  *
- * @param params A reference to a wifi_conn_params_t structure containing the SSID and password.
+ * @return false so quando o ssid vem vazio (nada foi iniciado).
  */
-void hw_set_wifi_connect(wifi_conn_params_t &params);
+bool hw_set_wifi_connect(const wifi_conn_params_t &params);
 
 /**
  * @brief Check if the device is connected to a WiFi network.
@@ -516,14 +517,38 @@ bool hw_get_wifi_connected();
 // Redes WiFi salvas (NVS/Preferences) + conexao por WiFiMulti (melhor sinal).
 // WiFi fica DESLIGADO por padrao; so liga em hw_wifi_multi_connect (economia).
 // ---------------------------------------------------------------------------
+/** @brief Motivo do resultado de @ref hw_wifi_saved_add_ex. */
+typedef enum : uint8_t {
+    WIFI_SAVED_OK = 0,          /**< Gravou/atualizou a rede. */
+    WIFI_SAVED_INVALID_SSID,    /**< Ssid nulo ou vazio. */
+    WIFI_SAVED_FULL,            /**< Ja existem WIFI_MAX_SAVED redes. */
+    WIFI_SAVED_STORAGE_FAIL,    /**< O NVS recusou a escrita. */
+} wifi_saved_result_t;
+
+/** @brief Salva (ou atualiza) uma rede devolvendo o motivo da falha. */
+wifi_saved_result_t hw_wifi_saved_add_ex(const char *ssid, const char *password);
+/** @brief Texto (pt-BR, sem acento) do resultado; use em log ou pop-up. */
+const char *hw_wifi_saved_result_name(wifi_saved_result_t result);
 // Salva (ou atualiza) uma rede. true se ok. Recusa ssid vazio.
 bool hw_wifi_saved_add(const char *ssid, const char *password);
 // Remove uma rede salva pelo ssid. true se removeu.
 bool hw_wifi_saved_remove(const char *ssid);
 // Quantas redes salvas.
 uint8_t hw_wifi_saved_count();
+// Muda quando a lista salva muda (add/remove/update) — a UI usa pra nao
+// reconstruir a lista a cada tick.
+uint32_t hw_wifi_saved_revision();
+// Quantos slots existem (WIFI_MAX_SAVED); a UI mostra "n/10".
+uint8_t hw_wifi_saved_capacity();
+// A rede ja esta salva? false tambem quando o NVS nao abre.
+bool hw_wifi_saved_contains(const char *ssid);
+// Consome a ultima falha de gravacao (o autosave roda fora da task da UI).
+// Devolve WIFI_SAVED_OK quando nao ha nada pendente.
+wifi_saved_result_t hw_wifi_saved_take_failure();
 // Le o ssid da rede salva no indice idx (sem expor a senha). false se fora.
 bool hw_wifi_saved_get(uint8_t idx, std::string &ssid);
+// Le a senha da rede salva no indice idx. Use so pra preencher o form/editar.
+bool hw_wifi_saved_get_password(uint8_t idx, std::string &password);
 // Liga STA e conecta na rede salva de melhor sinal disponivel via WiFiMulti.
 // NAO bloqueia: dispara uma task de fundo (timeout `timeout_ms`) e retorna
 // logo. true = tentativa iniciada (ou ja em andamento); false = sem rede
@@ -870,6 +895,9 @@ void ui_show_wifi_process_bar();
  * @param msg_txt A pointer to the message text to be displayed.
  */
 void ui_msg_pop_up(const char *title_txt, const char *msg_txt);
+
+/** @brief Ha um pop-up aberto? ui_msg_pop_up descarta o novo quando true. */
+bool ui_msg_is_open();
 
 /**
  * @brief Check if the application is currently in the menu.

@@ -1820,41 +1820,64 @@ void hw_get_wifi_scan_result(vector < wifi_scan_params_t > &list)
 }
 
 #ifdef ARDUINO
-// Credentials of the last single-shot connect (e.g. an NFC WiFi tag). They are
-// persisted to WIFI_NS only once that exact network actually comes online, so a
-// wrong password is never saved and the WiFiMulti path (which already reads from
-// flash) cannot overwrite a good saved password with a stale one.
+// Credenciais do ultimo connect avulso (form do app Wireless ou tag NFC). So vao
+// pro NVS quando aquela rede exata entra no ar (GOT_IP): senha errada nunca e
+// salva e o caminho WiFiMulti (que ja le do flash) nao sobrescreve uma senha boa.
 static String s_pending_ssid;
 static String s_pending_pw;
 static bool   s_wifi_autosave_hooked = false;
 
+// Persiste a rede pendente. Falha agora aparece no serial com o motivo — antes
+// o retorno de hw_wifi_saved_add era descartado e a rede sumia sem aviso.
+static void wifi_autosave_persist_pending()
+{
+    if (s_pending_ssid.isEmpty()) return;
+    wifi_saved_result_t result = hw_wifi_saved_add_ex(s_pending_ssid.c_str(), s_pending_pw.c_str());
+    if (result != WIFI_SAVED_OK) {
+        log_w("WiFi autosave falhou (%s) para ssid <%s>",
+              hw_wifi_saved_result_name(result), s_pending_ssid.c_str());
+    } else {
+        printf("WiFi autosave ok: <%s>\n", s_pending_ssid.c_str());
+    }
+    s_pending_ssid = "";
+    s_pending_pw = "";
+}
+
+// WARNING: roda na task de eventos do WiFi.
 static void wifi_autosave_on_got_ip(WiFiEvent_t event)
 {
     (void)event;
     if (s_pending_ssid.isEmpty()) return;
     if (WiFi.SSID() != s_pending_ssid) return;
-    hw_wifi_saved_add(s_pending_ssid.c_str(), s_pending_pw.c_str());
-    s_pending_ssid = "";
-    s_pending_pw = "";
+    wifi_autosave_persist_pending();
+}
+
+static void wifi_autosave_attach()
+{
+    if (s_wifi_autosave_hooked) return;
+    WiFi.onEvent(wifi_autosave_on_got_ip, ARDUINO_EVENT_WIFI_STA_GOT_IP);
+    s_wifi_autosave_hooked = true;
 }
 #endif
 
-void hw_set_wifi_connect(wifi_conn_params_t &params)
+bool hw_set_wifi_connect(const wifi_conn_params_t &params)
 {
-    printf("hw_set_wifi_connect:ssid:<%s> password <%s>\n", params.ssid.c_str(), params.password.c_str());
+    if (params.ssid.empty()) return false;
 #ifdef ARDUINO
-    String ssid = params.ssid.c_str();
-    String password = params.password.c_str();
-    Serial.print("SSID :"); Serial.println(ssid);
-    Serial.print("PWD :"); Serial.println(password);
-    s_pending_ssid = ssid;
-    s_pending_pw = password;
-    if (!s_wifi_autosave_hooked) {
-        WiFi.onEvent(wifi_autosave_on_got_ip, ARDUINO_EVENT_WIFI_STA_GOT_IP);
-        s_wifi_autosave_hooked = true;
+    printf("hw_set_wifi_connect: ssid <%s>\n", params.ssid.c_str());
+    s_pending_ssid = params.ssid.c_str();
+    s_pending_pw = params.password.c_str();
+    wifi_autosave_attach();
+    // Ja conectado nessa rede: begin() nao dispara GOT_IP, entao salva agora.
+    if (WiFi.isConnected() && WiFi.SSID() == s_pending_ssid) {
+        wifi_autosave_persist_pending();
+        return true;
     }
-    WiFi.begin(ssid, password);
+    WiFi.begin(s_pending_ssid, s_pending_pw);
+#else
+    printf("hw_set_wifi_connect: sim sem radio, ssid <%s>\n", params.ssid.c_str());
 #endif
+    return true;
 }
 
 bool hw_get_wifi_connected()
@@ -1870,7 +1893,9 @@ bool hw_get_wifi_connected()
 // No PC (sim) usa store em memoria pra a UI funcionar sem flash.
 // ---------------------------------------------------------------------------
 #define WIFI_NS         "wifinets"
-#define WIFI_MAX_SAVED  8
+// 10 pares SSID+senha no NVS: ~160 bytes por rede (cabecalho 32 + valor em
+// blocos de 32), ~1,7 KB dos 20 KB da particao nvs — nao aperta o resto.
+#define WIFI_MAX_SAVED  10
 
 #ifdef ARDUINO
 static bool prefs_put_string_checked(Preferences &p, const char *key, const char *value)
@@ -1896,20 +1921,48 @@ static int wifi_saved_find(Preferences &p, uint8_t n, const char *ssid)
 static std::vector<std::pair<std::string, std::string>> g_sim_nets;
 #endif
 
-bool hw_wifi_saved_add(const char *ssid, const char *password)
+// Muda a cada add/remove bem-sucedido; a UI usa isso pra saber se precisa
+// reconstruir a lista de redes salvas sem reler o NVS a cada segundo.
+static uint32_t s_wifi_saved_revision = 0;
+
+// Ultima falha de gravacao ainda nao mostrada ao usuario. O autosave roda na
+// task de eventos do WiFi (nao pode abrir pop-up), entao a UI consome isto no
+// seu tick — assim "lista cheia" nao vira erro silencioso.
+static wifi_saved_result_t s_wifi_saved_last_failure = WIFI_SAVED_OK;
+
+static wifi_saved_result_t wifi_saved_fail(wifi_saved_result_t result)
+{
+    s_wifi_saved_last_failure = result;
+    return result;
+}
+
+wifi_saved_result_t hw_wifi_saved_add_ex(const char *ssid, const char *password)
 {
     if (ssid == nullptr || ssid[0] == '\0') {
-        return false;
+        return wifi_saved_fail(WIFI_SAVED_INVALID_SSID);
     }
     const char *pw = password ? password : "";
 #ifdef ARDUINO
     Preferences p;
-    if (!p.begin(WIFI_NS, false)) return false;
+    if (!p.begin(WIFI_NS, false)) return wifi_saved_fail(WIFI_SAVED_STORAGE_FAIL);
     uint8_t n = p.getUChar("n", 0);
     int found = wifi_saved_find(p, n, ssid);
+    if (found < 0 && n >= WIFI_MAX_SAVED) {
+        p.end();
+        log_w("WiFi nao salvo: lista cheia (%u) para ssid <%s>", WIFI_MAX_SAVED, ssid);
+        return wifi_saved_fail(WIFI_SAVED_FULL);
+    }
     uint8_t idx = (found >= 0) ? (uint8_t)found : n;
-    if (found < 0) {
-        if (n >= WIFI_MAX_SAVED) { p.end(); return false; }
+    if (found >= 0) {
+        // Mesma senha ja gravada: nao gasta ciclo de flash do NVS so porque a
+        // rede reconectou (o GOT_IP dispara a cada conexao).
+        char kp_known[8];
+        snprintf(kp_known, sizeof(kp_known), "p%u", idx);
+        if (p.getString(kp_known, "") == String(pw)) {
+            p.end();
+            return WIFI_SAVED_OK;
+        }
+    } else {
         n++;
     }
     char ks[8], kp[8];
@@ -1919,20 +1972,77 @@ bool hw_wifi_saved_add(const char *ssid, const char *password)
     ok = prefs_put_string_checked(p, kp, pw) && ok;
     ok = (p.putUChar("n", n) == 1) && ok;
     p.end();
-    return ok;
+    if (!ok) {
+        log_w("NVS recusou gravar a rede <%s> (namespace %s)", ssid, WIFI_NS);
+        return wifi_saved_fail(WIFI_SAVED_STORAGE_FAIL);
+    }
+    s_wifi_saved_revision++;
+    return WIFI_SAVED_OK;
 #else
     for (auto &e : g_sim_nets) {
         if (e.first == ssid) {
             e.second = pw;
-            return true;
+            s_wifi_saved_revision++;
+            return WIFI_SAVED_OK;
         }
     }
     if (g_sim_nets.size() >= WIFI_MAX_SAVED) {
-        return false;
+        return wifi_saved_fail(WIFI_SAVED_FULL);
     }
     g_sim_nets.push_back({ssid, pw});
-    return true;
+    s_wifi_saved_revision++;
+    return WIFI_SAVED_OK;
 #endif
+}
+
+bool hw_wifi_saved_add(const char *ssid, const char *password)
+{
+    return hw_wifi_saved_add_ex(ssid, password) == WIFI_SAVED_OK;
+}
+
+const char *hw_wifi_saved_result_name(wifi_saved_result_t result)
+{
+    switch (result) {
+    case WIFI_SAVED_OK:            return "ok";
+    case WIFI_SAVED_INVALID_SSID:  return "ssid vazio";
+    case WIFI_SAVED_FULL:          return "limite de redes salvas";
+    case WIFI_SAVED_STORAGE_FAIL:  return "falha no NVS";
+    }
+    return "resultado desconhecido";
+}
+
+uint32_t hw_wifi_saved_revision()
+{
+    return s_wifi_saved_revision;
+}
+
+uint8_t hw_wifi_saved_capacity()
+{
+    return WIFI_MAX_SAVED;
+}
+
+bool hw_wifi_saved_contains(const char *ssid)
+{
+    if (ssid == nullptr || ssid[0] == '\0') return false;
+#ifdef ARDUINO
+    Preferences p;
+    if (!p.begin(WIFI_NS, true)) return false;
+    bool found = wifi_saved_find(p, p.getUChar("n", 0), ssid) >= 0;
+    p.end();
+    return found;
+#else
+    for (const auto &entry : g_sim_nets) {
+        if (entry.first == ssid) return true;
+    }
+    return false;
+#endif
+}
+
+wifi_saved_result_t hw_wifi_saved_take_failure()
+{
+    wifi_saved_result_t result = s_wifi_saved_last_failure;
+    s_wifi_saved_last_failure = WIFI_SAVED_OK;
+    return result;
 }
 
 uint8_t hw_wifi_saved_count()
@@ -1970,6 +2080,28 @@ bool hw_wifi_saved_get(uint8_t idx, std::string &ssid)
 #endif
 }
 
+bool hw_wifi_saved_get_password(uint8_t idx, std::string &password)
+{
+#ifdef ARDUINO
+    Preferences p;
+    if (!p.begin(WIFI_NS, true)) return false;
+    uint8_t n = p.getUChar("n", 0);
+    bool ok = idx < n;
+    if (ok) {
+        char kp[8]; snprintf(kp, sizeof(kp), "p%u", idx);
+        password = p.getString(kp, "").c_str();
+    }
+    p.end();
+    return ok;
+#else
+    if (idx >= g_sim_nets.size()) {
+        return false;
+    }
+    password = g_sim_nets[idx].second;
+    return true;
+#endif
+}
+
 bool hw_wifi_saved_remove(const char *ssid)
 {
     if (ssid == nullptr) {
@@ -2003,10 +2135,15 @@ bool hw_wifi_saved_remove(const char *ssid)
     if (!p.remove(kpl)) log_w("Failed to remove saved WiFi password tail");
     bool ok = p.putUChar("n", n - 1) == 1;
     p.end();
-    return ok;
+    if (!ok) {
+        log_w("NVS recusou atualizar a contagem ao remover a rede <%s>", ssid);
+        return false;
+    }
+    s_wifi_saved_revision++;
+    return true;
 #else
     for (auto it = g_sim_nets.begin(); it != g_sim_nets.end(); ++it) {
-        if (it->first == ssid) { g_sim_nets.erase(it); return true; }
+        if (it->first == ssid) { g_sim_nets.erase(it); s_wifi_saved_revision++; return true; }
     }
     return false;
 #endif

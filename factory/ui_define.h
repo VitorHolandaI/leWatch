@@ -162,6 +162,16 @@ void watch_touch_keyboard_hide(lv_obj_t *keyboard);
 void ui_weather_attach(lv_obj_t *parent);
 void ui_news_attach(lv_obj_t *parent);
 
+/** @brief Callback do painel de redes salvas: preenche o form do app Wireless. */
+typedef void (*wifi_saved_load_cb_t)(const char *ssid, const char *password);
+/**
+ * @brief Cria o painel "Redes salvas" dentro da pagina do app Wireless.
+ * @param load_cb chamado ao tocar no lapis de uma linha (preenche o form).
+ */
+lv_obj_t *ui_wifi_saved_panel_create(lv_obj_t *parent, wifi_saved_load_cb_t load_cb);
+/** @brief Reconstroi o painel so quando a lista salva mudou (ok a cada tick). */
+void ui_wifi_saved_panel_refresh(lv_obj_t *panel);
+
 #if LVGL_VERSION_MAJOR == 9
 #define LV_MENU_ROOT_BACK_BTN_ENABLED   LV_MENU_ROOT_BACK_BUTTON_ENABLED
 #define lv_menu_back_btn_is_root        lv_menu_back_button_is_root

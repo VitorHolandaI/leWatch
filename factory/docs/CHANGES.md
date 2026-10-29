@@ -3,6 +3,72 @@
 Visão do que foi **realmente mexido** vs intocado. `NOVO` = arquivo criado;
 `MOD` = modificado.
 
+## Build/sim — rodar o simulador direto do repo
+
+| Arquivo | | O que mudou |
+|---|---|---|
+| `sim/CMakeLists.txt` | MOD | Aceita `factory/libraries/lvgl` (symlink local) além do layout `~/Arduino/factory`; adiciona `${LVGL}/src` ao include (LVGL 9 mudou o driver pra `src/drivers/sdl/`), force-include `compat.h`, `-DARDUINO_T_WATCH_S3 -DUSING_IR_REMOTE` (sem eles `MAIN_FONT` não existe) e `GLOB_RECURSE` em `src/` (as fontes estão em `src/font/`). Também linka `sim/stubs.cpp` — sem ele o link morria em `hw_get_radio_params`. O CMake estava quebrado antes disso. |
+| `sim/Makefile` | MOD | `LVGL ?=` procura `../libraries/lvgl` (repo) antes de `../../libraries/lvgl` (Arduino). |
+| `.gitignore` | MOD | `libraries/lvgl` — o symlink pro LVGL do Arduino (93 MB, não vai pro git). |
+| `wireguard_secrets.h` | NOVO (local) | Copiado de `~/Arduino/factory` (628 B). Gitignored: `git status` não mostra e `git check-ignore` confirma. Sem ele o `__has_include` faz o VPN compilar como no-op. |
+
+Smoke (headless, sem janela):
+
+```sh
+cmake -S sim -B /tmp/simbuild && cmake --build /tmp/simbuild -j
+SDL_VIDEODRIVER=dummy timeout 10 /tmp/simbuild/sim   # exit 124 = rodou 10 s sem crash
+```
+
+`make -C sim quality` (quality-build + cppcheck + lizard + smoke) só funciona
+**serial** — com `-j` ele constrói o mesmo `sim` duas vezes com flags diferentes
+e o link quebra. `.NOTPARALLEL:` no Makefile trava isso.
+
+### Upload do firmware
+
+| Arquivo | | O que mudou |
+|---|---|---|
+| `flash.sh` | MOD | Passa a compilar **esta árvore** (`SKETCH` = pasta do script) e não mais `~/Arduino/factory`. Build persistente em `factory/build/` (gitignored, sobrevive a reboot) com atalho de upload: se nada mudou desde o último `.bin`, ele **não recompila**, só envia. `--build` (`-b`) força recompilar; sozinho ele detecta quando alguma fonte (`*.c/cpp/h/ino/csv`) ficou mais nova que o binário. Usa o `WireGuard-ESP32` vendorizado no repo e avisa se `wireguard_secrets.h` faltar. |
+
+```sh
+./flash.sh                 # usa build/ (upload em ~2 s quando nada mudou)
+./flash.sh --build         # recompila e envia
+./flash.sh /dev/ttyACM0 -b # porta + recompilar
+```
+
+Resultado da última rodada (2026-10-29):
+
+| check | resultado |
+|---|---|
+| firmware `arduino-cli compile` (S3, com secrets) | OK — 2772421 B (88% flash), 89756 B de RAM |
+| `quality-build` (`-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wundef`) | exit 0; 1615 warnings, praticamente todos dentro do LVGL (as flags valem pra ele também) |
+| `cppcheck` (42 arquivos) | exit 0; 215 achados, todos `style`/`warning` do código antigo. Nos arquivos novos: só `cstyleCast` (padrão do repo), 1 falso positivo (`duplicateExpressionTernary` em `LV_SYMBOL_POWER " Desligar VPN" : LV_SYMBOL_POWER " Ligar VPN"`) e 2 `constParameterCallback` que conflitam com o typedef de callback do LVGL |
+| `lizard` (714 funções, `-C 15 -L 80`) | 28 acima do limite, nenhuma nos arquivos novos (maior ali: `fill_device_dropdown`, 37 linhas / CCN 10) |
+| `smoke` | exit 0 (10 s headless sem crash) |
+
+O que **não** tem cobertura: nada rodou no hardware, e o sim não tem rádio — WiFi
+e deauth ali são stubs (`sim/stubs.cpp`). `hal_interface.cpp` também é opaco pro
+lizard (arquivo quase todo `#ifdef ARDUINO`, ele só parseia 15 funções).
+
+## Branch `deauth-fix` — deauth que não saía no ar
+
+| Arquivo | | O que mudou |
+|---|---|---|
+| `wifi_deauth_bypass.cpp` | NOVO | Override de `ieee80211_raw_frame_sanity_check()` (símbolo do `libnet80211.a`, o blob fechado do WiFi) devolvendo 0. Sem ele o `esp_wifi_80211_tx()` devolve **ESP_OK** e descarta silenciosamente deauth/disassoc. Detalhes e referências em `docs/wifi-deauth.md`. |
+| `flash.sh` | MOD | `--build-property "compiler.c.elf.extra_flags=-Wl,--allow-multiple-definition"` — sem o flag o link morre com "multiple definition". |
+| `ui_deauth.cpp` | MOD | **(1)** O AP saía na lista de dispositivos (beacon tem o AP como src); agora é filtrado. **(2)** Alvo guardado por MAC, não por índice do dropdown (que mudava com a lista ao vivo) — antes dava pra atacar o MAC errado. **(3)** Rajada periódica de 16 frames no tick de 500 ms: só reagir a tráfego deixava cliente parado intacto. **(4)** `WiFi.softAPdisconnect(true)` no stop. **(5)** Contador `s_stations_deauthed` → `s_deauth_frames` (era "matches", agora conta frame mesmo). |
+| `docs/wifi-deauth.md` | NOVO | Diagnóstico verificado (`nm`/`objdump` no toolchain do projeto), os repos de referência, os bugs corrigidos e como validar no serial. |
+
+## Branch `wifi-autosave` — conectar salva sozinho, lista no rodapé
+
+| Arquivo | | O que mudou |
+|---|---|---|
+| `hal_interface.*` | MOD | **(1)** `hw_set_wifi_connect` devolve `bool` e **não imprime mais a senha** no serial. O autosave no `GOT_IP` virou `wifi_autosave_persist_pending()`/`wifi_autosave_attach()` e **loga o motivo** quando o NVS recusa — antes o retorno de `hw_wifi_saved_add` era descartado (a rede sumia sem aviso). **(2)** `wifi_saved_result_t` + `hw_wifi_saved_add_ex()`: `OK/INVALID_SSID/FULL/STORAGE_FAIL` em vez de `false` mudo. **(3)** `WIFI_MAX_SAVED` 8 → **10** (~160 B por rede no NVS, ~1,7 KB dos 20 KB da partição). **(4)** `hw_wifi_saved_capacity/contains/revision/get_password/take_failure`: a falha do autosave (que roda fora da task da UI) fica pendente e a UI a mostra no tick. |
+| `ui_wireless.cpp` | MOD | Botão **Salvar rede removido**: `Conectar` já grava no NVS quando a rede sobe. `Conectar` usa a rede **do formulário** (`hw_set_wifi_connect`; sem SSID cai no WiFiMulti das salvas). Senha vazia = rede aberta, 1..7 chars é recusado. `dropdown_event`+`load_saved_password` preenchem a senha da rede salva ao trocar de SSID. Scan corrigido (`scan_started_tick` + 500 ms): antes o dropdown podia fechar vazio e "salvar" falhava com "SSID is null". Sub-página virou painel na própria página. |
+| `ui_wifi_saved.cpp` | NOVO | Painel **Redes salvas (n/10)** dentro da página: lápis carrega SSID+senha no formulário, lixeira remove. Reconstroi só quando `hw_wifi_saved_revision()` muda, então roda no tick de 1 s sem reler o NVS. |
+| `ui_define.h` / `ui_msg.cpp` | MOD | `wifi_saved_load_cb_t`, `ui_wifi_saved_panel_create/refresh`; `ui_msg_is_open()` pra não perder o aviso de "lista cheia" quando já tem pop-up na tela. |
+
+- Senha fica em **texto puro** no NVS (`s<n>`/`p<n>` no namespace `wifinets`), como o WiFiMulti do ESP32 espera — WPA precisa do texto pra derivar a PSK, não dá pra guardar hash. Proteção só com NVS encryption/flash encryption (eFuse), que não está ligado.
+
 ## Branch `home-redesign` — novo launcher
 
 | Arquivo | | O que mudou |

@@ -1,8 +1,15 @@
 # PC simulator (SDL2 + LVGL) for the T-Watch S3 UI.
 # Builds the portable UI code with ARDUINO undefined (hardware -> PC stubs).
 
+# quality = quality-build + smoke, e os dois querem construir 'sim'. Com -j o
+# make dispara dois builds dos MESMOS .o com flags diferentes e o link quebra
+# ("collect2: ld returned 1"). Serial sempre.
+.NOTPARALLEL:
+
 ROOT  := ..
-LVGL  := ../../libraries/lvgl
+# Layout do repo: factory/libraries/lvgl (symlink, gitignored).
+# Layout do Arduino: $HOME/Arduino/factory/sim -> ../../libraries/lvgl.
+LVGL  ?= $(firstword $(wildcard $(ROOT)/libraries/lvgl) $(wildcard ../../libraries/lvgl))
 
 CC    := gcc
 CXX   := g++
