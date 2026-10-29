@@ -27,12 +27,13 @@ e o link quebra. `.NOTPARALLEL:` no Makefile trava isso.
 
 | Arquivo | | O que mudou |
 |---|---|---|
-| `flash.sh` | MOD | Passa a compilar **esta árvore** (`SKETCH` = pasta do script) e não mais `~/Arduino/factory`. Build persistente em `factory/build/` (gitignored, sobrevive a reboot) com atalho de upload: se nada mudou desde o último `.bin`, ele **não recompila**, só envia. `--build` (`-b`) força recompilar; sozinho ele detecta quando alguma fonte (`*.c/cpp/h/ino/csv`) ficou mais nova que o binário. Usa o `WireGuard-ESP32` vendorizado no repo e avisa se `wireguard_secrets.h` faltar. |
+| `flash.sh` | MOD | Passa a compilar **esta árvore** (`SKETCH` = pasta do script) e não mais `~/Arduino/factory`. Build persistente em `factory/build/` (gitignored, sobrevive a reboot) com atalho de upload: se nada mudou desde o último `.bin`, ele **não recompila**, só envia. Ganhou **menu interativo** quando roda sem argumento num TTY (compilar+enviar+serial / só enviar / só compilar / sem serial / compilar do zero / escolher porta / sair), com header mostrando sketch, porta e se o binário está atualizado. Flags pra uso direto: `--build`, `--upload-only`, `--only-compile`, `--clean`, `--monitor`/`--no-monitor`, `--menu`. Usa o `WireGuard-ESP32` vendorizado no repo e avisa se `wireguard_secrets.h` faltar. Passa `shellcheck -S style` limpo. |
 
 ```sh
-./flash.sh                 # usa build/ (upload em ~2 s quando nada mudou)
+./flash.sh                 # menu
 ./flash.sh --build         # recompila e envia
-./flash.sh /dev/ttyACM0 -b # porta + recompilar
+./flash.sh --upload-only   # ~2 s, sem compilar
+./flash.sh /dev/ttyACM1 -m # porta + força o serial no fim
 ```
 
 Resultado da última rodada (2026-10-29):
