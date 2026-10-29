@@ -144,16 +144,18 @@ no tool exposes it:
 | Foreground alert | `ui_alarm_ring()` full-screen overlay + sound + vibrate; `hw_alarm_ringing()` flag | `ui_clock.cpp:350` |
 | App + launcher | `create_app_cell(...)`; module pattern in `ui_share.cpp` (`app_t` setup/exit, `create_menu`, back handler) | `ui_main.cpp:153` |
 
-## 1.5 Gaps (what is missing on each side)
+## 1.5 Gaps (what is still missing)
 
-**Server (MCP):** no JSON-returning tool; no multi-day/snapshot tool; no
-`complete`/tombstone semantics; no MCP auth/TLS.
+Most of what this section used to list is built; the checklist in PART 5 is the
+authoritative tally. What remains:
 
-**Appliance (firmware):** `hw_http_get` (`hal_interface.cpp:3598`) is **GET only,
-no auth, no custom headers, fixed truncating buffer** — insufficient for MCP,
-which needs an HTTP **POST** with `Accept: application/json, text/event-stream`,
-plus **SSE parsing** and **JSON parsing**. No local snapshot store, no
-event/task reminder timer, no Nextcloud UI screen.
+**Server (MCP):** no auth and no TLS on the MCP endpoint. Tests do not yet cover
+DST boundaries, all-day end exclusivity, moved tasks or cancellation tombstones.
+
+**Appliance (firmware):** no upsert/delete transaction against a durable store —
+each sync replaces the in-RAM item set, and `complete=false` is not handled. The
+reminder timer is created when the app is first opened, so reminders do not fire
+from boot until the user opens Agenda once.
 
 ---
 
@@ -169,8 +171,13 @@ sync_nextcloud_agenda(start_date=null,
                       include_overdue_tasks=true,
                       include_undated_tasks=false,
                       task_lists=null,
-                      event_calendars=null)
+                      event_calendars=null,
+                      all_tasks=false)
 ```
+
+`all_tasks` was added after this section was first written and is not optional
+in practice: `ui_nextcloud.cpp` sends `{"days": N, "all_tasks": true}`, which is
+what makes undated tasks reach the watch's task page.
 
 Rules:
 
@@ -296,13 +303,15 @@ Do not silently mix completed tasks into the active snapshot. Task identity is
   success.
 - Separate timeouts: connect, whole-request, and a max response size.
 
-## 3.2 New HTTP client needed
+## 3.2 HTTP client — built
 
-`hw_http_get` (`hal_interface.cpp:3598`) cannot do this (GET only, no headers, no
-auth, truncating fixed buffer). Add a POST-capable helper that sets the two
-headers, streams the SSE body into a large **PSRAM** buffer (`ps_malloc`), and
-returns the raw body for SSE+JSON parsing. Keep it behind a thin interface (per
-project convention) and provide a sim stub.
+`hw_http_get` could not do this (GET only, no headers, truncating fixed buffer),
+so `hw_mcp_post(url, body, out, out_size)` was added in `hal_interface.cpp`. It
+sets both headers, streams the SSE body into a PSRAM buffer and returns the raw
+body for SSE+JSON extraction.
+
+`agenda_task` in `ui_nextcloud.cpp` calls it against `NEXTCLOUD_MCP_URL` and
+falls back to `NEXTCLOUD_MCP_URL_FALLBACK` (LAN first, then the VPN address).
 
 ## 3.3 Local snapshot store (flash) + transaction
 
@@ -341,11 +350,23 @@ flashing flow. Use the **LAN** address `http://192.168.0.24:8001/mcp` (the watch
 is not on the WireGuard VPN, so the `10.66.66.16` VPN address will not resolve
 for it). **No Nextcloud credentials on the device.**
 
-## 3.6 UI
+## 3.6 UI — built, and it is two pages, not one list
 
-New `ui_nextcloud.cpp`: a Sync button (spawns the fetch task like weather),
-a status line (last sync age / errors), and a scrollable list of upcoming items.
-Register a launcher cell with `create_app_cell(...)` (`ui_main.cpp:153`).
+`ui_nextcloud.cpp` has a Sync button (spawns the fetch task like weather) and a
+status line, then **two separate views** rather than the single merged list this
+section originally described:
+
+- `build_today_events()` — **today's events only**, time-sorted, rendered as
+  `HH:MM  Title`. Empty state: "Sem eventos hoje."
+- `build_tasks_page()` — tasks grouped by list, rendered as `DD/MM  Title`, or
+  `--/--  Title` when undated. Empty state: "Sem tarefas."
+
+This split is why a daily routine belongs in the snapshot as recurring `VEVENT`
+and not as tasks: events land on the first page, which is the day's agenda, and
+pass once their time is over. A task that is never completed stays `overdue` on
+the second page forever.
+
+The launcher cell is registered with `create_app_cell(...)` (`ui_main.cpp:153`).
 
 ---
 
